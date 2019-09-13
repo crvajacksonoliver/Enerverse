@@ -1,1 +1,1 @@
-draw_sprite(sprite_index, 0, 100, 100);
+scr_block_render();
