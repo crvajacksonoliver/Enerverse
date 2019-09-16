@@ -3,7 +3,7 @@ var c_y = 0;
 var hold_c = false;
 
 var c_speed = 0.5;
-var c_maxspeed = c_speed * 2;
+var c_maxspeed = c_speed * 4;
 
 if (keyboard_check_direct(ord("A")))
 {
@@ -67,3 +67,15 @@ global.debug = keyboard_check_direct(ord("A"));
 
 global.player_x += global.lplayer_x;
 global.player_y += global.lplayer_y;
+
+if (global.player_x > 0)
+{
+	global.player_x = 0;
+	global.lplayer_x = 0;
+}
+
+if (global.player_y > 0)
+{
+	global.player_y = 0;
+	global.lplayer_y = 0;
+}

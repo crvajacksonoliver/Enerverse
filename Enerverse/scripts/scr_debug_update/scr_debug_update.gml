@@ -1,0 +1,1 @@
+global.debug_menu[0] = string(global.player_x / -32) + ", " + string(global.player_y / -32);

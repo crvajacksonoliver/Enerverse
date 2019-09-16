@@ -11,13 +11,8 @@ for (var c_x = 0; c_x < (room_width / 32) + 2; c_x++)
 			sprite_idx = global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2];
 		}
 		
-		draw_sprite(sprite_index, sprite_idx, c_x * 32 + (global.player_x % 32) - 32, c_y * 32 + (global.player_y % 32) - 32);
+		draw_sprite(sprite_index, sprite_idx, c_x * 32 + (global.player_x % 32), c_y * 32 + (global.player_y % 32));
 	}
 }
 
-draw_set_font(36);
-draw_set_color(c_white);
-
-draw_text(100, 100, string(global.lplayer_x));
-draw_text(200, 100, string(global.player_x));
-draw_text(100, 150, string(global.debug));
+draw_sprite(global.current_player, 0, (room_width / 2) - 32, (room_height / 2) - 64);
