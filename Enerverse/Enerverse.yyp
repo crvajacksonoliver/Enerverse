@@ -95,14 +95,6 @@
             }
         },
         {
-            "Key": "366485dd-887e-4427-bf45-3ab2a138798f",
-            "Value": {
-                "id": "d740a829-e142-4c53-99c6-67afd4fd35f6",
-                "resourcePath": "datafiles_yy\\workingset\\grass.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "444f7a03-741b-402c-a43f-f4fd1d632aa4",
             "Value": {
                 "id": "24e029e6-9b5c-4ff7-b63a-1aa1c3a3d016",
@@ -167,10 +159,26 @@
             }
         },
         {
-            "Key": "8f6bad72-e897-4989-9794-797c8081b6cc",
+            "Key": "8139ff84-03cc-4836-8e4e-e4db4d3ab45c",
             "Value": {
-                "id": "462542e2-2a52-4e3c-bd37-5a87ba0f6c0f",
-                "resourcePath": "datafiles_yy\\workingset\\dirt.png.yy",
+                "id": "e8ecc9db-959d-4d99-ba18-436e5c0d34e4",
+                "resourcePath": "views\\8139ff84-03cc-4836-8e4e-e4db4d3ab45c.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "89815751-26a8-474e-b496-7b4ed510684a",
+            "Value": {
+                "id": "43b7bb55-f933-456e-88c9-5b1de93e6f92",
+                "resourcePath": "datafiles_yy\\workingset\\vin\\grass.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "96f7222b-4040-4dab-bdae-be75b98a42cf",
+            "Value": {
+                "id": "dff658d2-22b8-48a8-b350-afa21f3d1225",
+                "resourcePath": "datafiles_yy\\test.dll.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -215,6 +223,14 @@
             }
         },
         {
+            "Key": "c8bb0e7a-e74f-4319-be35-bc48752624dc",
+            "Value": {
+                "id": "47fe41c1-d975-4a2f-a7f5-6a0b1a6b76e2",
+                "resourcePath": "datafiles_yy\\workingset\\vin\\null.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "cc542184-1626-4fcd-b171-a323c3adc8d6",
             "Value": {
                 "id": "8ddea46a-e0b3-4429-bcbd-5a88e1de97c1",
@@ -228,6 +244,14 @@
                 "id": "39f32bfd-de22-4259-91c6-718ce2fbd3cc",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
+            }
+        },
+        {
+            "Key": "e35996ec-8e13-498d-b0dc-c24f950e7e86",
+            "Value": {
+                "id": "065a1f11-d6fb-4856-b37c-a35e9341b7d2",
+                "resourcePath": "datafiles_yy\\workingset\\vin\\dirt.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
