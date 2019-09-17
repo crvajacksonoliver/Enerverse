@@ -79,6 +79,14 @@
             }
         },
         {
+            "Key": "2e08d939-7a37-4a4a-aac6-a93a02ecf3c2",
+            "Value": {
+                "id": "4fad30d5-3cb0-4e3f-81aa-5c45b3fda593",
+                "resourcePath": "datafiles_yy\\workingset\\vin\\wooden_frame.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "330825f7-1423-4664-8cdd-0e80a3ee35ee",
             "Value": {
                 "id": "f381ebbe-9230-4d7e-a984-a689257a9c48",

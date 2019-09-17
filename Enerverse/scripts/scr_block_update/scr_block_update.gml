@@ -68,7 +68,7 @@ global.debug = keyboard_check_direct(ord("A"));
 global.player_x += global.lplayer_x;
 global.player_y += global.lplayer_y;
 
-if (global.player_x > 0)
+if (global.player_x > (floor(room_width / 32)))
 {
 	global.player_x = 0;
 	global.lplayer_x = 0;

@@ -1,8 +1,8 @@
 global.lplayer_x = 0;
 global.lplayer_y = 0;
 
-global.player_x = 50;
-global.player_y = 50;
+global.player_x = -800;
+global.player_y = -800;
 
 global.using_debug_menu = true;
 global.debug_menu = array_create(1);
@@ -16,8 +16,8 @@ global.active_world_blocks = array_create(global.active_world_width * global.act
 
 for (var i = 0; i < global.active_world_width * global.active_world_height; i++)
 {
-	global.active_world_blocks[i * 2] = random_range(1, 3);
-		
+	global.active_world_blocks[i * 2] = random_range(1, 4);
+	
 	global.active_world_blocks[i * 2 + 1] = "";
 }
 
@@ -26,10 +26,9 @@ global.block_registry = [];
 var loadable_blocks_length = 0;
 var loadable_blocks = [];
 
-loadable_blocks[loadable_blocks_length] = "vin/dirt";
-loadable_blocks_length++;
-loadable_blocks[loadable_blocks_length] = "vin/grass";
-loadable_blocks_length++;
+loadable_blocks[loadable_blocks_length] = "vin/dirt"; loadable_blocks_length++;
+loadable_blocks[loadable_blocks_length] = "vin/grass"; loadable_blocks_length++;
+loadable_blocks[loadable_blocks_length] = "vin/wooden_frame"; loadable_blocks_length++;
 
 var blocks = instance_create_depth(0, 0, 10, obj_blocks);
 with (blocks)
