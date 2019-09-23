@@ -74,25 +74,25 @@
     <TargetName>CRAFTPOLL</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)craftpollbuild\</OutDir>
-    <IntDir>$(SolutionDir)craftpollbuild\int\</IntDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>CRAFTPOLL</TargetName>
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)craftpollbuild\</OutDir>
-    <IntDir>$(SolutionDir)craftpollbuild\int\</IntDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>CRAFTPOLL</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)craftpollbuild\</OutDir>
-    <IntDir>$(SolutionDir)craftpollbuild\int\</IntDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>CRAFTPOLL</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)craftpollbuild\</OutDir>
-    <IntDir>$(SolutionDir)craftpollbuild\int\</IntDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
