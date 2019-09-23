@@ -1,12 +1,36 @@
-// EnerverseVin.cpp : Defines the exported functions for the DLL application.
-//
+#include "EnerverseVin.h"
 
-#include "stdafx.h"
-
-
-#define GMEXPORT extern "C" __declspec (dllexport)
-
-GMEXPORT double testFunction(double a, double b)
+bool ModVin::InitializeAssets()
 {
-	return a + b;
+	return true;
+}
+
+class BlockTest : public Block
+{
+public:
+	BlockTest()
+		:Block(Material::EARTH, 1.0f, Tool::SHOVEL)
+	{
+
+	}
+
+	bool IsItem() override
+	{
+		return true;
+	}
+};
+
+bool ModVin::InitializeModels()
+{
+	BlockTest block = BlockTest();
+	
+
+	BlockRegistry::RegisterBlock((Block*)&block);
+
+	return true;
+}
+
+bool ModVin::InitializeVisual()
+{
+	return true;
 }

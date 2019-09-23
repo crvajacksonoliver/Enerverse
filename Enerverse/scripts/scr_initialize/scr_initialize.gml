@@ -33,8 +33,8 @@ loadable_blocks[loadable_blocks_length] = "vin/wooden_frame"; loadable_blocks_le
 var blocks = instance_create_depth(0, 0, 10, obj_blocks);
 with (blocks)
 {
-	//var some_function = external_define("test.dll", "testFunction", dll_cdecl, ty_real, 2, ty_real, ty_real);
-	//show_message(external_call(some_function));
+	var some_function = external_define("EnerverseVin.dll", "engine_version", dll_cdecl, ty_real, 0);
+	show_message(external_call(some_function));
 	
 	var block = sprite_add("workingset/vin/null.png", 1, false, false, 0, 0);
 	

@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnerverseVin", "EnerverseVin\EnerverseVin.vcxproj", "{AAEB3763-7120-4AD2-9A4C-994B027C05DA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187} = {0C2BA267-0517-47DB-B058-4B5CD8D73187}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CraftPoll", "CraftPoll\CraftPoll.vcxproj", "{0C2BA267-0517-47DB-B058-4B5CD8D73187}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Debug|x64.ActiveCfg = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Debug|x64.Build.0 = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Debug|x86.ActiveCfg = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Debug|x86.Build.0 = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Release|x64.ActiveCfg = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Release|x64.Build.0 = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Release|x86.ActiveCfg = Debug|x64
+		{AAEB3763-7120-4AD2-9A4C-994B027C05DA}.Release|x86.Build.0 = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Debug|x64.ActiveCfg = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Debug|x64.Build.0 = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Debug|x86.ActiveCfg = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Debug|x86.Build.0 = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Release|x64.ActiveCfg = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Release|x64.Build.0 = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Release|x86.ActiveCfg = Debug|x64
+		{0C2BA267-0517-47DB-B058-4B5CD8D73187}.Release|x86.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF5D0978-B1DA-42DA-AFB6-65628FB22545}
+	EndGlobalSection
+EndGlobal

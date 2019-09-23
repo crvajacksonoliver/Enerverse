@@ -143,6 +143,14 @@
             }
         },
         {
+            "Key": "6dc3c381-71f8-400e-9364-3d32eb06d761",
+            "Value": {
+                "id": "a973bb03-f779-4674-8d2a-3e1ab6637af4",
+                "resourcePath": "datafiles_yy\\EnerverseVin.dll.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "6e87a30d-167e-45f6-ba3e-01576cd4f91d",
             "Value": {
                 "id": "167a9f54-c91c-4918-b0fe-b87b839b74f3",
@@ -203,14 +211,6 @@
             "Value": {
                 "id": "43b7bb55-f933-456e-88c9-5b1de93e6f92",
                 "resourcePath": "datafiles_yy\\workingset\\vin\\grass.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "96f7222b-4040-4dab-bdae-be75b98a42cf",
-            "Value": {
-                "id": "dff658d2-22b8-48a8-b350-afa21f3d1225",
-                "resourcePath": "datafiles_yy\\test.dll.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
