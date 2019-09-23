@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "0265bbeb-2637-4824-be35-aceb2503f8db",
+            "Value": {
+                "id": "2d62b3c7-4253-40fb-8676-81a219f3461b",
+                "resourcePath": "views\\0265bbeb-2637-4824-be35-aceb2503f8db.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "042f4098-f5e0-456d-b90a-4886af739a72",
             "Value": {
                 "id": "844262c9-d79b-4e8a-b2ca-e430cf6f0219",
@@ -68,6 +76,14 @@
                 "id": "eb46749c-59f8-4844-875e-805afb1393f6",
                 "resourcePath": "views\\0a55ba3d-85a5-49fb-85c1-7ea6059c3ff4.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "1bdfdf6a-581b-4d3d-a4dd-bfae930b51eb",
+            "Value": {
+                "id": "ff8e3ab4-3bc7-46ea-8dcd-210a8fda1941",
+                "resourcePath": "datafiles_yy\\workingset\\dirt.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -140,14 +156,6 @@
                 "id": "a220c845-3bc4-4aaf-a919-4d94e1896174",
                 "resourcePath": "views\\6b8d3832-345f-460a-8cf5-2f5b7a5e30b8.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6dc3c381-71f8-400e-9364-3d32eb06d761",
-            "Value": {
-                "id": "a973bb03-f779-4674-8d2a-3e1ab6637af4",
-                "resourcePath": "datafiles_yy\\EnerverseVin.dll.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -231,6 +239,14 @@
             }
         },
         {
+            "Key": "b47be24e-d03c-43ab-837c-7aa7e0c309c9",
+            "Value": {
+                "id": "d802af5a-e11d-4bd2-a332-9291bb99b0e5",
+                "resourcePath": "datafiles_yy\\mods\\EnerverseVin.dll.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "baab151a-729a-4a4d-8834-9de522828cf2",
             "Value": {
                 "id": "768aa902-018b-4057-8cbe-ec72279edd9b",
@@ -244,6 +260,14 @@
                 "id": "65e89cd1-c7a8-4e0d-9e19-3625e01e6480",
                 "resourcePath": "datafiles_yy\\workingset\\player.png.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6",
+            "Value": {
+                "id": "aa249a06-c0b0-4191-8c5b-4a8d8622952e",
+                "resourcePath": "scripts\\scr_craft_poll\\scr_craft_poll.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -287,6 +311,14 @@
             }
         },
         {
+            "Key": "e2398437-a917-4b76-8ddb-96ab2c104bc8",
+            "Value": {
+                "id": "f747a0b1-5b6d-4e5e-ab86-56057509ebce",
+                "resourcePath": "datafiles_yy\\workingset\\grass.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "e35996ec-8e13-498d-b0dc-c24f950e7e86",
             "Value": {
                 "id": "065a1f11-d6fb-4856-b37c-a35e9341b7d2",
@@ -327,6 +359,14 @@
             }
         },
         {
+            "Key": "fb56a125-848b-4ffb-ac7e-aa206286fe1b",
+            "Value": {
+                "id": "ed38f250-6cfd-4c58-8474-6730ecf77a20",
+                "resourcePath": "views\\fb56a125-848b-4ffb-ac7e-aa206286fe1b.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "ff7e2ec2-34c7-48dd-a44c-d8a082903fdd",
             "Value": {
                 "id": "0e3bd8ef-8d47-4bd0-8f37-522bc348d728",
@@ -341,7 +381,8 @@
         "9d263cf2-d0cb-4755-b2d9-9adc5a5abc13",
         "ebce66cc-370b-49e7-b6da-15e40f161129",
         "f0b8f664-e337-4071-8c42-c0d3ab8ae83a",
-        "fa34d00d-c4b4-41c7-883f-fd6267e3a766"
+        "fa34d00d-c4b4-41c7-883f-fd6267e3a766",
+        "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6"
     ],
     "tutorial": ""
 }
