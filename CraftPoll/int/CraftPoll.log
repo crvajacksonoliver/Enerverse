@@ -1,4 +1,5 @@
 ﻿  CraftPoll.cpp
   EngineCalls.cpp
   Generating Code...
-  CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse-master\craftpollbuild\CRAFTPOLL.lib
+CraftPoll.obj : warning LNK4006: "class ModHandler * modHandler" (?modHandler@@3PAVModHandler@@A) already defined in EngineCalls.obj; second definition ignored
+  CraftPoll.vcxproj -> D:\Enerverse\craftpollbuild\CRAFTPOLL.lib

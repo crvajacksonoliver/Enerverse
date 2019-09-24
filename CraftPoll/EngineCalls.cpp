@@ -2,6 +2,136 @@
 
 #define GM_EXPORT extern "C" __declspec (dllexport)
 
+//	Mod
+
+GM_EXPORT double engine_version()
+{
+	return ModHandler::GetVersion();
+}
+
+GM_EXPORT char* engine_init()
+{
+	if (SetupCraftPoll == nullptr)
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '1';
+		result[1] = '\0';
+
+		SetupCraftPoll();
+
+		return result;
+	}
+}
+
+GM_EXPORT char* engine_init_assets()
+{
+	if (modHandler->InitializeAssets())
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '1';
+		result[1] = '\0';
+
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		return result;
+	}
+}
+
+GM_EXPORT char* engine_init_models()
+{
+	if (modHandler->InitializeModels())
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '1';
+		result[1] = '\0';
+
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		return result;
+	}
+}
+
+GM_EXPORT char* engine_init_visuals()
+{
+	if (modHandler->InitializeVisuals())
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '1';
+		result[1] = '\0';
+
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		return result;
+	}
+}
+
+//	Blocks
+
+GM_EXPORT char* engine_block_create(char* unlocalizedName, char* metaData)
+{
+
+}
+
+GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData)
+{
+
+}
+
+GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData)
+{
+
+}
+
 GM_EXPORT char* engine_block_registry_initialize()
 {
 	try
@@ -38,9 +168,4 @@ GM_EXPORT double engine_block_registry_compile()
 GM_EXPORT char* engine_block_registry_pull()
 {
 	return BlockRegistry::PullData();
-}
-
-GM_EXPORT double engine_version()
-{
-	return ModHandler::GetVersion();
 }

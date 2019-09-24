@@ -11,6 +11,26 @@ bool Block::IsItem()
 	return true;
 }
 
+char* Block::OnBlockCreate(char* arguments)
+{
+	char* metaData = (char*)malloc(1);
+	if (metaData == nullptr)
+		return nullptr;
+
+	metaData[0] = '\0';
+	return metaData;
+}
+
+char* Block::OnBlockUpdate(char* metaData)
+{
+	return metaData;
+}
+
+char* Block::OnBlockDestroy(char* metaData)
+{
+	return metaData;
+}
+
 Material Block::GetMaterial()
 {
 	return m_mat;
@@ -72,7 +92,7 @@ bool ModHandler::InitializeModels()
 	return true;
 }
 
-bool ModHandler::InitializeVisual()
+bool ModHandler::InitializeVisuals()
 {
 	return true;
 }

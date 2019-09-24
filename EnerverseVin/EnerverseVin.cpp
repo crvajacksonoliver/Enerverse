@@ -1,14 +1,19 @@
 #include "EnerverseVin.h"
 
+void SetupCraftPoll()
+{
+	modHandler = (ModHandler*)malloc(sizeof(ModVin));
+}
+
 bool ModVin::InitializeAssets()
 {
 	return true;
 }
 
-class BlockTest : public Block
+class BlockDirt : public Block
 {
 public:
-	BlockTest()
+	BlockDirt()
 		:Block(Material::EARTH, 1.0f, Tool::SHOVEL)
 	{
 
@@ -30,7 +35,7 @@ bool ModVin::InitializeModels()
 	return true;
 }
 
-bool ModVin::InitializeVisual()
+bool ModVin::InitializeVisuals()
 {
 	return true;
 }

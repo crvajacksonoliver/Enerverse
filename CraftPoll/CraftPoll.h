@@ -32,6 +32,10 @@ public:
 
 	// if true the engine will assume its and item and a block
 	virtual bool IsItem();
+
+	virtual char* OnBlockCreate(char* arguments);
+	virtual char* OnBlockUpdate(char* metaData);
+	virtual char* OnBlockDestroy(char* metaData);
 private:
 	Material m_mat;
 	float m_hardness;
@@ -56,6 +60,8 @@ public:
 	
 	// engine call; called after model initialization
 	static char* PullData();
+
+	// engine call; pull a block 
 private:
 	static std::vector<std::string>* m_blocks;
 	static char* m_data;
@@ -74,5 +80,8 @@ public:
 	virtual bool InitializeModels();
 
 	// register mips/filters
-	virtual bool InitializeVisual();
+	virtual bool InitializeVisuals();
 };
+
+ModHandler* modHandler = nullptr;
+void SetupCraftPoll();

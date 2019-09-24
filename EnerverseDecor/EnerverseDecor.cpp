@@ -1,5 +1,10 @@
 #include "EnerverseDecor.h"
 
+void SetupCraftPoll()
+{
+	modHandler = (ModHandler*)new ModDecor();
+}
+
 bool ModDecor::InitializeAssets()
 {
 	return true;
@@ -30,7 +35,7 @@ bool ModDecor::InitializeModels()
 	return true;
 }
 
-bool ModDecor::InitializeVisual()
+bool ModDecor::InitializeVisuals()
 {
 	return true;
 }
