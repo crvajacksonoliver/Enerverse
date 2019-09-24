@@ -71,20 +71,28 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <TargetName>ENERVERSEDECOR</TargetName>
+    <TargetName>EnerverseDecor</TargetName>
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Enerverse\datafiles\mods\</OutDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <TargetName>ENERVERSEDECOR</TargetName>
+    <TargetName>EnerverseDecor</TargetName>
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)Enerverse\datafiles\mods\</OutDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>ENERVERSEDECOR</TargetName>
+    <TargetName>EnerverseDecor</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Enerverse\datafiles\mods\</OutDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>ENERVERSEDECOR</TargetName>
+    <TargetName>EnerverseDecor</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)Enerverse\datafiles\mods\</OutDir>
+    <IntDir>$(ProjectDir)int\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,7 +109,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,7 +128,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -143,7 +151,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -166,7 +174,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

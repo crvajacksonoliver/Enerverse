@@ -103,7 +103,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,7 +120,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -141,7 +141,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -162,7 +162,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)craftpollbuild\</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)CraftPoll\build\</AdditionalLibraryDirectories>
       <AdditionalDependencies>CRAFTPOLL.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
