@@ -28,7 +28,7 @@ tool
 class Block
 {
 public:
-	Block(Material mat, float hardness, Tool tool);
+	Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool);
 
 	// if true the engine will assume its and item and a block
 	virtual bool IsItem();
@@ -36,14 +36,20 @@ public:
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);
 	virtual char* OnBlockDestroy(char* metaData);
-private:
-	Material m_mat;
-	float m_hardness;
-	Tool m_tool;
+
+	const std::string& GetUnlocalizedName();
+	const std::string& GetDisplayName();
 
 	Material GetMaterial();
 	float GetHardness();
 	Tool GetTool();
+private:
+	std::string m_unlocalizedName;
+	std::string m_displayName;
+
+	Material m_mat;
+	float m_hardness;
+	Tool m_tool;
 };
 
 class BlockRegistry
@@ -61,9 +67,13 @@ public:
 	// engine call; called after model initialization
 	static char* PullData();
 
-	// engine call; pull a block 
+	// engine call; on create
+	static char* BlockCreate(char* unlocalizedName, char* arguments);
+	static char* BlockUpdate(char* unlocalizedName, char* metaData);
+	static char* BlockDestroy(char* unlocalizedName, char* metaData);
 private:
-	static std::vector<std::string>* m_blocks;
+	static std::vector<Block*>* m_blocks;
+	static std::vector<std::string>* m_blockText;
 	static char* m_data;
 };
 

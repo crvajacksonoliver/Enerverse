@@ -117,19 +117,19 @@ GM_EXPORT char* engine_init_visuals()
 
 //	Blocks
 
-GM_EXPORT char* engine_block_create(char* unlocalizedName, char* metaData)
+GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments)
 {
-
+	return BlockRegistry::BlockCreate(unlocalizedName, arguments);
 }
 
 GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData)
 {
-
+	return BlockRegistry::BlockUpdate(unlocalizedName, metaData);
 }
 
 GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData)
 {
-
+	return BlockRegistry::BlockDestroy(unlocalizedName, metaData);
 }
 
 GM_EXPORT char* engine_block_registry_initialize()
@@ -160,9 +160,30 @@ GM_EXPORT char* engine_block_registry_initialize()
 	return result;
 }
 
-GM_EXPORT double engine_block_registry_compile()
+GM_EXPORT char* engine_block_registry_compile()
 {
-	return BlockRegistry::CompileBlocks() ? 1 : 0;
+	if (BlockRegistry::CompileBlocks())
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '1';
+		result[1] = '\0';
+
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+			return nullptr;
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		return result;
+	}
 }
 
 GM_EXPORT char* engine_block_registry_pull()
