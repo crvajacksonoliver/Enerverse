@@ -171,7 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CraftPoll.cpp" />
-    <ClCompile Include="EngineCalls.cpp" />
+    <ClCompile Include="EngineCalls.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -23,7 +23,7 @@
     <ClCompile Include="CraftPoll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EngineCalls.cpp">
+    <ClCompile Include="EngineCalls.h">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

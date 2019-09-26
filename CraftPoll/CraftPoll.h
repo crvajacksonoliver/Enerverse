@@ -93,5 +93,5 @@ public:
 	virtual bool InitializeVisuals();
 };
 
-ModHandler* modHandler = nullptr;
-void SetupCraftPoll();
+extern ModHandler* modHandler;
+extern void SetupCraftPoll();

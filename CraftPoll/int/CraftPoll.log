@@ -1,11 +1,10 @@
 ﻿  CraftPoll.cpp
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(72,34): warning C4244:  'argument': conversion from 'float' to '_Elem', possible loss of data
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(72,34): warning C4244:         with
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(72,34): warning C4244:         [
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(72,34): warning C4244:             _Elem=char
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(72,34): warning C4244:         ]
-  EngineCalls.cpp
+D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:  'argument': conversion from 'float' to '_Elem', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         with
+D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         [
+D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:             _Elem=char
+D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         ]
+  EngineCalls.h
   Generating Code...
-C:\jacksonoliverdev\Enerverse-master\CraftPoll\CraftPoll.cpp(98,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
-CraftPoll.obj : warning LNK4006: "class ModHandler * modHandler" (?modHandler@@3PAVModHandler@@A) already defined in EngineCalls.obj; second definition ignored
-  CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse-master\CraftPoll\build\CRAFTPOLL.lib
+D:\Enerverse\CraftPoll\CraftPoll.cpp(102,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+  CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib

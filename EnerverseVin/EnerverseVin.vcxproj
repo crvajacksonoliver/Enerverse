@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EnerverseVin.cpp" />
+    <ClCompile Include="EngineCalls.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnerverseVin.h" />

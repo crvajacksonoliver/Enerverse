@@ -1,0 +1,2 @@
+change ModHandler::GetVersion() return value
+change window titles

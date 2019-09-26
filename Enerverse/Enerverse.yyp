@@ -223,6 +223,14 @@
             }
         },
         {
+            "Key": "97fc453e-b26c-49fb-95f3-234e7a48b52a",
+            "Value": {
+                "id": "c13259ab-b5ea-4e16-9289-fa0c55957031",
+                "resourcePath": "datafiles_yy\\mods\\modlist.txt.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "982203af-ccf4-4fb1-b5e1-3d339d858b45",
             "Value": {
                 "id": "5fcefd8d-e749-4bd8-a0d6-21234627ac48",
@@ -308,6 +316,14 @@
                 "id": "39f32bfd-de22-4259-91c6-718ce2fbd3cc",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
+            }
+        },
+        {
+            "Key": "dc7e0dc6-1699-41ae-9535-9e641bfa818f",
+            "Value": {
+                "id": "6dbae5f1-d203-426e-9256-b72a507e4884",
+                "resourcePath": "datafiles_yy\\mods\\EnerverseDecor.dll.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

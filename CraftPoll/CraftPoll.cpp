@@ -65,6 +65,10 @@ Status BlockRegistry::RegisterBlock(Block* block)
 	m_blocks->push_back(block);
 	
 	std::string* blockText = new std::string("");
+	*blockText += block->GetUnlocalizedName();
+	*blockText += ",";
+	*blockText += block->GetDisplayName();
+	*blockText += ",";
 	*blockText += block->GetMaterial();
 	*blockText += ",";
 	*blockText += block->GetTool();

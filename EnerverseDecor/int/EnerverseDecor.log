@@ -1,2 +1,7 @@
 ﻿  EnerverseDecor.cpp
-C:\jacksonoliverdev\Enerverse-master\EnerverseDecor\EnerverseDecor.cpp(17,9): error C2661:  'Block::Block': no overloaded function takes 3 arguments
+D:\Enerverse\EnerverseDecor\EnerverseDecor.cpp(32,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
+  EngineCalls.cpp
+  Generating Code...
+D:\Enerverse\EnerverseDecor\EnerverseDecor.cpp(66,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
+     Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.exp
+  EnerverseDecor.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.dll

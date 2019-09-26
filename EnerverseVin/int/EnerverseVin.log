@@ -1,7 +1,7 @@
 ﻿  EnerverseVin.cpp
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(17,9): error C2661:  'Block::Block': no overloaded function takes 3 arguments
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(30,2): error C2065:  'BlockTest': undeclared identifier
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(30,12): error C2146:  syntax error: missing ';' before identifier 'block'
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(30,12): error C2065:  'block': undeclared identifier
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(30,20): error C3861:  'BlockTest': identifier not found
-C:\jacksonoliverdev\Enerverse-master\EnerverseVin\EnerverseVin.cpp(33,40): error C2065:  'block': undeclared identifier
+D:\Enerverse\EnerverseVin\EnerverseVin.cpp(32,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
+  EngineCalls.cpp
+  Generating Code...
+D:\Enerverse\EnerverseVin\EnerverseVin.cpp(66,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
+     Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
+  EnerverseVin.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll

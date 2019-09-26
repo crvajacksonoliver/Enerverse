@@ -1,5 +1,7 @@
 #include "EnerverseVin.h"
 
+ModHandler* modHandler;
+
 void SetupCraftPoll()
 {
 	modHandler = (ModHandler*)malloc(sizeof(ModVin));
@@ -65,11 +67,14 @@ public:
 
 		for (signed short i = metaLength - 1; i > 0; i--)
 		{
-			if (metaData[i] == '9' && i != 0)
+			if (metaData[i] == '9')
 			{
-				//HERE
 				metaData[i] = '0';
-				metaData[i - 1]++;
+			}
+			else
+			{
+				metaData[i]++;
+				break;
 			}
 		}
 
@@ -80,7 +85,6 @@ public:
 bool ModVin::InitializeModels()
 {
 	BlockDirt block = BlockDirt();
-	
 
 	BlockRegistry::RegisterBlock((Block*)&block);
 
