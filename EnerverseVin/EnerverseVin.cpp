@@ -1,22 +1,18 @@
 #include "EnerverseVin.h"
 
-ModHandler* modHandler;
-
-void SetupCraftPoll()
-{
-	modHandler = (ModHandler*)malloc(sizeof(ModVin));
-}
-
-bool ModVin::InitializeAssets()
-{
-	return true;
-}
+ModHandler* modHandler = new ModVin();
 
 class BlockDirt : public Block
 {
 public:
 	BlockDirt()
 		:Block("block_dirt", "Dirt", Material::EARTH, 1.0f, Tool::SHOVEL)
+	{
+
+	}
+
+	BlockDirt(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool)
+		:Block(unlocalizedName, displayName, mat, hardness, tool)
 	{
 
 	}
@@ -82,11 +78,31 @@ public:
 	}
 };
 
+class BlockSod : public BlockDirt
+{
+public:
+	BlockSod()
+		:BlockDirt("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
+	{
+		
+	}
+};
+
+bool ModVin::InitializeAssets()
+{
+	return true;
+}
+
 bool ModVin::InitializeModels()
 {
-	BlockDirt block = BlockDirt();
+	BlockDirt* block_dirt = new BlockDirt();
+	BlockSod* block_sod = new BlockSod();
 
-	BlockRegistry::RegisterBlock((Block*)&block);
+	BlockRegistry::RegisterBlock((Block*)block_dirt);
+	BlockRegistry::RegisterBlock((Block*)block_sod);
+
+	AssetRegistry::RegisterAsset("blocks/dirt", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("blocks/sod", AssetType::BLOCK_DIFFUSE);
 
 	return true;
 }

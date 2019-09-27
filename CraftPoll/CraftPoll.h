@@ -16,6 +16,11 @@ enum Tool
 	HAND, SHOVEL
 };
 
+enum AssetType
+{
+	BLOCK_DIFFUSE, BLOCK_TRANSPARENCY, GUI_DIFFUSE
+};
+
 /*
 
 unlocalizedName
@@ -55,11 +60,17 @@ private:
 class BlockRegistry
 {
 public:
+	static unsigned int MaterialConvert(Material mat);
+	static unsigned int ToolConvert(Tool tool);
+
 	// registers a block into the registry
 	static Status RegisterBlock(Block* block);
 
-	// engine call; called before model initialization
-	static void Initialize();
+	// engine internal call;
+	static void Allocate();
+
+	// engine internal call;
+	static void Deallocate();
 
 	// engine call; called after model initialization
 	static bool CompileBlocks();
@@ -77,7 +88,43 @@ private:
 	static char* m_data;
 };
 
-class ModHandler
+//only internal engine uses this class
+class Asset
+{
+public:
+	Asset(std::string path, AssetType assetType)
+		:Path(path), Type(assetType) { }
+
+	std::string Path;
+	AssetType Type;
+};
+
+class AssetRegistry
+{
+public:
+	static unsigned int AssetConvert(AssetType assetType);
+
+	//registers asset details into the registry
+	static Status RegisterAsset(const char* path, AssetType assetType);
+
+	// engine internal call;
+	static void Allocate();
+
+	// engine internal call;
+	static void Deallocate();
+
+	// engine call; called after model initialization
+	static bool CompileAssets();
+
+	// engine call; called after model initialization
+	static char* PullData();
+private:
+	static std::vector<Asset*>* m_assets;
+	static std::vector<std::string>* m_assetText;
+	static char* m_data;
+};
+
+extern class ModHandler
 {
 public:
 	// engine call; for version
@@ -94,4 +141,3 @@ public:
 };
 
 extern ModHandler* modHandler;
-extern void SetupCraftPoll();

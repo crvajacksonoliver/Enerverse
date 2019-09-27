@@ -22,10 +22,12 @@ for (var i = 0; i < global.active_world_width * global.active_world_height; i++)
 }
 
 //list of mods as text (file names)
-global.modlist = [];
+global.modlist = ds_list_create();
 
 //default state as text inline with the modlist
+global.asset_registry = [];
 global.block_registry = [];
+global.visual_registry = [];
 
 //2d array inline with the modlist
 global.external_calls = [];

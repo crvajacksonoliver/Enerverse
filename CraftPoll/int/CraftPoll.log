@@ -1,10 +1,11 @@
 ﻿  CraftPoll.cpp
-D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:  'argument': conversion from 'float' to '_Elem', possible loss of data
-D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         with
-D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         [
-D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:             _Elem=char
-D:\Enerverse\CraftPoll\CraftPoll.cpp(76,34): warning C4244:         ]
+D:\Enerverse\CraftPoll\CraftPoll.h(141,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.cpp(130,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   EngineCalls.h
+D:\Enerverse\CraftPoll\CraftPoll.cpp(267,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.cpp(102,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.h(141,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(227): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
   CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib

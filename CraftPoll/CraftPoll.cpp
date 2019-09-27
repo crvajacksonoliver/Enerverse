@@ -6,6 +6,25 @@ Block::Block(std::string unlocalizedName, std::string displayName, Material mat,
 
 }
 
+unsigned int BlockRegistry::MaterialConvert(Material mat)
+{
+	switch (mat)
+	{
+	case Material::EARTH: return 0;
+	case Material::METAL: return 1;
+	case Material::ROCK: return 2;
+	}
+}
+
+unsigned int BlockRegistry::ToolConvert(Tool tool)
+{
+	switch (tool)
+	{
+	case Tool::HAND: return 0;
+	case Tool::SHOVEL: return 1;
+	}
+}
+
 bool Block::IsItem()
 {
 	return true;
@@ -69,13 +88,13 @@ Status BlockRegistry::RegisterBlock(Block* block)
 	*blockText += ",";
 	*blockText += block->GetDisplayName();
 	*blockText += ",";
-	*blockText += block->GetMaterial();
+	*blockText += std::to_string(MaterialConvert(block->GetMaterial()));
 	*blockText += ",";
-	*blockText += block->GetTool();
+	*blockText += std::to_string(ToolConvert(block->GetTool()));
 	*blockText += ",";
-	*blockText += block->GetHardness();
+	*blockText += std::to_string(block->GetHardness());
 	*blockText += ",";
-	*blockText += block->IsItem();
+	*blockText += std::to_string(block->IsItem() ? 1 : 0);
 	*blockText += ",";
 
 	m_blockText->push_back(*blockText);
@@ -84,10 +103,19 @@ Status BlockRegistry::RegisterBlock(Block* block)
 	return Status::OK;
 }
 
-void BlockRegistry::Initialize()
+void BlockRegistry::Allocate()
 {
 	m_blockText = new std::vector<std::string>();
 	m_blocks = new std::vector<Block*>();
+}
+
+void BlockRegistry::Deallocate()
+{
+	delete m_blockText;
+	delete m_blocks;
+
+	m_blockText = nullptr;
+	m_blocks = nullptr;
 }
 
 bool BlockRegistry::CompileBlocks()
@@ -187,3 +215,87 @@ bool ModHandler::InitializeVisuals()
 {
 	return true;
 }
+
+unsigned int AssetRegistry::AssetConvert(AssetType assetType)
+{
+	switch (assetType)
+	{
+	case AssetType::BLOCK_DIFFUSE: return 0;
+	case AssetType::BLOCK_TRANSPARENCY: return 1;
+	case AssetType::GUI_DIFFUSE: return 2;
+	}
+}
+
+Status AssetRegistry::RegisterAsset(const char* path, AssetType assetType)
+{
+	Asset* asset = new Asset(std::string(path), assetType);
+	m_assets->push_back(asset);
+
+	std::string* assetText = new std::string("");
+	*assetText += path;
+	*assetText += ",";
+	*assetText += std::to_string(AssetConvert(assetType));
+	*assetText += ",";
+
+	m_assetText->push_back(*assetText);
+	delete assetText;
+
+	return Status::OK;
+}
+
+void AssetRegistry::Allocate()
+{
+	m_assets = new std::vector<Asset*>();
+	m_assetText = new std::vector<std::string>();
+}
+
+void AssetRegistry::Deallocate()
+{
+	delete m_assets;
+	delete m_assetText;
+}
+
+bool AssetRegistry::CompileAssets()
+{
+	unsigned long long totalLength = 0;
+
+	for (unsigned int i = 0; i < m_assetText->size(); i++)
+	{
+		totalLength += (*m_assetText)[i].length();
+	}
+
+	m_data = (char*)malloc(totalLength + 1);
+	if (m_data == nullptr)
+		return false;
+
+	m_data[totalLength] = '\0';
+
+	unsigned int currentLine = 0;
+	unsigned short currentChar = 0;
+
+	for (unsigned long long i = 0; i < totalLength; i++)
+	{
+		if (currentChar == (*m_assetText)[currentLine].length())
+		{
+			currentChar = 0;
+			currentLine++;
+		}
+
+		m_data[i] = (*m_assetText)[currentLine][currentChar];
+
+		currentChar++;
+	}
+
+	return true;
+}
+
+char* AssetRegistry::PullData()
+{
+	return m_data;
+}
+
+std::vector<Asset*>* AssetRegistry::m_assets;
+
+std::vector<std::string>* AssetRegistry::m_assetText;
+
+char* AssetRegistry::m_data;

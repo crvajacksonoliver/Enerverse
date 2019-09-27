@@ -1,16 +1,6 @@
 #include "EnerverseDecor.h"
 
-ModHandler* modHandler;
-
-void SetupCraftPoll()
-{
-	modHandler = (ModHandler*)malloc(sizeof(ModDecor));
-}
-
-bool ModDecor::InitializeAssets()
-{
-	return true;
-}
+ModHandler* modHandler = new ModDecor();
 
 class BlockGrass : public Block
 {
@@ -82,13 +72,18 @@ public:
 	}
 };
 
+bool ModDecor::InitializeAssets()
+{
+	return true;
+}
+
 bool ModDecor::InitializeModels()
 {
 	BlockGrass block = BlockGrass();
 
 	BlockRegistry::RegisterBlock((Block*)& block);
 	
-	return false;
+	return true;
 }
 
 bool ModDecor::InitializeVisuals()
