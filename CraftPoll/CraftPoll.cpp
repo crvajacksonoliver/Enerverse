@@ -30,6 +30,14 @@ bool Block::IsItem()
 	return true;
 }
 
+Model* Block::GetModel()
+{
+	Model* model = new Model();
+	model->AddElement(new ModelElement("@NULL", 0.0, 0.0, 1.0, 1.0));
+
+	return model;
+}
+
 char* Block::OnBlockCreate(char* arguments)
 {
 	char* metaData = (char*)malloc(1);
@@ -82,7 +90,7 @@ char* BlockRegistry::m_data;
 Status BlockRegistry::RegisterBlock(Block* block)
 {
 	m_blocks->push_back(block);
-	
+
 	std::string* blockText = new std::string("");
 	*blockText += block->GetUnlocalizedName();
 	*blockText += ",";
@@ -97,8 +105,32 @@ Status BlockRegistry::RegisterBlock(Block* block)
 	*blockText += std::to_string(block->IsItem() ? 1 : 0);
 	*blockText += ",";
 
+	// add model
+
+	Model* blockModel = block->GetModel();
+	std::vector<ModelElement*>* blockModelElements = blockModel->GetElements();
+
+	for (unsigned int i = 0; i < blockModelElements->size(); i++)
+	{
+		*blockText += (*blockModelElements)[i]->TexturePath;
+		*blockText += ",";
+		*blockText += std::to_string((*blockModelElements)[i]->OffsetX);
+		*blockText += ",";
+		*blockText += std::to_string((*blockModelElements)[i]->OffsetY);
+		*blockText += ",";
+		*blockText += std::to_string((*blockModelElements)[i]->ScaleX);
+		*blockText += ",";
+		*blockText += std::to_string((*blockModelElements)[i]->ScaleY);
+
+		if (i == blockModelElements->size() - 1)
+			*blockText += ";";
+		else
+			*blockText += ",";
+	}
+
 	m_blockText->push_back(*blockText);
 	delete blockText;
+	delete blockModel;
 
 	return Status::OK;
 }
@@ -299,3 +331,29 @@ std::vector<Asset*>* AssetRegistry::m_assets;
 std::vector<std::string>* AssetRegistry::m_assetText;
 
 char* AssetRegistry::m_data;
+
+ModelElement::ModelElement(const char* texturePath, double offsetX, double offsetY, double scaleX, double scaleY)
+	:TexturePath(texturePath), OffsetX(offsetX), OffsetY(offsetY), ScaleX(scaleX), ScaleY(scaleY)
+{
+
+}
+
+Model::Model()
+{
+	m_Elements = new std::vector<ModelElement*>();
+}
+
+Model::~Model()
+{
+	delete m_Elements;
+}
+
+void Model::AddElement(ModelElement* element)
+{
+	m_Elements->push_back(element);
+}
+
+std::vector<ModelElement*>* Model::GetElements()
+{
+	return m_Elements;
+}

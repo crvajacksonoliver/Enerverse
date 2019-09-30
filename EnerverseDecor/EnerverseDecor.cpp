@@ -16,6 +16,14 @@ public:
 		return true;
 	}
 
+	Model* GetModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", 0.0, 0.0, 1.0, 1.0));
+
+		return model;
+	}
+
 	char* OnBlockCreate(char* arguments) override
 	{
 		unsigned char argumentCount = 0;
@@ -74,14 +82,16 @@ public:
 
 bool ModDecor::InitializeAssets()
 {
+	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/grass", AssetType::BLOCK_DIFFUSE);
+
 	return true;
 }
 
 bool ModDecor::InitializeModels()
 {
-	BlockGrass block = BlockGrass();
+	BlockGrass* block_grass = new BlockGrass();
 
-	BlockRegistry::RegisterBlock((Block*)& block);
+	BlockRegistry::RegisterBlock((Block*)block_grass);
 	
 	return true;
 }

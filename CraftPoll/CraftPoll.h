@@ -21,15 +21,32 @@ enum AssetType
 	BLOCK_DIFFUSE, BLOCK_TRANSPARENCY, GUI_DIFFUSE
 };
 
-/*
+class ModelElement
+{
+public:
+	ModelElement(const char* texturePath, double offsetX, double offsetY, double scaleX, double scaleY);
 
-unlocalizedName
-displayName
-material
-hardness
-tool
+	const char* TexturePath;
+	double OffsetX;
+	double OffsetY;
+	double ScaleX;
+	double ScaleY;
+};
 
-*/
+// how textures are baked into a block/item
+class Model
+{
+public:
+	Model();
+	~Model();
+
+	void AddElement(ModelElement* element);
+
+	std::vector<ModelElement*>* GetElements();
+private:
+	std::vector<ModelElement*>* m_Elements;
+};
+
 class Block
 {
 public:
@@ -37,6 +54,8 @@ public:
 
 	// if true the engine will assume its and item and a block
 	virtual bool IsItem();
+
+	virtual Model* GetModel();
 
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);

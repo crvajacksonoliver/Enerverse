@@ -13,14 +13,57 @@ GM_EXPORT double engine_version()
 
 GM_EXPORT char* engine_pull_assets()
 {
-	char* result = (char*)malloc(2);
-	if (result == nullptr)
-		return nullptr;
+	std::function<void()>* F_CLOSE = new std::function<void()>();
+	*F_CLOSE = []()
+	{
+		AssetRegistry::Deallocate();
+	};
 
-	result[0] = '1';
-	result[1] = '\0';
+	AssetRegistry::Allocate();
 
-	return result;
+	if (modHandler->InitializeAssets())
+	{
+		if (!AssetRegistry::CompileAssets())
+		{
+			char* result = (char*)malloc(2);
+			if (result == nullptr)
+			{
+				(*F_CLOSE)();
+				delete F_CLOSE;
+				return nullptr;
+			}
+
+			result[0] = '0';
+			result[1] = '\0';
+
+			(*F_CLOSE)();
+			delete F_CLOSE;
+			return result;
+		}
+
+		char* result = AssetRegistry::PullData();
+
+		(*F_CLOSE)();
+		delete F_CLOSE;
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
+		if (result == nullptr)
+		{
+			(*F_CLOSE)();
+			delete F_CLOSE;
+			return nullptr;
+		}
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		(*F_CLOSE)();
+		delete F_CLOSE;
+		return result;
+	}
 }
 
 GM_EXPORT char* engine_pull_models()
@@ -39,30 +82,41 @@ GM_EXPORT char* engine_pull_models()
 		{
 			char* result = (char*)malloc(2);
 			if (result == nullptr)
+			{
+				(*F_CLOSE)();
+				delete F_CLOSE;
 				return nullptr;
+			}
 
 			result[0] = '0';
 			result[1] = '\0';
 
 			(*F_CLOSE)();
+			delete F_CLOSE;
 			return result;
 		}
 
 		char* result = BlockRegistry::PullData();
 
 		(*F_CLOSE)();
+		delete F_CLOSE;
 		return result;
 	}
 	else
 	{
 		char* result = (char*)malloc(2);
 		if (result == nullptr)
+		{
+			(*F_CLOSE)();
+			delete F_CLOSE;
 			return nullptr;
+		}
 
 		result[0] = '0';
 		result[1] = '\0';
 
 		(*F_CLOSE)();
+		delete F_CLOSE;
 		return result;
 	}
 }
@@ -73,7 +127,7 @@ GM_EXPORT char* engine_pull_visuals()
 	if (result == nullptr)
 		return nullptr;
 
-	result[0] = '1';
+	result[0] = '0';
 	result[1] = '\0';
 
 	return result;
