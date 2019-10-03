@@ -1,1 +1,1 @@
-ctrl+f "HERE"
+working on models in GM, after loading blocks into registry, render all of the models and add them to the NEW asset registry

@@ -76,6 +76,14 @@ public:
 
 		return metaData;
 	}
+
+	Model* GetModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseVin/blocks/dirt", 0.0, 0.0, 1.0, 1.0));
+
+		return model;
+	}
 };
 
 class BlockSod : public BlockDirt
@@ -85,6 +93,15 @@ public:
 		:BlockDirt("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
 	{
 		
+	}
+
+	Model* GetModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", 0.0, 0.0, 1.0, 1.0));
+		model->AddElement(new ModelElement("EnerverseVin/blocks/sod", 0.0, 0.5, 1.0, 0.75));
+
+		return model;
 	}
 };
 
