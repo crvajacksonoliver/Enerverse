@@ -118,7 +118,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	var inc = 0;
 	while (inc < string_length(global.block_registry[i]))
 	{
-		var block = array_create(6);
+		var block = array_create(7);
 		
 		{//unlocalizedName
 			var attrib = "";
@@ -185,6 +185,78 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		
 			block[5] = attrib;
 			inc++;
+		}
+		{//model
+			var model = ds_list_create();
+			
+			while (true)
+			{
+				var modelPart = array_create(5);
+				{//path
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc);
+						inc++;
+					}
+		
+					modelPart[0] = attrib;
+					inc++;
+				}
+				{//x
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc);
+						inc++;
+					}
+		
+					modelPart[1] = attrib;
+					inc++;
+				}
+				{//y
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc);
+						inc++;
+					}
+		
+					modelPart[2] = attrib;
+					inc++;
+				}
+				{//width
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc);
+						inc++;
+					}
+		
+					modelPart[3] = attrib;
+					inc++;
+				}
+				{//height
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc);
+						inc++;
+					}
+		
+					modelPart[4] = attrib;
+					inc++;
+				}
+				
+				ds_list_add(model, modelPart);
+				
+				if (string_char_at(global.block_registry[i], inc) == ";")
+					break;
+				
+				inc++;
+			}
+			
+			block[6] = model;
 		}
 		
 		ds_list_add(blocks, block);
