@@ -115,7 +115,7 @@ var blocks = ds_list_create();
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
 {
-	var inc = 0;
+	var inc = 1;
 	while (inc < string_length(global.block_registry[i]))
 	{
 		var block = array_create(7);
@@ -251,7 +251,10 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 				ds_list_add(model, modelPart);
 				
 				if (string_char_at(global.block_registry[i], inc) == ";")
+				{
+					inc++;
 					break;
+				}
 				
 				inc++;
 			}
@@ -279,7 +282,7 @@ ds_list_destroy(blocks);
 	
 	for (var i = 0; i < ds_list_size(global.modlist); i++)
 	{
-		var inc = 0;
+		var inc = 1;
 		
 		while (inc < string_length(global.asset_registry[i]))
 		{
