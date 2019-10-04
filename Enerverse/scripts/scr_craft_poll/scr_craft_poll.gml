@@ -104,11 +104,6 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	}
 }
 
-for (var i = 0; i < ds_list_size(compileMessages); i++)
-{
-	show_message(ds_list_find_value(compileMessages, i));
-}
-
 //split attributes
 
 var blocks = ds_list_create();
@@ -323,7 +318,57 @@ ds_list_destroy(blocks);
 		}
 		
 		sprite_assign(sprite_index, loadableAsset);
+		
+		for (var i = 0; i < ds_list_size(global.block_registry); i++)
+		{
+			var assetSurface = surface_create(32, 32);
+			surface_set_target(assetSurface);
+			
+			var revertToNull = false;
+			
+			for (var a = 0; a < ds_list_size(array_get(ds_list_find_value(global.block_registry, i), 6)); a++)
+			{
+				var frameDetails = ds_list_find_value(array_get(ds_list_find_value(global.block_registry, i), 6), a);
+				
+				var found = -1;
+				var foundType = -1;
+				
+				for (var b = 0; b < ds_list_size(assets); b++)
+				{
+					if (array_get(ds_list_find_value(assets, b), 0) == frameDetails[0])
+					{
+						found = b;
+						foundType = array_get(ds_list_find_value(assets, b), 1);
+						break;
+					}
+				}
+				
+				if (found == -1 || foundType != 0)
+				{
+					ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> texture \"" + assetDetails[0] + "\", has not been registered. Block\"" + array_get(ds_list_find_value(global.block_registry, i), 0) + "\" will have a null texture");
+					revertToNull = true;
+					break;
+				}
+				
+				draw_sprite(sprite_index, found, 0, 0);
+			}
+		
+			if (revertToNull)
+			{
+				draw_sprite(sprite_index, 0, 0, 0);
+			}
+			
+			//HERE put the surface on a new sprite
+			
+			surface_reset_target();
+			surface_free(assetSurface);
+		}
 	}
+}
+
+for (var i = 0; i < ds_list_size(compileMessages); i++)
+{
+	show_message(ds_list_find_value(compileMessages, i));
 }
 
 /*
