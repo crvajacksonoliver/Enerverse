@@ -121,11 +121,10 @@ Status BlockRegistry::RegisterBlock(Block* block)
 		*blockText += std::to_string((*blockModelElements)[i]->ScaleX);
 		*blockText += ",";
 		*blockText += std::to_string((*blockModelElements)[i]->ScaleY);
+		*blockText += ",";
 
 		if (i == blockModelElements->size() - 1)
 			*blockText += ";";
-		else
-			*blockText += ",";
 	}
 
 	m_blockText->push_back(*blockText);

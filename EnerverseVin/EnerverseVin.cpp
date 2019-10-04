@@ -107,8 +107,8 @@ public:
 
 bool ModVin::InitializeAssets()
 {
-	AssetRegistry::RegisterAsset("blocks/dirt", AssetType::BLOCK_DIFFUSE);
-	AssetRegistry::RegisterAsset("blocks/sod", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/dirt", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/sod", AssetType::BLOCK_DIFFUSE);
 
 	return true;
 }

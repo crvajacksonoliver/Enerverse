@@ -274,9 +274,56 @@ ds_list_destroy(blocks);
 
 //setup sprites and objects
 
-var loadable_blocks_length = 0;
+{
+	var assets = ds_list_create();
+	
+	for (var i = 0; i < ds_list_size(global.modlist); i++)
+	{
+		var inc = 0;
+		
+		while (inc < string_length(global.asset_registry[i]))
+		{
+			var assetPath = "";
+			while (string_char_at(global.asset_registry[i], inc) != ",")
+			{
+				assetPath += string_char_at(global.asset_registry[i], inc);
+				inc++;
+			}
+			
+			inc++;
+			
+			var assetType = "";
+			while (string_char_at(global.asset_registry[i], inc) != ",")
+			{
+				assetType += string_char_at(global.asset_registry[i], inc);
+				inc++;
+			}
+			
+			var asset = array_create(2);
+			asset[0] = assetPath;
+			asset[1] = assetType;
+			
+			ds_list_add(assets, asset);
+			
+			inc++;
+		}
+	}
+	
+	var assetsObject = instance_create_depth(0, 0, 0, obj_assets);
+	with (assetsObject)
+	{
+		var loadableAsset = sprite_add("workingset/null.png", 1, false, false, 0, 0);
+		
+		for (var i = 0; i < ds_list_size(assets); i++)
+		{
+			loadableAsset = scr_merge_sprite(loadableAsset, "workingset/" + array_get(ds_list_find_value(assets, i), 0) + ".png");
+		}
+		
+		sprite_assign(sprite_index, loadableAsset);
+	}
+}
 
-
+/*
 
 var loadable_blocks = [];
 
@@ -304,3 +351,5 @@ with (blocks)
 	
 	sprite_assign(sprite_index, block);
 }
+
+*/

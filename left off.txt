@@ -1,1 +1,3 @@
 working on models in GM, after loading blocks into registry, render all of the models and add them to the NEW asset registry
+
+do that ^^^ BUT first fix the duplicate letters in the asset paths. ex: "EEnerverseDecor/blocks/grass"
