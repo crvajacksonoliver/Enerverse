@@ -1,1 +1,1 @@
-global.debug_menu[0] = string(global.player_x) + ", " + string(global.player_y);
+global.debug_menu[0] = string_format(global.player_x, 1, 6) + ", " + string_format(global.player_y, 1, 6);

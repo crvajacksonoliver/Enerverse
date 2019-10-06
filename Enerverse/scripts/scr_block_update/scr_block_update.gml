@@ -1,11 +1,12 @@
 var mv_speed = 500000;//more is slower
+var zm_speed = 2000000;//more is slower
 
 if (keyboard_check_direct(ord("A")))
 {
 	var nx = global.player_x - (delta_time / mv_speed);
-	if (nx < 0)
+	if (nx < 1)
 	{
-		global.player_x = 0;
+		global.player_x = 1;
 	}
 	else
 	{
@@ -42,9 +43,9 @@ if (keyboard_check_direct(ord("W")))
 if (keyboard_check_direct(ord("S")))
 {
 	var ny = global.player_y - (delta_time / mv_speed);
-	if (ny < 0)
+	if (ny < 1)
 	{
-		global.player_y = 0;
+		global.player_y = 1;
 	}
 	else
 	{
@@ -54,7 +55,7 @@ if (keyboard_check_direct(ord("S")))
 
 if (keyboard_check_direct(ord("E")))
 {
-	var nz = global.zoom_factor + (delta_time / 1000000);
+	var nz = global.zoom_factor + (delta_time / zm_speed);
 	if (nz > 2.0)
 	{
 		global.zoom_factor = 2.0;
@@ -67,7 +68,7 @@ if (keyboard_check_direct(ord("E")))
 
 if (keyboard_check_direct(ord("Q")))
 {
-	var nz = global.zoom_factor - (delta_time / 1000000);
+	var nz = global.zoom_factor - (delta_time / zm_speed);
 	if (nz < 0.5)
 	{
 		global.zoom_factor = 0.5;
@@ -77,3 +78,13 @@ if (keyboard_check_direct(ord("Q")))
 		global.zoom_factor = nz;
 	}
 }
+if (keyboard_check_direct(ord("1")))
+	global.player_x = 1;
+if (keyboard_check_direct(ord("2")))
+	global.player_x = 2;
+if (keyboard_check_direct(ord("3")))
+	global.player_x = 3;
+if (keyboard_check_direct(ord("4")))
+	global.player_x = 4;
+if (keyboard_check_direct(ord("5")))
+	global.player_x = 5;

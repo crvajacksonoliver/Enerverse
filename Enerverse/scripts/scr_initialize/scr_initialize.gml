@@ -1,5 +1,5 @@
-global.player_x = 0;
-global.player_y = 0;
+global.player_x = 1.0;
+global.player_y = 1.0;
 
 global.zoom_factor = 1.0;
 
@@ -8,14 +8,23 @@ global.debug_menu = array_create(1);
 
 global.debug = 0;
 
-global.active_world_width = 50;
-global.active_world_height = 50;
+global.active_world_width = 10;
+global.active_world_height = 10;
 
 global.active_world_blocks = array_create(global.active_world_width * global.active_world_height * 2, 0);
 
 for (var i = 0; i < global.active_world_width * global.active_world_height; i++)
 {
-	global.active_world_blocks[i * 2] = floor(random_range(1, 4));
+	if (i < 5)
+	{
+		global.active_world_blocks[i * 2] = 1;
+	}
+	else
+	{
+		global.active_world_blocks[i * 2] = 3;
+	}
+	
+	//global.active_world_blocks[i * 2] = floor(random_range(1, 4));
 	
 	global.active_world_blocks[i * 2 + 1] = "";
 }
