@@ -1,1 +1,1 @@
-ctrl+f "HERE" in craftpoll.gml
+work on block/texture rendering

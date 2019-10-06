@@ -1,83 +1,79 @@
-return;
-
-var c_x = 0;
-var c_y = 0;
-var hold_c = false;
-
-var c_speed = 0.5;
-var c_maxspeed = c_speed * 4;
+var mv_speed = 500000;//more is slower
 
 if (keyboard_check_direct(ord("A")))
 {
-	if (global.lplayer_x + c_x < c_maxspeed && global.lplayer_x + c_x > c_maxspeed * -1)
+	var nx = global.player_x - (delta_time / mv_speed);
+	if (nx < 0)
 	{
-		c_x = c_speed * (delta_time / 100000);
+		global.player_x = 0;
 	}
 	else
 	{
-		hold_c = true;
-		c_x = c_maxspeed;
+		global.player_x = nx;
 	}
 }
 
 if (keyboard_check_direct(ord("D")))
 {
-	if (global.lplayer_x + c_x < c_maxspeed && global.lplayer_x + c_x > c_maxspeed * -1)
+	var nx = global.player_x + (delta_time / mv_speed);
+	if (nx > global.active_world_width)
 	{
-		c_x = c_speed * -1 * (delta_time / 100000);
+		global.player_x = global.active_world_width;
 	}
 	else
 	{
-		hold_c = true;
-		c_x = c_maxspeed * -1;
+		global.player_x = nx;
 	}
 }
 
 if (keyboard_check_direct(ord("W")))
 {
-	global.lplayer_y = 2;
+	var ny = global.player_y + (delta_time / mv_speed);
+	if (ny > global.active_world_width)
+	{
+		global.player_y = global.active_world_height;
+	}
+	else
+	{
+		global.player_y = ny;
+	}
 }
 
 if (keyboard_check_direct(ord("S")))
 {
-	global.lplayer_y = -2;
-}
-
-if (!keyboard_check_direct(ord("W")) && !keyboard_check_direct(ord("S")))
-{
-	global.lplayer_y = 0;
-}
-
-if (!hold_c)
-{
-	if (c_x == 0)
+	var ny = global.player_y - (delta_time / mv_speed);
+	if (ny < 0)
 	{
-		global.lplayer_x *= (delta_time / 100000);
+		global.player_y = 0;
 	}
 	else
 	{
-		global.lplayer_x += c_x;
+		global.player_y = ny;
 	}
 }
-else
+
+if (keyboard_check_direct(ord("E")))
 {
-	//global.debug = 1;
-	global.lplayer_x = c_x;
+	var nz = global.zoom_factor + (delta_time / 1000000);
+	if (nz > 2.0)
+	{
+		global.zoom_factor = 2.0;
+	}
+	else
+	{
+		global.zoom_factor = nz;
+	}
 }
 
-global.debug = keyboard_check_direct(ord("A"));
-
-global.player_x += global.lplayer_x;
-global.player_y += global.lplayer_y;
-
-if (global.player_x > (floor(room_width / 32)))
+if (keyboard_check_direct(ord("Q")))
 {
-	global.player_x = 0;
-	global.lplayer_x = 0;
-}
-
-if (global.player_y > 0)
-{
-	global.player_y = 0;
-	global.lplayer_y = 0;
+	var nz = global.zoom_factor - (delta_time / 1000000);
+	if (nz < 0.5)
+	{
+		global.zoom_factor = 0.5;
+	}
+	else
+	{
+		global.zoom_factor = nz;
+	}
 }

@@ -83,6 +83,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	}
 	
 	{
+		/*
 		var result = external_call(global.external_calls[i, 2]);
 		if (result == "0")
 		{
@@ -93,6 +94,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 			global.visual_registry[i] = "@NONE";
 		else
 			global.visual_registry[i] = result;
+		*/
+		
+		
 	}
 	
 	if (errorsPresent)
@@ -364,6 +368,8 @@ ds_list_destroy(blocks);
 		var blockObject = instance_create_depth(0, 0, 0, obj_blocks);
 		var blockSprite = sprite_add("workingset/null.png", 1, false, false, 0, 0);
 		
+		ds_list_add(global.block_ids, "block_null");
+		
 		for (var i = 0; i < array_length_1d(global.block_registry); i++)
 		{
 			var assetSurface = surface_create(32, 32);
@@ -403,6 +409,8 @@ ds_list_destroy(blocks);
 				draw_sprite(sprite_index, 0, 0, 0);
 			}
 			
+			ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
+			
 			sprite_add_from_surface(blockSprite, assetSurface, 0, 0, 32, 32, false, false);
 			
 			surface_reset_target();
@@ -414,6 +422,8 @@ ds_list_destroy(blocks);
 			sprite_assign(sprite_index, blockSprite);
 		}
 	}
+	
+	instance_destroy(assetsObject, false);
 }
 
 for (var i = 0; i < ds_list_size(compileMessages); i++)

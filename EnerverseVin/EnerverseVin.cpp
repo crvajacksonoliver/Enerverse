@@ -99,7 +99,6 @@ public:
 	{
 		Model* model = new Model();
 		model->AddElement(new ModelElement("EnerverseVin/blocks/sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
-		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 128, 128)));
 
 		return model;
 	}
