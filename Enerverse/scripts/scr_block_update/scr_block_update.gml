@@ -1,3 +1,5 @@
+return;
+
 var c_x = 0;
 var c_y = 0;
 var hold_c = false;

@@ -1,11 +1,11 @@
 ﻿  CraftPoll.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(160,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-D:\Enerverse\CraftPoll\CraftPoll.cpp(161,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.h(215,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.cpp(172,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   EngineCalls.h
-D:\Enerverse\CraftPoll\CraftPoll.cpp(298,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.cpp(309,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(160,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(215,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
 D:\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
 D:\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
-D:\Enerverse\CraftPoll\CraftPoll.cpp(258): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(269): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
   CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib

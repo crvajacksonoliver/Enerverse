@@ -33,7 +33,7 @@ bool Block::IsItem()
 Model* Block::GetModel()
 {
 	Model* model = new Model();
-	model->AddElement(new ModelElement("@NULL", 0.0, 0.0, 1.0, 1.0));
+	model->AddElement(new ModelElement("@NULL", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 	return model;
 }
@@ -112,15 +112,26 @@ Status BlockRegistry::RegisterBlock(Block* block)
 
 	for (unsigned int i = 0; i < blockModelElements->size(); i++)
 	{
-		*blockText += (*blockModelElements)[i]->TexturePath;
+		cpm::RectangleBox source = (*blockModelElements)[i]->GetSource();
+		cpm::RectangleBox destination = (*blockModelElements)[i]->GetDestination();
+
+		*blockText += (*blockModelElements)[i]->GetTexturePath();
 		*blockText += ",";
-		*blockText += std::to_string((*blockModelElements)[i]->OffsetX);
+		*blockText += std::to_string(source.GetPosition().X);
 		*blockText += ",";
-		*blockText += std::to_string((*blockModelElements)[i]->OffsetY);
+		*blockText += std::to_string(source.GetPosition().Y);
 		*blockText += ",";
-		*blockText += std::to_string((*blockModelElements)[i]->ScaleX);
+		*blockText += std::to_string(source.GetSize().X);
 		*blockText += ",";
-		*blockText += std::to_string((*blockModelElements)[i]->ScaleY);
+		*blockText += std::to_string(source.GetSize().Y);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetPosition().X);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetPosition().Y);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetSize().X);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetSize().Y);
 		*blockText += ",";
 
 		if (i == blockModelElements->size() - 1)
@@ -330,12 +341,6 @@ std::vector<Asset*>* AssetRegistry::m_assets;
 std::vector<std::string>* AssetRegistry::m_assetText;
 
 char* AssetRegistry::m_data;
-
-ModelElement::ModelElement(const char* texturePath, double offsetX, double offsetY, double scaleX, double scaleY)
-	:TexturePath(texturePath), OffsetX(offsetX), OffsetY(offsetY), ScaleX(scaleX), ScaleY(scaleY)
-{
-
-}
 
 Model::Model()
 {

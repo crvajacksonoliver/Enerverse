@@ -1,3 +1,5 @@
+return;
+
 for (var c_x = 0; c_x < (room_width / 32) + 2; c_x++)
 {
 	for (var c_y = 0; c_y < (room_height / 32) + 2; c_y++)

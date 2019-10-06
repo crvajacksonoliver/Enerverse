@@ -19,7 +19,7 @@ public:
 	Model* GetModel() override
 	{
 		Model* model = new Model();
-		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", 0.0, 0.0, 1.0, 1.0));
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
 	}

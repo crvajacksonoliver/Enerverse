@@ -21,16 +21,71 @@ enum AssetType
 	BLOCK_DIFFUSE, BLOCK_TRANSPARENCY, GUI_DIFFUSE
 };
 
+namespace cpm
+{
+	template<typename T>
+	class Vector2
+	{
+	public:
+		Vector2<T>(T v1, T v2)
+			:X(v1), Y(v2), U(v1), V(v2)
+		{
+
+		}
+
+		T X, Y, U, V;
+	};
+
+	class RectangleBox
+	{
+	public:
+		RectangleBox(unsigned int x, unsigned int y, unsigned int width, unsigned int height)
+			:m_X(x), m_Y(y), m_Width(width), m_Height(height)
+		{
+
+		}
+
+		Vector2<unsigned int> GetPosition()
+		{
+			return Vector2<unsigned int>(m_X, m_Y);
+		}
+
+		Vector2<unsigned int> GetSize()
+		{
+			return Vector2<unsigned int>(m_Width, m_Height);
+		}
+	private:
+		unsigned int m_X, m_Y, m_Width, m_Height;
+	};
+};
+
 class ModelElement
 {
 public:
-	ModelElement(const char* texturePath, double offsetX, double offsetY, double scaleX, double scaleY);
+	ModelElement(const char* texturePath, cpm::RectangleBox source, cpm::RectangleBox destination)
+		:m_TexturePath(texturePath), m_Source(source), m_Destination(destination)
+	{
 
-	const char* TexturePath;
-	double OffsetX;
-	double OffsetY;
-	double ScaleX;
-	double ScaleY;
+	}
+
+	const char* GetTexturePath()
+	{
+		return m_TexturePath;
+	}
+	
+	cpm::RectangleBox GetSource()
+	{
+		return m_Source;
+	}
+
+	cpm::RectangleBox GetDestination()
+	{
+		return m_Destination;
+	}
+private:
+	const char* m_TexturePath;
+	cpm::RectangleBox m_Source;
+	cpm::RectangleBox m_Destination;
 };
 
 // how textures are baked into a block/item

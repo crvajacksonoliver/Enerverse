@@ -110,16 +110,16 @@ var blocks = ds_list_create();
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
 {
-	var inc = 1;
+	var inc = 0;
 	while (inc < string_length(global.block_registry[i]))
 	{
 		var block = array_create(7);
 		
 		{//unlocalizedName
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -128,9 +128,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		}
 		{//displayName
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -139,9 +139,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		}
 		{//material
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -150,9 +150,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		}
 		{//tool
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -161,9 +161,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		}
 		{//hardness
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -172,9 +172,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		}
 		{//isItem
 			var attrib = "";
-			while (string_char_at(global.block_registry[i], inc) != ",")
+			while (string_char_at(global.block_registry[i], inc + 1) != ",")
 			{
-				attrib += string_char_at(global.block_registry[i], inc);
+				attrib += string_char_at(global.block_registry[i], inc + 1);
 				inc++;
 			}
 		
@@ -186,72 +186,114 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 			
 			while (true)
 			{
-				var modelPart = array_create(5);
+				var modelPart = array_create(9);
 				{//path
 					var attrib = "";
-					while (string_char_at(global.block_registry[i], inc) != ",")
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
 					{
-						attrib += string_char_at(global.block_registry[i], inc);
+						attrib += string_char_at(global.block_registry[i], inc + 1);
 						inc++;
 					}
 		
 					modelPart[0] = attrib;
 					inc++;
 				}
-				{//x
+				{//o_x
 					var attrib = "";
-					while (string_char_at(global.block_registry[i], inc) != ",")
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
 					{
-						attrib += string_char_at(global.block_registry[i], inc);
+						attrib += string_char_at(global.block_registry[i], inc + 1);
 						inc++;
 					}
 		
 					modelPart[1] = attrib;
 					inc++;
 				}
-				{//y
+				{//o_y
 					var attrib = "";
-					while (string_char_at(global.block_registry[i], inc) != ",")
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
 					{
-						attrib += string_char_at(global.block_registry[i], inc);
+						attrib += string_char_at(global.block_registry[i], inc + 1);
 						inc++;
 					}
 		
 					modelPart[2] = attrib;
 					inc++;
 				}
-				{//width
+				{//o_width
 					var attrib = "";
-					while (string_char_at(global.block_registry[i], inc) != ",")
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
 					{
-						attrib += string_char_at(global.block_registry[i], inc);
+						attrib += string_char_at(global.block_registry[i], inc + 1);
 						inc++;
 					}
 		
 					modelPart[3] = attrib;
 					inc++;
 				}
-				{//height
+				{//o_height
 					var attrib = "";
-					while (string_char_at(global.block_registry[i], inc) != ",")
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
 					{
-						attrib += string_char_at(global.block_registry[i], inc);
+						attrib += string_char_at(global.block_registry[i], inc + 1);
 						inc++;
 					}
 		
 					modelPart[4] = attrib;
 					inc++;
 				}
+				{//n_x
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[5] = attrib;
+					inc++;
+				}
+				{//n_y
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[6] = attrib;
+					inc++;
+				}
+				{//n_width
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[7] = attrib;
+					inc++;
+				}
+				{//n_height
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[8] = attrib;
+					inc++;
+				}
 				
 				ds_list_add(model, modelPart);
 				
-				if (string_char_at(global.block_registry[i], inc) == ";")
+				if (string_char_at(global.block_registry[i], inc + 1) == ";")
 				{
 					inc++;
 					break;
 				}
-				
-				inc++;
 			}
 			
 			block[6] = model;
@@ -277,23 +319,23 @@ ds_list_destroy(blocks);
 	
 	for (var i = 0; i < ds_list_size(global.modlist); i++)
 	{
-		var inc = 1;
+		var inc = 0;
 		
 		while (inc < string_length(global.asset_registry[i]))
 		{
 			var assetPath = "";
-			while (string_char_at(global.asset_registry[i], inc) != ",")
+			while (string_char_at(global.asset_registry[i], inc + 1) != ",")
 			{
-				assetPath += string_char_at(global.asset_registry[i], inc);
+				assetPath += string_char_at(global.asset_registry[i], inc + 1);
 				inc++;
 			}
 			
 			inc++;
 			
 			var assetType = "";
-			while (string_char_at(global.asset_registry[i], inc) != ",")
+			while (string_char_at(global.asset_registry[i], inc + 1) != ",")
 			{
-				assetType += string_char_at(global.asset_registry[i], inc);
+				assetType += string_char_at(global.asset_registry[i], inc + 1);
 				inc++;
 			}
 			
@@ -307,7 +349,7 @@ ds_list_destroy(blocks);
 		}
 	}
 	
-	var assetsObject = instance_create_depth(0, 0, 0, obj_assets);
+	var assetsObject = instance_create_depth(0, 100, 0, obj_assets);
 	with (assetsObject)
 	{
 		var loadableAsset = sprite_add("workingset/null.png", 1, false, false, 0, 0);
@@ -319,16 +361,19 @@ ds_list_destroy(blocks);
 		
 		sprite_assign(sprite_index, loadableAsset);
 		
-		for (var i = 0; i < ds_list_size(global.block_registry); i++)
+		var blockObject = instance_create_depth(0, 0, 0, obj_blocks);
+		var blockSprite = sprite_add("workingset/null.png", 1, false, false, 0, 0);
+		
+		for (var i = 0; i < array_length_1d(global.block_registry); i++)
 		{
 			var assetSurface = surface_create(32, 32);
 			surface_set_target(assetSurface);
 			
 			var revertToNull = false;
 			
-			for (var a = 0; a < ds_list_size(array_get(ds_list_find_value(global.block_registry, i), 6)); a++)
+			for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 6)); a++)
 			{
-				var frameDetails = ds_list_find_value(array_get(ds_list_find_value(global.block_registry, i), 6), a);
+				var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 6), a);
 				
 				var found = -1;
 				var foundType = -1;
@@ -337,7 +382,7 @@ ds_list_destroy(blocks);
 				{
 					if (array_get(ds_list_find_value(assets, b), 0) == frameDetails[0])
 					{
-						found = b;
+						found = b + 1;
 						foundType = array_get(ds_list_find_value(assets, b), 1);
 						break;
 					}
@@ -345,12 +390,12 @@ ds_list_destroy(blocks);
 				
 				if (found == -1 || foundType != 0)
 				{
-					ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> texture \"" + assetDetails[0] + "\", has not been registered. Block\"" + array_get(ds_list_find_value(global.block_registry, i), 0) + "\" will have a null texture");
+					ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> texture \"" + frameDetails[0] + "\", has not been registered. Block\"" + array_get(global.block_registry[i], 0) + "\" will have a null texture");
 					revertToNull = true;
 					break;
 				}
 				
-				draw_sprite(sprite_index, found, 0, 0);
+				draw_sprite_part_ext(sprite_index, found, frameDetails[1], frameDetails[2], frameDetails[3], frameDetails[4], frameDetails[5], frameDetails[6], frameDetails[7] / frameDetails[3], frameDetails[8] / frameDetails[4], c_white, 1);
 			}
 		
 			if (revertToNull)
@@ -358,10 +403,15 @@ ds_list_destroy(blocks);
 				draw_sprite(sprite_index, 0, 0, 0);
 			}
 			
-			//HERE put the surface on a new sprite
+			sprite_add_from_surface(blockSprite, assetSurface, 0, 0, 32, 32, false, false);
 			
 			surface_reset_target();
 			surface_free(assetSurface);
+		}
+		
+		with (blockObject)
+		{
+			sprite_assign(sprite_index, blockSprite);
 		}
 	}
 }
@@ -370,34 +420,3 @@ for (var i = 0; i < ds_list_size(compileMessages); i++)
 {
 	show_message(ds_list_find_value(compileMessages, i));
 }
-
-/*
-
-var loadable_blocks = [];
-
-loadable_blocks[loadable_blocks_length] = "vin/dirt"; loadable_blocks_length++;
-loadable_blocks[loadable_blocks_length] = "vin/grass"; loadable_blocks_length++;
-loadable_blocks[loadable_blocks_length] = "vin/wooden_frame"; loadable_blocks_length++;
-
-var blocks = instance_create_depth(0, 0, 10, obj_blocks);
-with (blocks)
-{
-	var some_function = external_define("EnerverseVin.dll", "engine_block_registry_initialize", dll_cdecl, ty_string, 0);
-	var some_value = external_call(some_function);
-	
-	var block = sprite_add("workingset/vin/null.png", 1, false, false, 0, 0);
-	
-	global.block_registry[0, 0] = "vin/null";
-	global.block_registry[0, 1] = 0;
-	
-	for (var i = 0; i < loadable_blocks_length; i++)
-	{
-		block = script_execute(scr_merge_sprite, block, "workingset/" + loadable_blocks[i] + ".png");
-		global.block_registry[i + 1, 0] = loadable_blocks[i];
-		global.block_registry[i + 1, 1] = i + 1;
-	}
-	
-	sprite_assign(sprite_index, block);
-}
-
-*/

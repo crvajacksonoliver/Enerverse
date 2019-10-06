@@ -1,9 +1,5 @@
 ﻿  EnerverseVin.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(160,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(215,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
 D:\Enerverse\EnerverseVin\EnerverseVin.cpp(28,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
-  EngineCalls.cpp
 D:\Enerverse\EnerverseVin\EnerverseVin.cpp(62,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
-  Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(160,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-     Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
   EnerverseVin.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll
