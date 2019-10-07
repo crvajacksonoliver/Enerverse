@@ -1,5 +1,11 @@
-var mv_speed = 500000;//more is slower
 var zm_speed = 2000000;//more is slower
+
+var mv_speed = 500000;
+
+if (keyboard_check_direct(vk_shift))
+	var mv_speed = 300000;
+if (keyboard_check_direct(vk_control))
+	var mv_speed = 2000000;
 
 if (keyboard_check_direct(ord("A")))
 {
