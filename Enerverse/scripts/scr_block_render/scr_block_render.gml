@@ -1,5 +1,5 @@
 
-//shader_set(sdr_block_debug);
+shader_set(sdr_block_debug);
 
 var blockSize = room_height / (20 / global.zoom_factor);
 
@@ -25,6 +25,6 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 	}
 }
 
-//shader_reset();
+shader_reset();
 
 draw_sprite_stretched(global.current_player, 0, (room_width / 2) - (blockSize / 2), (room_height / 2) - blockSize, blockSize, blockSize * 2);

@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "25b2223a-e8be-437b-b071-31f3ae70c9b0",
+            "Value": {
+                "id": "17801c5c-b7fe-4c0e-b4c6-7705528d54bc",
+                "resourcePath": "shaders\\sdr_block_debug\\sdr_block_debug.yy",
+                "resourceType": "GMShader"
+            }
+        },
+        {
             "Key": "330825f7-1423-4664-8cdd-0e80a3ee35ee",
             "Value": {
                 "id": "f381ebbe-9230-4d7e-a984-a689257a9c48",
