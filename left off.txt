@@ -1,1 +1,1 @@
-fix vertical block shift. its the sprite position itself modulating when the first layer of blocks pass the top of the screen (going down).
+basic mouse down delete block
