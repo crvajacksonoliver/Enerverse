@@ -127,7 +127,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 				inc++;
 			}
 		
-			block[0] = attrib;
+			block[0] = ds_list_find_value(global.modlist, i) + "/" + attrib;
 			inc++;
 		}
 		{//displayName

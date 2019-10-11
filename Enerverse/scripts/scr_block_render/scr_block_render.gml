@@ -18,18 +18,25 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 		
 		var sx = c_x * blockSize + (floor((2 * global.player_x * -32 * global.zoom_factor) / ((room_width / room_height) - floor(room_width / room_height) + 1)) % blockSize) - (blockSize * 1.5) + ((room_width * 0.5) % blockSize);
 		var sy = c_y * blockSize + (((2 * global.player_y * 32 * global.zoom_factor) / ((room_width / room_height) - floor(room_width / room_height) + 1)) % blockSize) - (blockSize * 2) + ((room_height * 0.5) % blockSize);
-		var over = mouse_x >= sx && mouse_x < sx + blockSize && mouse_y >= sy && mouse_y < sy + blockSize;
 		
-		if (over)
+		if (use_x < 0 || use_x >= global.active_world_width || use_y < 0 || use_y >= global.active_world_height)
 		{
-			shader_set_uniform_i(shader_get_uniform(sdr_block_debug, "u_Box"), 1);
-			if (mouse_check_button_pressed(0))
-			{
-				global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = 0;
-			}
+			shader_set_uniform_i(shader_get_uniform(sdr_block_debug, "u_Box"), 0);
 		}
 		else
-			shader_set_uniform_i(shader_get_uniform(sdr_block_debug, "u_Box"), 0);
+		{
+			var over = mouse_x >= sx && mouse_x < sx + blockSize && mouse_y >= sy && mouse_y < sy + blockSize;
+			if (over)
+			{
+				shader_set_uniform_i(shader_get_uniform(sdr_block_debug, "u_Box"), 1);
+				if (mouse_check_button_pressed(mb_left))
+				{
+					global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = scr_get_block_id("EnerverseVin/block_sod");
+				}
+			}
+			else
+				shader_set_uniform_i(shader_get_uniform(sdr_block_debug, "u_Box"), 0);
+		}
 		
 		draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
 	}
