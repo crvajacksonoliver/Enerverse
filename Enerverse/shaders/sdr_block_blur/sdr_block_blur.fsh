@@ -4,6 +4,7 @@ varying vec4 v_Colour;
 uniform int u_Horizontal;
 uniform float u_TextureSizeX;
 uniform float u_TextureSizeY;
+uniform float u_Mul;
 
 const int Quality = 8;
 const int Directions = 16;
@@ -23,5 +24,5 @@ void main()
 	}
 	
 	Color /= float(Quality) * float(Directions) + 1.0;
-	gl_FragColor = Color * v_Colour;
+	gl_FragColor = Color * v_Colour * u_Mul;
 }

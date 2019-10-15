@@ -1,3 +1,3 @@
-processedSurface = surface_create(room_width, room_height);
-finalSurface = surface_create(room_width, room_height);
-jointSurface = surface_create(room_width, room_height);
+s0 = surface_create(room_width, room_height);
+s1 = surface_create(room_width, room_height);
+s2 = surface_create(room_width, room_height);

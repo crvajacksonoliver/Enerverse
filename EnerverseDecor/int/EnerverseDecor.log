@@ -1,9 +1,1 @@
-﻿  EnerverseDecor.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-D:\Enerverse\EnerverseDecor\EnerverseDecor.cpp(30,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
-  EngineCalls.cpp
-D:\Enerverse\EnerverseDecor\EnerverseDecor.cpp(64,1): warning C4267:  'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
-  Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-     Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.exp
-  EnerverseDecor.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.dll
+﻿  EnerverseDecor.vcxproj -> C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.dll

@@ -86,6 +86,24 @@ public:
 	}
 };
 
+class BlockAir : public Block
+{
+public:
+	BlockAir()
+		:Block("block_air", "Air", Material::EARTH, 0.0f, Tool::HAND)
+	{
+
+	}
+
+	Model* GetDiffuseModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_air", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+		return model;
+	}
+};
+
 class BlockSod : public BlockDirt
 {
 public:
@@ -108,6 +126,7 @@ bool ModVin::InitializeAssets()
 {
 	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_dirt", AssetType::BLOCK_DIFFUSE);
 	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_sod", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_air", AssetType::BLOCK_DIFFUSE);
 
 	return true;
 }
@@ -116,9 +135,11 @@ bool ModVin::InitializeModels()
 {
 	BlockDirt* block_dirt = new BlockDirt();
 	BlockSod* block_sod = new BlockSod();
+	BlockAir* block_air = new BlockAir();
 
 	BlockRegistry::RegisterBlock((Block*)block_dirt);
 	BlockRegistry::RegisterBlock((Block*)block_sod);
+	BlockRegistry::RegisterBlock((Block*)block_air);
 
 	return true;
 }

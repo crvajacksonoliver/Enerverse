@@ -127,6 +127,14 @@
             }
         },
         {
+            "Key": "1f1999e2-cb51-41cd-bf70-5ec63b0c95de",
+            "Value": {
+                "id": "9878d96d-7cc9-491c-95b8-2df6e27c7d7f",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\blocks\\diffuse_air.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "25b2223a-e8be-437b-b071-31f3ae70c9b0",
             "Value": {
                 "id": "17801c5c-b7fe-4c0e-b4c6-7705528d54bc",
@@ -319,6 +327,14 @@
             }
         },
         {
+            "Key": "ad8bceb3-7bbf-465b-8c03-a613992790a6",
+            "Value": {
+                "id": "53eeb896-5ae0-4365-8fde-8aa5791a1013",
+                "resourcePath": "scripts\\scr_world_gen\\scr_world_gen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b47be24e-d03c-43ab-837c-7aa7e0c309c9",
             "Value": {
                 "id": "d802af5a-e11d-4bd2-a332-9291bb99b0e5",
@@ -388,6 +404,14 @@
                 "id": "39f32bfd-de22-4259-91c6-718ce2fbd3cc",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
+            }
+        },
+        {
+            "Key": "cfec3315-35d3-4320-8eb3-71901480a69b",
+            "Value": {
+                "id": "e3f53235-a1e8-430f-baed-e842235309a8",
+                "resourcePath": "shaders\\sdr_block_mul\\sdr_block_mul.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -487,7 +511,8 @@
         "f0b8f664-e337-4071-8c42-c0d3ab8ae83a",
         "fa34d00d-c4b4-41c7-883f-fd6267e3a766",
         "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6",
-        "030534aa-3509-48fe-bf4d-6876abc0241a"
+        "030534aa-3509-48fe-bf4d-6876abc0241a",
+        "ad8bceb3-7bbf-465b-8c03-a613992790a6"
     ],
     "tutorial": ""
 }

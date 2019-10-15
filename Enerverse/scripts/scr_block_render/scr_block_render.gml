@@ -1,6 +1,19 @@
 
 if (!global.settings[1])
 	shader_set(sdr_block_final);
+else
+{
+	draw_clear(c_black);
+	surface_set_target(s0);
+	draw_clear(c_black);
+	surface_reset_target();
+	surface_set_target(s1);
+	draw_clear(c_blue);
+	surface_reset_target();
+	surface_set_target(s2);
+	draw_clear(c_black);
+	surface_reset_target();
+}
 
 var blockSize = room_height / (20 / global.zoom_factor);
 
@@ -20,15 +33,19 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 		var sx = c_x * blockSize + (floor((2 * global.player_x * -32 * global.zoom_factor) / ((room_width / room_height) - floor(room_width / room_height) + 1)) % blockSize) - (blockSize * 1.5) + ((room_width * 0.5) % blockSize);
 		var sy = c_y * blockSize + (((2 * global.player_y * 32 * global.zoom_factor) / ((room_width / room_height) - floor(room_width / room_height) + 1)) % blockSize) - (blockSize * 2) + ((room_height * 0.5) % blockSize);
 		
+		var over = false;
+		
 		if (use_x < 0 || use_x >= global.active_world_width || use_y < 0 || use_y >= global.active_world_height)
 		{
 			shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 0);
 		}
 		else
 		{
-			var over = mouse_x >= sx && mouse_x < sx + blockSize && mouse_y >= sy && mouse_y < sy + blockSize;
+			over = mouse_x >= sx && mouse_x < sx + blockSize && mouse_y >= sy && mouse_y < sy + blockSize;
+			
 			if (over)
 			{
+				
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
 				if (mouse_check_button_pressed(mb_left))
 				{
@@ -41,60 +58,71 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 		
 		if (global.settings[1])
 		{
-			var ps = processedSurface;
-			with (bloomTextures)
-			{
-				surface_set_target(ps);
-				draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
-				surface_reset_target();
-			}
+			surface_set_target(s2);
 			
-			surface_set_target(processedSurface);
+			with (bloomTextures)
+				draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
+				
+			surface_reset_target();
+			
+			surface_set_target(s2);
 			gpu_set_blendmode_ext(bm_zero, bm_src_color);
-			//draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
+			shader_set(sdr_block_mul);
+			shader_set_uniform_f(shader_get_uniform(sdr_block_mul, "u_Mul"), global.settings[3]);
+			draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
+			shader_reset();
 			gpu_set_blendmode(bm_normal);
 			surface_reset_target();
 			
-			//surface_reset_target();
-			//surface_set_target(finalSurface);
-			//
-			//draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
-			//surface_reset_target();
+			surface_set_target(s1);
+			shader_set(sdr_block_final);
+			
+			if (over)
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
+			else
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 0);
+			
+			draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
+			shader_reset();
+			surface_reset_target();
 		}
 		else
+		{
+			if (over)
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
+			else
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 0);
+				
 			draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
+		}
 	}
 }
 
 if (global.settings[1])
 {
 	shader_set(sdr_block_blur);
+	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_Mul"), global.settings[3]);
 	shader_set_uniform_i(shader_get_uniform(sdr_block_blur, "u_Horizontal"), 0);
-	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeX"), 20 / room_width);
-	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeY"), 20 / room_height);
+	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeX"), global.settings[2] / room_width);
+	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeY"), global.settings[2] / room_height);
 	
 	//blur top and move to bottom
 	
-	surface_set_target(jointSurface);
-	draw_surface(processedSurface, 0, 0);
+	surface_set_target(s0);
+	draw_surface(s2, 0, 0);
+	surface_reset_target();
 	
 	shader_reset();
-	//surface_reset_target();
-	//surface_set_target(finalSurface);
 	
 	//add bottom to middle
+	surface_set_target(s0);
 	gpu_set_blendmode(bm_add);
-	//draw_surface(jointSurface, 0, 0);
+	draw_surface(s1, 0, 0);
 	gpu_set_blendmode(bm_normal);
 	surface_reset_target();
 	
-	//render middle to bottom with final 
-	//draw_set_color(c_white);
-	//draw_rectangle(0, 0, room_width, room_height, false);
-	shader_set(sdr_block_final);
-	//draw_surface(finalSurface, 0, 0);
-	shader_reset();
-	//surface_reset_target();
+	//render middle to bottom with final
+	draw_surface(s0, 0, 0);
 }
 
 if (!global.settings[1])
