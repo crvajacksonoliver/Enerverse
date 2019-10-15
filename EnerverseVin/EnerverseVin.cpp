@@ -77,10 +77,10 @@ public:
 		return metaData;
 	}
 
-	Model* GetModel() override
+	Model* GetDiffuseModel() override
 	{
 		Model* model = new Model();
-		model->AddElement(new ModelElement("EnerverseVin/blocks/dirt", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_dirt", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
 	}
@@ -95,10 +95,10 @@ public:
 		
 	}
 
-	Model* GetModel() override
+	Model* GetDiffuseModel() override
 	{
 		Model* model = new Model();
-		model->AddElement(new ModelElement("EnerverseVin/blocks/sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
 	}
@@ -106,8 +106,8 @@ public:
 
 bool ModVin::InitializeAssets()
 {
-	AssetRegistry::RegisterAsset("EnerverseVin/blocks/dirt", AssetType::BLOCK_DIFFUSE);
-	AssetRegistry::RegisterAsset("EnerverseVin/blocks/sod", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_dirt", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_sod", AssetType::BLOCK_DIFFUSE);
 
 	return true;
 }

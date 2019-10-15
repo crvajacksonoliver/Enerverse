@@ -16,10 +16,10 @@ public:
 		return true;
 	}
 
-	Model* GetModel() override
+	Model* GetDiffuseModel() override
 	{
 		Model* model = new Model();
-		model->AddElement(new ModelElement("EnerverseDecor/blocks/grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/diffuse_grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
 	}
@@ -80,9 +80,42 @@ public:
 	}
 };
 
+class BlockLantern : public Block
+{
+public:
+	BlockLantern()
+		:Block("block_lantern", "Lantern", Material::METAL, 1.0f, Tool::HAND)
+	{
+
+	}
+
+	bool IsItem() override
+	{
+		return true;
+	}
+
+	Model* GetDiffuseModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/diffuse_lantern", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+		return model;
+	}
+
+	Model* GetBloomModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseDecor/blocks/bloom_lantern", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+		return model;
+	}
+};
+
 bool ModDecor::InitializeAssets()
 {
-	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/grass", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/diffuse_grass", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/diffuse_lantern", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/bloom_lantern", AssetType::BLOCK_BLOOM);
 
 	return true;
 }
@@ -90,9 +123,11 @@ bool ModDecor::InitializeAssets()
 bool ModDecor::InitializeModels()
 {
 	BlockGrass* block_grass = new BlockGrass();
+	BlockLantern* block_lantern = new BlockLantern();
 
 	BlockRegistry::RegisterBlock((Block*)block_grass);
-	
+	BlockRegistry::RegisterBlock((Block*)block_lantern);
+
 	return true;
 }
 

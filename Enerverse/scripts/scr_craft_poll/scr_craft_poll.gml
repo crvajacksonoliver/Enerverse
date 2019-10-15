@@ -117,7 +117,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	var inc = 0;
 	while (inc < string_length(global.block_registry[i]))
 	{
-		var block = array_create(7);
+		var block = array_create(8);
 		
 		{//unlocalizedName
 			var attrib = "";
@@ -185,7 +185,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 			block[5] = attrib;
 			inc++;
 		}
-		{//model
+		{//DIFFUSE model
 			var model = ds_list_create();
 			
 			while (true)
@@ -302,6 +302,123 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 			
 			block[6] = model;
 		}
+		{//BLOOM model
+			var model = ds_list_create();
+			
+			while (true)
+			{
+				var modelPart = array_create(9);
+				{//path
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[0] = attrib;
+					inc++;
+				}
+				{//o_x
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[1] = attrib;
+					inc++;
+				}
+				{//o_y
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[2] = attrib;
+					inc++;
+				}
+				{//o_width
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[3] = attrib;
+					inc++;
+				}
+				{//o_height
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[4] = attrib;
+					inc++;
+				}
+				{//n_x
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[5] = attrib;
+					inc++;
+				}
+				{//n_y
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[6] = attrib;
+					inc++;
+				}
+				{//n_width
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[7] = attrib;
+					inc++;
+				}
+				{//n_height
+					var attrib = "";
+					while (string_char_at(global.block_registry[i], inc + 1) != ",")
+					{
+						attrib += string_char_at(global.block_registry[i], inc + 1);
+						inc++;
+					}
+		
+					modelPart[8] = attrib;
+					inc++;
+				}
+				
+				ds_list_add(model, modelPart);
+				
+				if (string_char_at(global.block_registry[i], inc + 1) == ";")
+				{
+					inc++;
+					break;
+				}
+			}
+			
+			block[7] = model;
+		}
 		
 		ds_list_add(blocks, block);
 	}
@@ -356,7 +473,7 @@ ds_list_destroy(blocks);
 	var assetsObject = instance_create_depth(0, 100, 0, obj_assets);
 	with (assetsObject)
 	{
-		var loadableAsset = sprite_add("workingset/null.png", 1, false, false, 0, 0);
+		var loadableAsset = sprite_add("workingset/diffuse_null.png", 1, false, false, 0, 0);
 		
 		for (var i = 0; i < ds_list_size(assets); i++)
 		{
@@ -365,61 +482,118 @@ ds_list_destroy(blocks);
 		
 		sprite_assign(sprite_index, loadableAsset);
 		
-		var blockObject = instance_create_depth(0, 0, 0, obj_blocks);
-		var blockSprite = sprite_add("workingset/null.png", 1, false, false, 0, 0);
+		var blockDiffuseObject = instance_create_depth(0, 0, 0, obj_block_diffuse);
+		var blockDiffuseSprite = sprite_add("workingset/diffuse_null.png", 1, false, false, 0, 0);
+		
+		var blockBloomObject = instance_create_depth(0, 0, 0, obj_block_bloom);
+		var blockBloomSprite = sprite_add("workingset/bloom_null.png", 1, false, false, 0, 0);
 		
 		ds_list_add(global.block_ids, "block_null");
 		
 		for (var i = 0; i < array_length_1d(global.block_registry); i++)
 		{
-			var assetSurface = surface_create(32, 32);
-			surface_set_target(assetSurface);
+			{//DIFFUSE
+				var assetDiffuseSurface = surface_create(32, 32);
+				surface_set_target(assetDiffuseSurface);
 			
-			var revertToNull = false;
-			
-			for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 6)); a++)
-			{
-				var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 6), a);
+				var revertToNull = false;
 				
-				var found = -1;
-				var foundType = -1;
-				
-				for (var b = 0; b < ds_list_size(assets); b++)
+				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 6)); a++)
 				{
-					if (array_get(ds_list_find_value(assets, b), 0) == frameDetails[0])
+					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 6), a);
+				
+					var found = -1;
+					var foundType = -1;
+				
+					for (var b = 0; b < ds_list_size(assets); b++)
 					{
-						found = b + 1;
-						foundType = array_get(ds_list_find_value(assets, b), 1);
+						if (array_get(ds_list_find_value(assets, b), 0) == frameDetails[0])
+						{
+							found = b + 1;
+							foundType = array_get(ds_list_find_value(assets, b), 1);
+							break;
+						}
+					}
+				
+					if (found == -1 || foundType != 0)
+					{
+						ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> DIFFUSE texture \"" + frameDetails[0] + "\", has not been registered. Block\"" + array_get(global.block_registry[i], 0) + "\" will have a null texture");
+						revertToNull = true;
 						break;
 					}
-				}
 				
-				if (found == -1 || foundType != 0)
-				{
-					ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> texture \"" + frameDetails[0] + "\", has not been registered. Block\"" + array_get(global.block_registry[i], 0) + "\" will have a null texture");
-					revertToNull = true;
-					break;
+					draw_sprite_part_ext(sprite_index, found, frameDetails[1], frameDetails[2], frameDetails[3], frameDetails[4], frameDetails[5], frameDetails[6], frameDetails[7] / frameDetails[3], frameDetails[8] / frameDetails[4], c_white, 1);
 				}
-				
-				draw_sprite_part_ext(sprite_index, found, frameDetails[1], frameDetails[2], frameDetails[3], frameDetails[4], frameDetails[5], frameDetails[6], frameDetails[7] / frameDetails[3], frameDetails[8] / frameDetails[4], c_white, 1);
-			}
 		
-			if (revertToNull)
-			{
-				draw_sprite(sprite_index, 0, 0, 0);
+				if (revertToNull)
+				{
+					draw_sprite(sprite_index, 0, 0, 0);
+				}
+				
+				ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
+				sprite_add_from_surface(blockDiffuseSprite, assetDiffuseSurface, 0, 0, 32, 32, false, false);
+			
+				surface_reset_target();
+				surface_free(assetDiffuseSurface);
 			}
+			{//BLOOM
+				var assetBloomSurface = surface_create(32, 32);
+				surface_set_target(assetBloomSurface);
+				
+				var revertToNull = false;
+				
+				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 7)); a++)
+				{
+					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 7), a);
+				
+					var found = -1;
+					var foundType = -1;
+				
+					for (var b = 0; b < ds_list_size(assets); b++)
+					{
+						if (array_get(ds_list_find_value(assets, b), 0) == frameDetails[0])
+						{
+							found = b + 1;
+							foundType = array_get(ds_list_find_value(assets, b), 1);
+							break;
+						}
+					}
+					
+					if (found == -1 || foundType != 1)
+					{
+						//not having a bloom texture is fine, it will just be nothing
+						//ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Load Asset> texture \"" + frameDetails[0] + "\", has not been registered. Block\"" + array_get(global.block_registry[i], 0) + "\" will have a null texture");
+						revertToNull = true;
+						break;
+					}
+				
+					draw_sprite_part_ext(sprite_index, found, frameDetails[1], frameDetails[2], frameDetails[3], frameDetails[4], frameDetails[5], frameDetails[6], frameDetails[7] / frameDetails[3], frameDetails[8] / frameDetails[4], c_white, 1);
+				}
+				
+				if (revertToNull)
+				{
+					draw_set_color(c_black);
+					draw_rectangle(0, 0, 31, 31, false);
+				}
+				
+				ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
+				sprite_add_from_surface(blockBloomSprite, assetBloomSurface, 0, 0, 32, 32, false, false);
 			
-			ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
-			
-			sprite_add_from_surface(blockSprite, assetSurface, 0, 0, 32, 32, false, false);
-			
-			surface_reset_target();
-			surface_free(assetSurface);
+				surface_reset_target();
+				surface_free(assetBloomSurface);
+			}
 		}
 		
-		with (blockObject)
+		with (blockDiffuseObject)
 		{
-			sprite_assign(sprite_index, blockSprite);
+			sprite_assign(sprite_index, blockDiffuseSprite);
+			
+			bloomTextures = blockBloomObject;
+		}
+		
+		with (blockBloomObject)
+		{
+			sprite_assign(sprite_index, blockBloomSprite);
 		}
 	}
 	

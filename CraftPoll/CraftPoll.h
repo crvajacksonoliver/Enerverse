@@ -18,7 +18,7 @@ enum Tool
 
 enum AssetType
 {
-	BLOCK_DIFFUSE, BLOCK_TRANSPARENCY, GUI_DIFFUSE
+	BLOCK_DIFFUSE, BLOCK_BLOOM, GUI_DIFFUSE
 };
 
 namespace cpm
@@ -94,7 +94,7 @@ class Model
 public:
 	Model();
 	~Model();
-
+	
 	void AddElement(ModelElement* element);
 
 	std::vector<ModelElement*>* GetElements();
@@ -110,7 +110,8 @@ public:
 	// if true the engine will assume its and item and a block
 	virtual bool IsItem();
 
-	virtual Model* GetModel();
+	virtual Model* GetDiffuseModel();
+	virtual Model* GetBloomModel();
 
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);

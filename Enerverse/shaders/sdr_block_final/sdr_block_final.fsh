@@ -14,6 +14,6 @@ void main()
 	}
 	else
 	{
-		gl_FragColor = v_Colour * texture2D(gm_BaseTexture, v_Texcoord);
+		gl_FragColor = texture2D(gm_BaseTexture, v_Texcoord);
 	}
 }

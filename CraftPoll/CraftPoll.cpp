@@ -30,7 +30,15 @@ bool Block::IsItem()
 	return true;
 }
 
-Model* Block::GetModel()
+Model* Block::GetDiffuseModel()
+{
+	Model* model = new Model();
+	model->AddElement(new ModelElement("@NULL", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+	return model;
+}
+
+Model* Block::GetBloomModel()
 {
 	Model* model = new Model();
 	model->AddElement(new ModelElement("@NULL", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
@@ -107,15 +115,18 @@ Status BlockRegistry::RegisterBlock(Block* block)
 
 	// add model
 
-	Model* blockModel = block->GetModel();
-	std::vector<ModelElement*>* blockModelElements = blockModel->GetElements();
+	Model* blockDiffuseModel = block->GetDiffuseModel();
+	std::vector<ModelElement*>* blockDiffuseModelElements = blockDiffuseModel->GetElements();
 
-	for (unsigned int i = 0; i < blockModelElements->size(); i++)
+	Model* blockBloomModel = block->GetBloomModel();
+	std::vector<ModelElement*>* blockBloomkModelElements = blockBloomModel->GetElements();
+
+	for (unsigned int i = 0; i < blockDiffuseModelElements->size(); i++)
 	{
-		cpm::RectangleBox source = (*blockModelElements)[i]->GetSource();
-		cpm::RectangleBox destination = (*blockModelElements)[i]->GetDestination();
+		cpm::RectangleBox source = (*blockDiffuseModelElements)[i]->GetSource();
+		cpm::RectangleBox destination = (*blockDiffuseModelElements)[i]->GetDestination();
 
-		*blockText += (*blockModelElements)[i]->GetTexturePath();
+		*blockText += (*blockDiffuseModelElements)[i]->GetTexturePath();
 		*blockText += ",";
 		*blockText += std::to_string(source.GetPosition().X);
 		*blockText += ",";
@@ -134,13 +145,44 @@ Status BlockRegistry::RegisterBlock(Block* block)
 		*blockText += std::to_string(destination.GetSize().Y);
 		*blockText += ",";
 
-		if (i == blockModelElements->size() - 1)
+		if (i == blockDiffuseModelElements->size() - 1)
+			*blockText += ";";
+	}
+
+	for (unsigned int i = 0; i < blockBloomkModelElements->size(); i++)
+	{
+		cpm::RectangleBox source = (*blockBloomkModelElements)[i]->GetSource();
+		cpm::RectangleBox destination = (*blockBloomkModelElements)[i]->GetDestination();
+
+		*blockText += (*blockBloomkModelElements)[i]->GetTexturePath();
+		*blockText += ",";
+		*blockText += std::to_string(source.GetPosition().X);
+		*blockText += ",";
+		*blockText += std::to_string(source.GetPosition().Y);
+		*blockText += ",";
+		*blockText += std::to_string(source.GetSize().X);
+		*blockText += ",";
+		*blockText += std::to_string(source.GetSize().Y);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetPosition().X);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetPosition().Y);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetSize().X);
+		*blockText += ",";
+		*blockText += std::to_string(destination.GetSize().Y);
+		*blockText += ",";
+
+		if (i == blockBloomkModelElements->size() - 1)
 			*blockText += ";";
 	}
 
 	m_blockText->push_back(*blockText);
+
 	delete blockText;
-	delete blockModel;
+	
+	delete blockDiffuseModel;
+	delete blockBloomModel;
 
 	return Status::OK;
 }
@@ -263,7 +305,7 @@ unsigned int AssetRegistry::AssetConvert(AssetType assetType)
 	switch (assetType)
 	{
 	case AssetType::BLOCK_DIFFUSE: return 0;
-	case AssetType::BLOCK_TRANSPARENCY: return 1;
+	case AssetType::BLOCK_BLOOM: return 1;
 	case AssetType::GUI_DIFFUSE: return 2;
 	}
 }

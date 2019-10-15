@@ -34,8 +34,16 @@
             "Key": "00649be6-fc0b-4a45-af39-f79b717c68e9",
             "Value": {
                 "id": "4a985e8e-361a-42d8-be6d-75e693719d06",
-                "resourcePath": "objects\\obj_blocks\\obj_blocks.yy",
+                "resourcePath": "objects\\obj_block_diffuse\\obj_block_diffuse.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "012d3bc1-26e0-4ee7-998d-335617446a5d",
+            "Value": {
+                "id": "3686e532-3dbf-4acd-a2f0-acccf03a75c0",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\blocks\\diffuse_sod.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -44,14 +52,6 @@
                 "id": "2d62b3c7-4253-40fb-8676-81a219f3461b",
                 "resourcePath": "views\\0265bbeb-2637-4824-be35-aceb2503f8db.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "02cd21af-5b9b-4201-bf39-0e97e5e4d18a",
-            "Value": {
-                "id": "14a54988-f143-4eb0-b99b-7f4f27c2caea",
-                "resourcePath": "datafiles_yy\\workingset\\player.png.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -95,6 +95,22 @@
             }
         },
         {
+            "Key": "0fdca76b-1672-44ec-ad17-929c96cd2a43",
+            "Value": {
+                "id": "a69f024d-b223-49bc-83b6-f6a7dfc5fbde",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseDecor\\blocks\\bloom_lantern.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "18675547-cca3-4e20-b01c-2793c7728d08",
+            "Value": {
+                "id": "1793f3fc-f3cc-4b2d-a147-fca0bd522a63",
+                "resourcePath": "views\\18675547-cca3-4e20-b01c-2793c7728d08.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "1c4dd2dc-7aad-4624-b7e8-9a7171c738ad",
             "Value": {
                 "id": "5eb817db-4a21-4d27-aca3-4fb32a675caa",
@@ -103,10 +119,18 @@
             }
         },
         {
+            "Key": "1c7c0181-42dd-4c60-be7d-0ac0111ac91b",
+            "Value": {
+                "id": "734f2015-729c-401f-8ea6-404cb4dda1cf",
+                "resourcePath": "views\\1c7c0181-42dd-4c60-be7d-0ac0111ac91b.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "25b2223a-e8be-437b-b071-31f3ae70c9b0",
             "Value": {
                 "id": "17801c5c-b7fe-4c0e-b4c6-7705528d54bc",
-                "resourcePath": "shaders\\sdr_block_debug\\sdr_block_debug.yy",
+                "resourcePath": "shaders\\sdr_block_final\\sdr_block_final.yy",
                 "resourceType": "GMShader"
             }
         },
@@ -135,11 +159,11 @@
             }
         },
         {
-            "Key": "3b843748-57c3-4f5f-b204-62372c942832",
+            "Key": "40a7e1b1-5b3d-466b-9c9f-b204981bced7",
             "Value": {
-                "id": "f3b12468-9057-4fbf-9f87-5b204e9db79e",
-                "resourcePath": "views\\3b843748-57c3-4f5f-b204-62372c942832.yy",
-                "resourceType": "GMFolder"
+                "id": "56e5fb86-daf3-491b-8598-be53c6b9b3b1",
+                "resourcePath": "shaders\\sdr_block_blur\\sdr_block_blur.yy",
+                "resourceType": "GMShader"
             }
         },
         {
@@ -167,6 +191,30 @@
             }
         },
         {
+            "Key": "5342b082-0564-4ee5-b22f-c2f273668511",
+            "Value": {
+                "id": "d3b07187-0270-476f-a1fa-a82efd279e44",
+                "resourcePath": "datafiles_yy\\workingset\\diffuse_null.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "558cb282-fca0-4355-9c65-6a51eb796499",
+            "Value": {
+                "id": "852e95cf-7baf-4c74-bc87-f85be531559d",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseDecor\\blocks\\diffuse_lantern.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "5653e686-f090-40e9-8c14-f35429ddfda8",
+            "Value": {
+                "id": "cb424b5d-4fb9-40dc-a99d-2d15e8527b61",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\blocks\\diffuse_dirt.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "6b8d3832-345f-460a-8cf5-2f5b7a5e30b8",
             "Value": {
                 "id": "a220c845-3bc4-4aaf-a919-4d94e1896174",
@@ -188,6 +236,14 @@
                 "id": "cd5779bd-30d0-4b83-b54e-020f5dbd2fb2",
                 "resourcePath": "views\\70f2a5c0-ec0d-4e4e-bdef-c87663e6b9c6.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "72d704a7-7850-4f9f-8163-9c5f0e1f2e45",
+            "Value": {
+                "id": "4aa267ce-4ad5-4130-8d33-fcf7548a0e74",
+                "resourcePath": "datafiles_yy\\workingset\\player.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -223,22 +279,6 @@
             }
         },
         {
-            "Key": "943d0bb4-520b-4726-975f-b58651e026c8",
-            "Value": {
-                "id": "a4e6a3f9-1192-4985-aabb-b86a689d0c68",
-                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\blocks\\sod.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "94e834a8-e2cc-4fd8-8c7d-fc4ca435d1e6",
-            "Value": {
-                "id": "aae652e4-130d-4616-9cf4-a885a3a54652",
-                "resourcePath": "datafiles_yy\\workingset\\null.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "97fc453e-b26c-49fb-95f3-234e7a48b52a",
             "Value": {
                 "id": "c13259ab-b5ea-4e16-9289-fa0c55957031",
@@ -263,19 +303,19 @@
             }
         },
         {
+            "Key": "9f85ceff-92a3-47c6-86f1-c9599ff7313e",
+            "Value": {
+                "id": "de9c0d9d-e640-4aab-8176-7869418e492f",
+                "resourcePath": "views\\9f85ceff-92a3-47c6-86f1-c9599ff7313e.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "a1565173-81a9-4277-9b85-d2cc4c41b85d",
             "Value": {
                 "id": "07465e96-e884-4099-ae27-02be93ee84fa",
                 "resourcePath": "sprites\\spr_assets\\spr_assets.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "a2255d94-dc86-4ece-ade7-5a1fc07878e1",
-            "Value": {
-                "id": "ac4d9c29-344f-474e-843a-0c058293213c",
-                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\blocks\\dirt.png.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -295,6 +335,22 @@
             }
         },
         {
+            "Key": "c4d00d55-9355-4aed-b3a4-e5c2920c2e00",
+            "Value": {
+                "id": "ffc5512a-8122-4cb6-ab90-4cf1f0c5da31",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseDecor\\blocks\\diffuse_grass.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "c5a30e0d-8375-4ad3-ae8a-ed76d0806ecf",
+            "Value": {
+                "id": "efe9b3ea-886a-4093-89b8-203066066728",
+                "resourcePath": "views\\c5a30e0d-8375-4ad3-ae8a-ed76d0806ecf.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6",
             "Value": {
                 "id": "aa249a06-c0b0-4191-8c5b-4a8d8622952e",
@@ -306,7 +362,7 @@
             "Key": "c69fda11-4ab3-446d-9b0c-44c64e3e1c0d",
             "Value": {
                 "id": "de1b3702-f0ba-471c-8266-8bb6e23e8a45",
-                "resourcePath": "sprites\\spr_blocks\\spr_blocks.yy",
+                "resourcePath": "sprites\\spr_block_diffuse\\spr_block_diffuse.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -343,19 +399,11 @@
             }
         },
         {
-            "Key": "d629661c-9ee7-49a6-96e0-0cf79f737fd4",
+            "Key": "d3727f48-ce7b-43e6-bee2-06a281befb66",
             "Value": {
-                "id": "ad9926bd-3785-4527-aa9d-26f5f6b1a31d",
-                "resourcePath": "views\\d629661c-9ee7-49a6-96e0-0cf79f737fd4.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "d790aab3-70c2-4dd2-8b85-61b834dbd1f6",
-            "Value": {
-                "id": "cd198783-438a-4bbd-b7b3-4fd96cd51680",
-                "resourcePath": "views\\d790aab3-70c2-4dd2-8b85-61b834dbd1f6.yy",
-                "resourceType": "GMFolder"
+                "id": "49a93b4f-6967-4116-9e3d-327ea9d9c712",
+                "resourcePath": "objects\\obj_block_bloom\\obj_block_bloom.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -367,19 +415,19 @@
             }
         },
         {
-            "Key": "e4bf2b38-f61f-40ca-aaeb-213e4dd196ee",
+            "Key": "e10d07c2-8a5b-448e-8da3-49daea519f25",
             "Value": {
-                "id": "9472384b-0770-457c-aa3b-3bcdfa725864",
-                "resourcePath": "views\\e4bf2b38-f61f-40ca-aaeb-213e4dd196ee.yy",
+                "id": "391dda2e-01c7-46ba-bb5c-032f15642762",
+                "resourcePath": "views\\e10d07c2-8a5b-448e-8da3-49daea519f25.yy",
                 "resourceType": "GMFolder"
             }
         },
         {
-            "Key": "e510242f-a258-4229-8530-2c428b139c87",
+            "Key": "e18966d9-dc32-4ee0-90a6-856eab212f44",
             "Value": {
-                "id": "f13ba589-67c1-4acb-8483-9cf953ebaa38",
-                "resourcePath": "views\\e510242f-a258-4229-8530-2c428b139c87.yy",
-                "resourceType": "GMFolder"
+                "id": "4e600565-1a82-4d39-a54c-a850c5e396fa",
+                "resourcePath": "datafiles_yy\\workingset\\bloom_null.png.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -399,19 +447,19 @@
             }
         },
         {
-            "Key": "f227e745-b815-4439-a297-5ecb4c145aac",
-            "Value": {
-                "id": "366f1bd2-13de-42cf-981e-575ee13ec753",
-                "resourcePath": "datafiles_yy\\workingset\\EnerverseDecor\\blocks\\grass.png.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "fa34d00d-c4b4-41c7-883f-fd6267e3a766",
             "Value": {
                 "id": "ba0de80a-9fcf-4bb4-858a-51832021a9cb",
                 "resourcePath": "scripts\\scr_debug_render\\scr_debug_render.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "fa8a2406-2ce2-48b6-a239-23c2c740a2cc",
+            "Value": {
+                "id": "623a1111-8f81-442a-b4fe-e339983a8fe1",
+                "resourcePath": "sprites\\spr_block_bloom\\spr_block_bloom.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

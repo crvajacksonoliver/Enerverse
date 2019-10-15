@@ -1,4 +1,4 @@
-if (!global.using_debug_menu)
+if (!global.settings[0])
 	return;
 
 draw_set_font(36);
