@@ -1,5 +1,5 @@
 {
-    "id": "0fdca76b-1672-44ec-ad17-929c96cd2a43",
+    "id": "a08675be-e4ef-49a5-8a80-4c92feca6ad6",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "bloom_lantern.png",

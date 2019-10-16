@@ -1,5 +1,5 @@
 {
-    "id": "72d704a7-7850-4f9f-8163-9c5f0e1f2e45",
+    "id": "6e3b83d8-5151-4764-9866-10d4b72310d6",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "player.png",

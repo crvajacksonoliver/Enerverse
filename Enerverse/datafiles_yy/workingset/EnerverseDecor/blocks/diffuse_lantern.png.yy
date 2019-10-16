@@ -1,5 +1,5 @@
 {
-    "id": "558cb282-fca0-4355-9c65-6a51eb796499",
+    "id": "a1559341-0d05-4820-821c-826087c3f231",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "diffuse_lantern.png",

@@ -1,22 +1,25 @@
-var zm_speed = 2000000;//more is slower
+var zm_speed = 1500000;//more is slower
 
-var mv_speed = 500000;
+var mv_speed = 50000;
 
 if (keyboard_check_direct(vk_shift))
 	var mv_speed = 300000;
 if (keyboard_check_direct(vk_control))
 	var mv_speed = 2000000;
 
+var newX = global.player_x;
+var newY = global.player_y;
+
 if (keyboard_check_direct(ord("A")))
 {
 	var nx = global.player_x - (delta_time / mv_speed);
 	if (nx < 1)
 	{
-		global.player_x = 1;
+		newX = 1;
 	}
 	else
 	{
-		global.player_x = nx;
+		newX = nx;
 	}
 }
 
@@ -25,24 +28,24 @@ if (keyboard_check_direct(ord("D")))
 	var nx = global.player_x + (delta_time / mv_speed);
 	if (nx > global.active_world_width)
 	{
-		global.player_x = global.active_world_width;
+		newX = global.active_world_width;
 	}
 	else
 	{
-		global.player_x = nx;
+		newX = nx;
 	}
 }
 
 if (keyboard_check_direct(ord("W")))
 {
 	var ny = global.player_y + (delta_time / mv_speed);
-	if (ny > global.active_world_width)
+	if (ny > global.active_world_height)
 	{
-		global.player_y = global.active_world_height;
+		newY = global.active_world_height;
 	}
 	else
 	{
-		global.player_y = ny;
+		newY = ny;
 	}
 }
 
@@ -51,11 +54,11 @@ if (keyboard_check_direct(ord("S")))
 	var ny = global.player_y - (delta_time / mv_speed);
 	if (ny < 1)
 	{
-		global.player_y = 1;
+		newY = 1;
 	}
 	else
 	{
-		global.player_y = ny;
+		newY = ny;
 	}
 }
 
@@ -84,13 +87,26 @@ if (keyboard_check_direct(ord("Q")))
 		global.zoom_factor = nz;
 	}
 }
-if (keyboard_check_direct(ord("1")))
-	global.player_x = 1;
-if (keyboard_check_direct(ord("2")))
-	global.player_x = 2;
-if (keyboard_check_direct(ord("3")))
-	global.player_x = 3;
-if (keyboard_check_direct(ord("4")))
-	global.player_x = 4;
-if (keyboard_check_direct(ord("5")))
-	global.player_x = 5;
+
+if (abs(newX - global.player_x) > 1)
+{
+	if (newX < global.player_x)
+		newX = global.player_x - 1;
+	else
+		newX = global.player_x + 1;
+}
+
+if (array_get(scr_block_get(round(newX - 1.375), floor(newY - 1)), 0) != scr_get_block_id("EnerverseVin/block_air") || array_get(scr_block_get(round(newX), floor(newY + 0.625)), 0) != scr_get_block_id("EnerverseVin/block_air"))
+{
+	if (newX < global.player_x)
+		newX = round(global.player_x) + 0.375;
+	else if (newX > global.player_x)
+		newX = round(global.player_x) + 0.1875;
+	if (newY < global.player_y)
+		newY = floor(global.player_y);
+	else if (newY > global.player_y)
+		newY = floor(global.player_y) + 0.375;
+}
+
+global.player_x = newX;
+global.player_y = newY;

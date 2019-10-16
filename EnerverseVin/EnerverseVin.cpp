@@ -86,6 +86,42 @@ public:
 	}
 };
 
+class BlockGrass : public BlockDirt
+{
+public:
+	BlockGrass()
+		:BlockDirt("block_grass", "Grass", Material::EARTH, 1.0f, Tool::SHOVEL)
+	{
+
+	}
+
+	Model* GetDiffuseModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+		return model;
+	}
+};
+
+class BlockSod : public BlockDirt
+{
+public:
+	BlockSod()
+		:BlockDirt("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
+	{
+
+	}
+
+	Model* GetDiffuseModel() override
+	{
+		Model* model = new Model();
+		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
+
+		return model;
+	}
+};
+
 class BlockAir : public Block
 {
 public:
@@ -104,28 +140,12 @@ public:
 	}
 };
 
-class BlockSod : public BlockDirt
-{
-public:
-	BlockSod()
-		:BlockDirt("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
-	{
-		
-	}
-
-	Model* GetDiffuseModel() override
-	{
-		Model* model = new Model();
-		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
-
-		return model;
-	}
-};
-
 bool ModVin::InitializeAssets()
 {
 	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_dirt", AssetType::BLOCK_DIFFUSE);
+	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_grass", AssetType::BLOCK_DIFFUSE);
 	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_sod", AssetType::BLOCK_DIFFUSE);
+
 	AssetRegistry::RegisterAsset("EnerverseVin/blocks/diffuse_air", AssetType::BLOCK_DIFFUSE);
 
 	return true;
@@ -134,11 +154,15 @@ bool ModVin::InitializeAssets()
 bool ModVin::InitializeModels()
 {
 	BlockDirt* block_dirt = new BlockDirt();
+	BlockGrass* block_grass = new BlockGrass();
 	BlockSod* block_sod = new BlockSod();
+
 	BlockAir* block_air = new BlockAir();
 
 	BlockRegistry::RegisterBlock((Block*)block_dirt);
+	BlockRegistry::RegisterBlock((Block*)block_grass);
 	BlockRegistry::RegisterBlock((Block*)block_sod);
+
 	BlockRegistry::RegisterBlock((Block*)block_air);
 
 	return true;
