@@ -5,7 +5,7 @@ var mv_speed = 50000;
 if (keyboard_check_direct(vk_shift))
 	var mv_speed = 300000;
 if (keyboard_check_direct(vk_control))
-	var mv_speed = 2000000;
+	var mv_speed = 5000000;
 
 var newX = global.player_x;
 var newY = global.player_y;
