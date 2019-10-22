@@ -96,12 +96,23 @@ if (abs(newX - global.player_x) > 1)
 		newX = global.player_x + 1;
 }
 
-if (array_get(scr_block_get(round(newX - 1.375), floor(newY - 1)), 0) != scr_get_block_id("EnerverseVin/block_air") || array_get(scr_block_get(round(newX), floor(newY + 0.625)), 0) != scr_get_block_id("EnerverseVin/block_air"))
+/* { +x, -y } */var b0 = array_get(scr_block_get(floor(newX - 0.1875), floor(newY - 1)), 0) != scr_get_block_id("EnerverseVin/block_air");
+/* { -x, -y } */var b1 = array_get(scr_block_get(floor(newX - 0.8125), floor(newY - 1)), 0) != scr_get_block_id("EnerverseVin/block_air");
+/* { +x, +y } */var b2 = array_get(scr_block_get(floor(newX - 0.1875), floor(newY + 0.625)), 0) != scr_get_block_id("EnerverseVin/block_air");
+/* { -x, +y } */var b3 = array_get(scr_block_get(floor(newX - 0.8125), floor(newY + 0.625)), 0) != scr_get_block_id("EnerverseVin/block_air");
+/* { +x,  y } */var b4 = array_get(scr_block_get(floor(newX - 0.1875), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
+/* { -x,  y } */var b5 = array_get(scr_block_get(floor(newX - 0.8125), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
+
+global.debug = b4;
+
+if ((b0 || b2 || b4) && newX > global.player_x)
+	newX = round(global.player_x) + 0.1875;
+
+if ((b1 || b3 || b5) && newX < global.player_x)
+	newX = round(global.player_x) - 0.1875;
+
+if (b0 || b1 || b2 || b3 || b4 || b5)
 {
-	if (newX < global.player_x)
-		newX = round(global.player_x) + 0.375;
-	else if (newX > global.player_x)
-		newX = round(global.player_x) + 0.1875;
 	if (newY < global.player_y)
 		newY = floor(global.player_y);
 	else if (newY > global.player_y)
