@@ -103,21 +103,21 @@ if (abs(newX - global.player_x) > 1)
 /* { +x,  y } */var b4 = array_get(scr_block_get(floor(newX - 0.1875), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
 /* { -x,  y } */var b5 = array_get(scr_block_get(floor(newX - 0.8125), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
 
-global.debug = string((b0 || b2 || b4)) + " ? " + string((b1 || b3 || b5));
+//global.debug = string(b0) + " ? " + string(b0) + " ? " + ;
 
-if ((b0 || b2 || b4) && newX > global.player_x)
-	newX = round(global.player_x) + 0.1875;
-
-if ((b1 || b3 || b5) && newX < global.player_x)
-	newX = round(global.player_x) - 0.1875;
-
-if (b0 || b1 || b2 || b3 || b4 || b5)
+if (b0 || b1)
 {
 	if (newY < global.player_y)
 		newY = floor(global.player_y);
 	else if (newY > global.player_y)
 		newY = floor(global.player_y) + 0.375;
 }
+
+if ((b0 || b2 || b4) && newX > global.player_x)
+	newX = round(global.player_x) + 0.1875;
+
+if ((b1 || b3 || b5) && newX < global.player_x)
+	newX = round(global.player_x) - 0.1875;
 
 global.player_x = newX;
 global.player_y = newY;
