@@ -103,7 +103,7 @@ if (abs(newX - global.player_x) > 1)
 /* { +x,  y } */var b4 = array_get(scr_block_get(floor(newX - 0.1875), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
 /* { -x,  y } */var b5 = array_get(scr_block_get(floor(newX - 0.8125), floor(newY - 0.1875)), 0) != scr_get_block_id("EnerverseVin/block_air");
 
-global.debug = string(newX) + " ? " + string(global.player_x);
+global.debug = string((b0 || b2 || b4)) + " ? " + string((b1 || b3 || b5));
 
 if ((b0 || b2 || b4) && newX > global.player_x)
 	newX = round(global.player_x) + 0.1875;
