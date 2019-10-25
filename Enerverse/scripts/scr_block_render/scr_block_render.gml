@@ -44,9 +44,13 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 		{
 			over = mouse_x >= sx && mouse_x < sx + blockSize && mouse_y >= sy && mouse_y < sy + blockSize;
 			
+			if (true)
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Debug"), 1);
+			else
+				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Debug"), 0);
+			
 			if (over)
 			{
-				
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
 				if (mouse_check_button_pressed(mb_left))
 				{

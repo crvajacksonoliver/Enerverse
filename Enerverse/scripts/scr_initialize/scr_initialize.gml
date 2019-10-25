@@ -2,7 +2,9 @@ global.player_x = 1.0;
 global.player_y = 1.0;
 
 global.zoom_factor = 1.0;
-global.debug = array_create(8);
+global.debug = array_create(20);
+global.px = 0;
+global.py = 0;
 
 global.debug_menu = array_create(1);
 
