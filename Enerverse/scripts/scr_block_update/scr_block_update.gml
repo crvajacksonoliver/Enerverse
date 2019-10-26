@@ -105,9 +105,78 @@ if (abs(newY - global.player_y) > 1)
 }
 
 var id_air = scr_get_block_id("EnerverseVin/block_air");
+var hdpy = floor(newY - 0.375) + 1;
+var horizontalState = floor(newX) == round(newX);
 
-global.px = floor(global.player_x);
-global.py = floor(global.player_y);
+var px = floor(newX);
+var py = floor(newY);
+var fx = floor(global.player_x);
+var fy = floor(global.player_y);
+
+var b_down = false;
+var b_up = false;
+var b_left = false;
+var b_right = false;
+
+if (horizontalState)
+{//left state
+	if (floor(newX - 0.1875) == px)
+	{//check double
+		
+		
+		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air || array_get(scr_block_get(px, py - 1), 0) != id_air;
+		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air || array_get(scr_block_get(px, hdpy), 0) != id_air;
+		b_right = array_get(scr_block_get(px, fy - 1), 0) != id_air || array_get(scr_block_get(px, fy), 0) != id_air;
+	}
+	else
+	{//check single
+		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air;
+		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air;
+	}
+}
+else
+{//right state
+	if (floor(newX + 0.1875) == px)
+	{//check double
+		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air || array_get(scr_block_get(px, py - 1), 0) != id_air;
+		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air || array_get(scr_block_get(px, hdpy), 0) != id_air;
+	}
+	else
+	{//check single
+		b_down = array_get(scr_block_get(px, py - 1), 0) != id_air;
+		b_up = array_get(scr_block_get(px, hdpy), 0) != id_air;
+	}
+}
+
+//apply collisions
+
+if (b_down && !b_left && !b_right)
+	newY = floor(newY + 1);
+if (b_up && !b_left && !b_right)
+	newY = floor(newY) + 0.375;
+if (b_left)
+	newX = ceil(newX) - 0.1875;
+if (b_right)
+	newX = floor(newX) + 0.1875;
+
+global.debug[0] = b_down;
+global.debug[1] = b_up;
+global.debug[2] = b_left;
+global.debug[3] = b_right;
+
+/*
+
+(use_x == global.px + 0 && use_y == global.py - 1)
+(use_x == global.px - 1 && use_y == global.py - 1)
+(use_x == global.px + 0 && use_y == global.py + 0)
+(use_x == global.px - 1 && use_y == global.py + 0)
+(use_x == global.px + 0 && use_y == global.py + 1)
+(use_x == global.px - 1 && use_y == global.py + 1)
+
+*/
+
+global.px = floor(newX);
+global.py = floor(newY);
 
 global.player_x = newX;
 global.player_y = newY;
