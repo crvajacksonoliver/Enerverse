@@ -118,25 +118,38 @@ var b_up = false;
 var b_left = false;
 var b_right = false;
 
+var m_down = newY < global.player_y;
+var m_up = newY > global.player_y;
+var m_left = newY < global.player_y;
+var m_right = newX > global.player_x;
+
 if (horizontalState)
 {//left state
-	if (floor(newX - 0.1875) == px)
+	if (floor(newX - 0.1876) == px)
 	{//check double
-		
-		
+		global.debug[6] = "left - double";
 		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air || array_get(scr_block_get(px, py - 1), 0) != id_air;
 		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air || array_get(scr_block_get(px, hdpy), 0) != id_air;
-		b_right = array_get(scr_block_get(px, fy - 1), 0) != id_air || array_get(scr_block_get(px, fy), 0) != id_air;
+		
+		if (b_down)
+		{
+			b_right = array_get(scr_block_get(px, py + 1), 0) != id_air || array_get(scr_block_get(px, py), 0) != id_air;
+		}
+		else
+		{
+			b_right = array_get(scr_block_get(px, py - 1), 0) != id_air || array_get(scr_block_get(px, py), 0) != id_air;
+		}
 	}
 	else
 	{//check single
+		global.debug[6] = "left - single";
 		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air;
 		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air;
 	}
 }
 else
 {//right state
-	if (floor(newX + 0.1875) == px)
+	if (floor(newX + 0.1876) == px)
 	{//check double
 		b_down = array_get(scr_block_get(px - 1, py - 1), 0) != id_air || array_get(scr_block_get(px, py - 1), 0) != id_air;
 		b_up = array_get(scr_block_get(px - 1, hdpy), 0) != id_air || array_get(scr_block_get(px, hdpy), 0) != id_air;
@@ -150,19 +163,44 @@ else
 
 //apply collisions
 
-if (b_down && !b_left && !b_right)
-	newY = floor(newY + 1);
-if (b_up && !b_left && !b_right)
-	newY = floor(newY) + 0.375;
+if (m_down && b_down)
+{
+	if (m_right && b_right)
+	{
+		newY = round(newY);
+		newX = floor(newX) + 0.1875;
+	}
+	else if (!b_right || (!m_right))
+	{
+		newY = floor(newY) + 1;
+	}
+}
+else if (m_right && b_right)
+{
+	newX = floor(newX) + 0.1875;
+}
+
+
+
+/*
+if (b_down && !b_right)
+	newY = floor(newY) + 1;
+if (b_down && b_right)
+	newY = round(newY);
+//if (b_up)
+//	newY = floor(newY) + 0.375;
 if (b_left)
 	newX = ceil(newX) - 0.1875;
 if (b_right)
 	newX = floor(newX) + 0.1875;
+*/
 
 global.debug[0] = b_down;
 global.debug[1] = b_up;
 global.debug[2] = b_left;
 global.debug[3] = b_right;
+global.debug[4] = "Conditionals:";
+global.debug[5] = horizontalState;
 
 /*
 
