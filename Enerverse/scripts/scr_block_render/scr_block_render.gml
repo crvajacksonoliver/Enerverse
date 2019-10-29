@@ -51,6 +51,10 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 				{
 					global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = scr_get_block_id("EnerverseVin/block_sod");
 				}
+				else if (mouse_check_button_pressed(mb_right))
+				{
+					global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = scr_get_block_id("EnerverseVin/block_air");
+				}
 			}
 			else
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 0);
@@ -76,17 +80,6 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 			
 			surface_set_target(s1);
 			shader_set(sdr_block_final);
-			
-			if ((use_x == global.px + 0 && use_y == global.py - 1) ||
-				(use_x == global.px - 1 && use_y == global.py - 1) ||
-				(use_x == global.px + 0 && use_y == global.py + 0) ||
-				(use_x == global.px - 1 && use_y == global.py + 0) ||
-				(use_x == global.px + 0 && use_y == global.py + 1) ||
-				(use_x == global.px - 1 && use_y == global.py + 1))
-				
-				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Debug"), 1);
-			else
-				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Debug"), 0);
 			
 			if (over)
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
