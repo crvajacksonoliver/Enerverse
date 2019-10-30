@@ -1,0 +1,1 @@
+scr_start_world();

@@ -1,3 +1,13 @@
+/// @param {real} width
+/// @param {real} height
+/// @param {real} r
+/// @param {real} g
+/// @param {real} b
+/// @param {string} text
+/// @param {real} text_scale
+/// @param {real} callback
+
+
 var buttonWidth = max(argument[0], 32);
 var buttonHeight = max(argument[1], 32);
 
@@ -60,7 +70,16 @@ with (buttonObj)
 {
 	sprite_index = buttonSpr;
 	visible = true;
+	elementType = 1;
+	
+	elementButtonCallback = argument[7];
+	elementButtonFade = 1.0;
+	elementButtonWasDown = false;
+	elementButtonWidth = buttonWidth;
+	elementButtonHeight = buttonHeight;
 }
 
 surface_free(calSurface);
 surface_free(buttonSurface);
+
+return buttonObj;

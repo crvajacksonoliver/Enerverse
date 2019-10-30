@@ -1,3 +1,6 @@
+if (!global.in_world)
+	return;
+
 var zm_speed = 1500000;//more is slower
 
 var mv_speed = 60000;

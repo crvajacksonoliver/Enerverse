@@ -1,3 +1,5 @@
+if (!global.in_world)
+	return;
 
 if (!global.settings[1])
 	shader_set(sdr_block_final);

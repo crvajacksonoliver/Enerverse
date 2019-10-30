@@ -14,6 +14,7 @@ global.settings[1] = true;//enable bloom
 global.settings[2] = 50;  //bloom spread distance
 global.settings[3] = 3.0; //bloom strength
 
+global.in_world = false;
 global.active_world_width = 100;
 global.active_world_height = 30;
 
@@ -37,20 +38,6 @@ scr_craft_poll();
 var player_image = sprite_add("workingset/player.png", 1, false, false, 0, 0);
 global.current_player = player_image;
 
-//setup world
-scr_world_gen();
-
-//set player
-for (var i = 1; i < global.active_world_height - 1; i++)
-{
-	if (array_get(scr_block_get(floor(global.active_world_width / 2) - 1, i), 0) == scr_get_block_id("EnerverseVin/block_air") && array_get(scr_block_get(floor(global.active_world_width / 2) - 1, i + 1), 0) == scr_get_block_id("EnerverseVin/block_air"))
-	{
-		global.player_x = floor(global.active_world_width / 2);
-		global.player_y = i + 1;
-		break;
-	}
-}
-
 global.UI = ds_list_create();
 
 var uiOutlineButtonObj = instance_create_depth(0, 0, -1, obj_ui_element);
@@ -60,8 +47,23 @@ with (uiOutlineButtonObj)
 {
 	sprite_index = uiOutlineButtonSpr;
 	visible = false;
+	elementType = 0;
 }
 
 ds_list_add(global.UI, uiOutlineButtonObj);
 
-scr_ui_register_render_button(500, 50, 0.0, 0.1, 0.4, "Hello, World!", 2);
+var buttonPlay = scr_ui_register_render_button(room_width * 0.6, (room_width * 0.6) / 15, 0.0, 0.1, 0.4, "Play Game", 1.5, scr_button_mm_play);
+
+with (buttonPlay)
+{
+	x = (room_width / 2) - ((room_width * 0.6) / 2);
+	y = (room_height / 2) - (((room_height * 0.6) / 15));
+}
+
+var buttonPlay = scr_ui_register_render_button(room_width * 0.6, (room_width * 0.6) / 15, 0.0, 0.1, 0.4, "Quit Game", 1.5, scr_button_mm_quit);
+
+with (buttonPlay)
+{
+	x = (room_width / 2) - ((room_width * 0.6) / 2);
+	y = (room_height / 2) + (((room_height * 0.6) / 15));
+}
