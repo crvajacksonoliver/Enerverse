@@ -1,7 +1,7 @@
 global.player_x = 1.0;
 global.player_y = 1.0;
 
-global.zoom_factor = 1.0;
+global.zoom_factor = 2.0;
 global.debug = array_create(20);
 global.px = 0;
 global.py = 0;
@@ -50,3 +50,18 @@ for (var i = 1; i < global.active_world_height - 1; i++)
 		break;
 	}
 }
+
+global.UI = ds_list_create();
+
+var uiOutlineButtonObj = instance_create_depth(0, 0, -1, obj_ui_element);
+var uiOutlineButtonSpr = sprite_add("workingset/button.png", 1, false, false, 0, 0);
+
+with (uiOutlineButtonObj)
+{
+	sprite_index = uiOutlineButtonSpr;
+	visible = false;
+}
+
+ds_list_add(global.UI, uiOutlineButtonObj);
+
+scr_ui_register_render_button(500, 50, 0.0, 0.1, 0.4, "Hello, World!", 2);
