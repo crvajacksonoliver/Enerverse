@@ -63,7 +63,7 @@ draw_text_transformed((buttonWidth / 2) - ((string_width(buttonText) * buttonSca
 
 surface_reset_target();
 
-var buttonObj = instance_create_depth(0, 0, -1, obj_ui_element);;
+var buttonObj = instance_create_depth(0, 0, -1, obj_ui_element);
 var buttonSpr = sprite_create_from_surface(buttonSurface, 0, 0, buttonWidth, buttonHeight, false, false, 0, 0);
 
 with (buttonObj)
@@ -77,6 +77,8 @@ with (buttonObj)
 	elementButtonWasDown = false;
 	elementButtonWidth = buttonWidth;
 	elementButtonHeight = buttonHeight;
+	
+	ds_list_add(global.active_ui_instances, id);
 }
 
 surface_free(calSurface);

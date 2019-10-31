@@ -39,6 +39,13 @@ var player_image = sprite_add("workingset/player.png", 1, false, false, 0, 0);
 global.current_player = player_image;
 
 global.UI = ds_list_create();
+global.active_ui_instances = ds_list_create();
+global.UI_active = true;
+global.UI_type = 0;
+
+global.UI_active_anti_mouse_left = false;
+
+instance_create_depth(0, 0, 0, obj_updates);
 
 var uiOutlineButtonObj = instance_create_depth(0, 0, -1, obj_ui_element);
 var uiOutlineButtonSpr = sprite_add("workingset/button.png", 1, false, false, 0, 0);
@@ -52,6 +59,8 @@ with (uiOutlineButtonObj)
 
 ds_list_add(global.UI, uiOutlineButtonObj);
 
+global.UI_type = 1;
+
 var buttonPlay = scr_ui_register_render_button(room_width * 0.6, (room_width * 0.6) / 15, 0.0, 0.1, 0.4, "Play Game", 1.5, scr_button_mm_play);
 
 with (buttonPlay)
@@ -60,9 +69,9 @@ with (buttonPlay)
 	y = (room_height / 2) - (((room_height * 0.6) / 15));
 }
 
-var buttonPlay = scr_ui_register_render_button(room_width * 0.6, (room_width * 0.6) / 15, 0.0, 0.1, 0.4, "Quit Game", 1.5, scr_button_mm_quit);
+var buttonQuit = scr_ui_register_render_button(room_width * 0.6, (room_width * 0.6) / 15, 0.0, 0.1, 0.4, "Quit Game", 1.5, scr_button_mm_quit);
 
-with (buttonPlay)
+with (buttonQuit)
 {
 	x = (room_width / 2) - ((room_width * 0.6) / 2);
 	y = (room_height / 2) + (((room_height * 0.6) / 15));
