@@ -1,6 +1,9 @@
 global.player_x = 1.0;
 global.player_y = 1.0;
 
+global.cplayer_x = false;
+global.cplayer_y = false;
+
 global.zoom_factor = 2.0;
 global.debug = array_create(20);
 global.px = 0;
@@ -15,6 +18,12 @@ global.settings[2] = 50;  //bloom spread distance
 global.settings[3] = 3.0; //bloom strength
 
 global.in_world = false;
+global.game_paused = false;
+global.bloom_toggle_button = pointer_null;
+
+global.button_down = false;
+global.button_down_anti_mouse_left = false;
+
 global.active_world_width = 100;
 global.active_world_height = 30;
 
@@ -40,12 +49,12 @@ global.current_player = player_image;
 
 global.UI = ds_list_create();
 global.active_ui_instances = ds_list_create();
-global.UI_active = true;
 global.UI_type = 0;
 
 global.UI_active_anti_mouse_left = false;
 
 instance_create_depth(0, 0, 0, obj_updates);
+instance_create_depth(0, 0, 0, obj_keybinds);
 
 var uiOutlineButtonObj = instance_create_depth(0, 0, -1, obj_ui_element);
 var uiOutlineButtonSpr = sprite_add("workingset/button.png", 1, false, false, 0, 0);

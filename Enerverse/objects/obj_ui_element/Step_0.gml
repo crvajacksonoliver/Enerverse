@@ -16,8 +16,10 @@ if (elementType == 1)
 			else
 				elementButtonFade = 0.8;
 		}
-		else
+		else if (!global.button_down)
 		{
+			global.button_down = true;
+			global.button_down_anti_mouse_left = true;
 			elementButtonWasDown = true;
 			elementButtonFade = 0.65;
 			

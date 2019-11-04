@@ -1,7 +1,9 @@
-if (!global.in_world)
+if (!global.in_world || global.game_paused)
 	return;
 
 var zm_speed = 1500000;//more is slower
+var fall_speed = 100000;//more is slower
+var jump_power = 10000;//more is slower
 
 var mv_speed = 60000;
 
@@ -39,30 +41,27 @@ if (keyboard_check_direct(ord("D")))
 	}
 }
 
-if (keyboard_check_direct(ord("W")))
+if (keyboard_check_direct(ord("W")) && global.cplayer_y)
 {
-	var ny = global.player_y + (delta_time / mv_speed);
-	if (ny > global.active_world_height)
+	var ny = (delta_time / jump_power);
+	if (newY + ny > global.active_world_height)
 	{
 		newY = global.active_world_height;
 	}
 	else
 	{
-		newY = ny;
+		newY += ny;
 	}
 }
 
-if (keyboard_check_direct(ord("S")))
+var ny = -1 * (delta_time / fall_speed);
+if (newY + ny < 1)
 {
-	var ny = global.player_y - (delta_time / mv_speed);
-	if (ny < 1)
-	{
-		newY = 1;
-	}
-	else
-	{
-		newY = ny;
-	}
+	newY = 1;
+}
+else
+{
+	newY += ny;
 }
 
 if (keyboard_check_direct(ord("E")))
@@ -124,6 +123,8 @@ for (var i = 0; i < times; i++)
 		calY += parY;
 	
 	var result = scr_block_collision(calX, calY, colX, colY);
+	
+	global.cplayer_y = result[4];
 	
 	colX = result[2];
 	colY = result[3];

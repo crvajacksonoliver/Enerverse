@@ -1,6 +1,8 @@
 if (!global.in_world)
 	return;
 
+draw_clear(c_blue);
+
 if (!global.settings[1])
 	shader_set(sdr_block_final);
 else

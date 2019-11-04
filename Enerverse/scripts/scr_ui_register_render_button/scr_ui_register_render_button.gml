@@ -84,4 +84,6 @@ with (buttonObj)
 surface_free(calSurface);
 surface_free(buttonSurface);
 
+global.UI_active = true;
+
 return buttonObj;

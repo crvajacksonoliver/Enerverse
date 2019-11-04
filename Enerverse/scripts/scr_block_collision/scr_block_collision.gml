@@ -3,6 +3,8 @@ var newY = argument[1];
 var colX = argument[2];
 var colY = argument[3];
 
+var colDown = false;
+
 var id_air = scr_get_block_id("EnerverseVin/block_air");
 var hdpy = floor(newY - 0.375) + 1;
 var horizontalState = floor(newX) == round(newX);
@@ -146,11 +148,12 @@ else if (m_left && b_left)
 	colX = true;
 }
 
-var result = array_create(4);
+var result = array_create(5);
 
 result[0] = newX;
 result[1] = newY;
 result[2] = colX;
 result[3] = colY;
+result[4] = colDown;
 
 return result;
