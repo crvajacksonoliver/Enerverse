@@ -1,1 +1,1 @@
-"SX" IS WRONG
+test scr_block_set, working on metadata for setting and updating with the sod block.

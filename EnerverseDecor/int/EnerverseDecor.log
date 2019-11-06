@@ -1,1 +1,7 @@
-﻿  EnerverseDecor.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.dll
+﻿  EnerverseDecor.cpp
+  EngineCalls.cpp
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+  Generating Code...
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+     Creating library C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.lib and object C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.exp
+  EnerverseDecor.vcxproj -> C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseDecor.dll

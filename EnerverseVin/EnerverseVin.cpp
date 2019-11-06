@@ -22,61 +22,6 @@ public:
 		return true;
 	}
 
-	char* OnBlockCreate(char* arguments) override
-	{
-		unsigned char argumentCount = 0;
-		unsigned short argumentsLength = strlen(arguments);
-		
-		for (unsigned short i = 0; i < argumentsLength; i++)
-		{
-			if (arguments[i] == ',')
-				argumentCount++;
-		}
-
-		if (argumentCount != 1)
-		{
-			char* metaData = (char*)malloc(1);
-			if (metaData == nullptr)
-				return nullptr;
-
-			metaData[0] = '\0';
-			return metaData;
-		}
-
-		char* metaData = (char*)malloc(argumentsLength);
-		if (metaData == nullptr)
-			return nullptr;
-
-		metaData[argumentsLength - 1] = '\0';
-
-		for (unsigned short i = 0; i < argumentsLength - 1; i++)
-		{
-			metaData[i] = arguments[i];
-		}
-
-		return metaData;
-	}
-
-	char* OnBlockUpdate(char* metaData) override
-	{
-		unsigned short metaLength = strlen(metaData);
-
-		for (signed short i = metaLength - 1; i > 0; i--)
-		{
-			if (metaData[i] == '9')
-			{
-				metaData[i] = '0';
-			}
-			else
-			{
-				metaData[i]++;
-				break;
-			}
-		}
-
-		return metaData;
-	}
-
 	Model* GetDiffuseModel() override
 	{
 		Model* model = new Model();
@@ -119,6 +64,64 @@ public:
 		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_sod", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
+	}
+
+	char* OnBlockCreate(char* arguments) override
+	{
+		unsigned char argumentCount = 0;
+		unsigned short argumentsLength = strlen(arguments);
+
+		for (unsigned short i = 0; i < argumentsLength; i++)
+		{
+			if (arguments[i] == ',')
+				argumentCount++;
+		}
+
+		if (argumentCount != 1)
+		{
+			char* metaData = (char*)malloc(1);
+			metaData[0] = 0;
+
+			return metaData;
+		}
+
+		unsigned char* argumentNumbers = (unsigned char*)malloc(argumentCount);
+		unsigned short a = 0;
+
+		for (unsigned char i = 0; i < argumentCount; i++)
+		{
+			argumentNumbers[i] = (unsigned char)(arguments[i * 2] - '0');
+		}
+
+		char* metaData = (char*)malloc(argumentCount + 1);
+		metaData[argumentCount] = 0;
+
+		for (unsigned short i = 0; i < argumentCount; i++)
+		{
+			metaData[i] = (char)argumentNumbers[i];
+		}
+
+		return metaData;
+	}
+
+	char* OnBlockUpdate(char* metaData) override
+	{
+		unsigned short metaLength = strlen(metaData);
+
+		for (unsigned short i = 0; i < metaLength; i++)
+		{
+			if (metaData[i] == '9')
+			{
+				metaData[i] = '0';
+			}
+			else
+			{
+				metaData[i]++;
+				break;
+			}
+		}
+
+		return metaData;
 	}
 };
 
