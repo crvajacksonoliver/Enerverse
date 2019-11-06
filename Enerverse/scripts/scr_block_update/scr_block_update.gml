@@ -2,48 +2,139 @@ if (!global.in_world || global.game_paused)
 	return;
 
 var zm_speed = 1500000;//more is slower
-var fall_speed = 100000;//more is slower
-var jump_power = 10000;//more is slower
+var fall_speed = 30000;//more is slower
+var fall_lerp_speed = 500000;//more is slower
+var jump_power = 70000;//more is slower
+var jump_distance = 250000;//more is slower;
 
-var mv_speed = 60000;
+var mv_speed = 150000;
+var mv_lerp_speed = 60000;
 
 if (keyboard_check_direct(vk_shift))
-	var mv_speed = 300000;
+	var mv_speed = 100000;
 if (keyboard_check_direct(vk_control))
-	var mv_speed = 5000000;
+	var mv_speed = 250000;
 
 var newX = global.player_x;
 var newY = global.player_y;
 
-if (keyboard_check_direct(ord("A")))
+if (keyboard_check_direct(ord("A")) && !global.moving_left)
 {
-	var nx = global.player_x - (delta_time / mv_speed);
-	if (nx < 1)
+	global.moving_left = true;
+	global.moving_right = false;
+	global.cplayer_x = (delta_time / mv_lerp_speed);
+	
+	var nx = -1 * (delta_time / mv_speed) * global.cplayer_x;
+	if (nx + newX < 1)
 	{
 		newX = 1;
 	}
 	else
 	{
-		newX = nx;
+		newX += nx;
+	}
+}
+else if (keyboard_check_direct(ord("A")) && global.moving_left)
+{
+	global.cplayer_x += (delta_time / mv_lerp_speed);
+	
+	if (global.cplayer_x > 1.0)
+		global.cplayer_x = 1.0;
+	
+	var nx = -1 * (delta_time / mv_speed) * global.cplayer_x;
+	if (nx + newX < 1)
+	{
+		newX = 1;
+	}
+	else
+	{
+		newX += nx;
+	}
+}
+else if (!keyboard_check_direct(ord("A")) && global.moving_left)
+{
+	global.cplayer_x -= (delta_time / mv_lerp_speed);
+	
+	if (global.cplayer_x > 0.0)
+	{
+		var nx = -1 * (delta_time / mv_speed) * global.cplayer_x;
+		if (nx + newX < 1)
+		{
+			newX = 1;
+		}
+		else
+		{
+			newX += nx;
+		}
+	}
+	else
+	{
+		global.moving_left = false;
+		global.cplayer_x = 0.0;
 	}
 }
 
-if (keyboard_check_direct(ord("D")))
+if (keyboard_check_direct(ord("D")) && !global.moving_right)
 {
-	var nx = global.player_x + (delta_time / mv_speed);
-	if (nx > global.active_world_width)
+	global.moving_right = true;
+	global.moving_left = false;
+	global.cplayer_x = (delta_time / mv_lerp_speed);
+	
+	var nx = (delta_time / mv_speed) * global.cplayer_x;
+	if (nx + newX > global.active_world_width)
 	{
 		newX = global.active_world_width;
 	}
 	else
 	{
-		newX = nx;
+		newX += nx;
+	}
+}
+else if (keyboard_check_direct(ord("D")) && global.moving_right)
+{
+	global.cplayer_x += (delta_time / mv_lerp_speed);
+	
+	if (global.cplayer_x > 1.0)
+		global.cplayer_x = 1.0;
+	
+	var nx = (delta_time / mv_speed) * global.cplayer_x;
+	if (nx + newX > global.active_world_width)
+	{
+		newX = global.active_world_width;
+	}
+	else
+	{
+		newX += nx;
+	}
+}
+else if (!keyboard_check_direct(ord("D")) && global.moving_right)
+{
+	global.cplayer_x -= (delta_time / mv_lerp_speed);
+	
+	if (global.cplayer_x > 0.0)
+	{
+		var nx = (delta_time / mv_speed) * global.cplayer_x;
+		if (nx + newX > global.active_world_width)
+		{
+			newX = global.active_world_width;
+		}
+		else
+		{
+			newX += nx;
+		}
+	}
+	else
+	{
+		global.moving_right = false;
+		global.cplayer_x = 0.0;
 	}
 }
 
-if (keyboard_check_direct(ord("W")) && global.cplayer_y)
+if (keyboard_check_direct(ord("W")) && global.player_grounded)
 {
-	var ny = (delta_time / jump_power);
+	global.jumping = true;
+	
+	var ny = (delta_time / jump_power) * (1 - global.jump_dec);
 	if (newY + ny > global.active_world_height)
 	{
 		newY = global.active_world_height;
@@ -53,41 +144,91 @@ if (keyboard_check_direct(ord("W")) && global.cplayer_y)
 		newY += ny;
 	}
 }
-
-var ny = -1 * (delta_time / fall_speed);
-if (newY + ny < 1)
+else if (global.jumping && keyboard_check_direct(ord("W")) && global.jump_dec < 0.7)
 {
-	newY = 1;
-}
-else
-{
-	newY += ny;
-}
-
-if (keyboard_check_direct(ord("E")))
-{
-	var nz = global.zoom_factor + (delta_time / zm_speed);
-	if (nz > 2.0)
+	global.jump_dec += (delta_time / jump_distance);
+	
+	var ny = (delta_time / jump_power) * (1 - global.jump_dec);
+	if (newY + ny > global.active_world_height)
 	{
+		newY = global.active_world_height;
+	}
+	else
+	{
+		newY += ny;
+	}
+}
+else if (global.jumping && !keyboard_check_direct(ord("W")) && global.jump_dec < 0.7)
+{
+	global.jump_dec = 0.7;
+	
+	var ny = (delta_time / jump_power) * (1 - global.jump_dec);
+	if (newY + ny > global.active_world_height)
+	{
+		newY = global.active_world_height;
+	}
+	else
+	{
+		newY += ny;
+	}
+}
+else if (global.jumping && global.jump_dec >= 0.7)
+{
+	global.jump_dec += (delta_time / jump_distance);
+	
+	var ny = (delta_time / jump_power) * (1 - global.jump_dec);
+	if (newY + ny > global.active_world_height)
+	{
+		newY = global.active_world_height;
+	}
+	else
+	{
+		newY += ny;
+	}
+	
+	if (global.jump_dec > 1.0)
+	{
+		global.jumping = false;
+		global.jump_dec = 0.0;
+	}
+}
+
+if (global.player_grounded)
+{
+	global.cplayer_y = 0.0;
+}
+else if (!global.jumping)
+{
+	if (global.cplayer_y + (delta_time / fall_lerp_speed) > 1.0)
+		global.cplayer_y = 1.0;
+	else
+		global.cplayer_y += (delta_time / fall_lerp_speed);
+	
+	var ny = -1 * (delta_time / fall_speed) * global.cplayer_y;
+	if (newY + ny < 1)
+	{
+		newY = 1;
+	}
+	else
+	{
+		newY += ny;
+	}
+}
+
+if (keyboard_check_pressed(ord("E")))
+{
+	if (global.zoom_factor == 0.5)
+		global.zoom_factor = 1.0;
+	else if (global.zoom_factor == 1.0)
 		global.zoom_factor = 2.0;
-	}
-	else
-	{
-		global.zoom_factor = nz;
-	}
 }
 
-if (keyboard_check_direct(ord("Q")))
+if (keyboard_check_pressed(ord("Q")))
 {
-	var nz = global.zoom_factor - (delta_time / zm_speed);
-	if (nz < 0.5)
-	{
+	if (global.zoom_factor == 2.0)
+		global.zoom_factor = 1.0;
+	else if (global.zoom_factor == 1.0)
 		global.zoom_factor = 0.5;
-	}
-	else
-	{
-		global.zoom_factor = nz;
-	}
 }
 
 var disX = abs(newX - global.player_x);
@@ -114,6 +255,7 @@ var calY = global.player_y;
 
 var colX = false;
 var colY = false;
+global.player_grounded = false;
 
 for (var i = 0; i < times; i++)
 {
@@ -124,7 +266,8 @@ for (var i = 0; i < times; i++)
 	
 	var result = scr_block_collision(calX, calY, colX, colY);
 	
-	global.cplayer_y = result[4];
+	//global.cplayer_y = result[4];
+	//global.debug[1] = result[4];
 	
 	colX = result[2];
 	colY = result[3];

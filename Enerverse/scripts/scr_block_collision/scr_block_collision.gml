@@ -3,7 +3,7 @@ var newY = argument[1];
 var colX = argument[2];
 var colY = argument[3];
 
-var colDown = false;
+var colDown = global.player_grounded;
 
 var id_air = scr_get_block_id("EnerverseVin/block_air");
 var hdpy = floor(newY - 0.375) + 1;
@@ -95,6 +95,7 @@ if ((m_down && b_down) || (m_up && b_up))
 		{
 			newY = round(newY);
 			colY = true;
+			colDown = true;
 		}
 		else if (!m_up || b_up)
 		{
@@ -112,6 +113,7 @@ if ((m_down && b_down) || (m_up && b_up))
 		{
 			newY = round(newY);
 			colY = true;
+			colDown = true;
 		}
 		else if (!m_up || b_up)
 		{
@@ -129,6 +131,7 @@ if ((m_down && b_down) || (m_up && b_up))
 		{
 			newY = floor(newY) + 1;
 			colY = true;
+			colDown = true;
 		}
 		else if (b_up)
 		{
@@ -148,12 +151,12 @@ else if (m_left && b_left)
 	colX = true;
 }
 
-var result = array_create(5);
+var result = array_create(4);
 
 result[0] = newX;
 result[1] = newY;
 result[2] = colX;
 result[3] = colY;
-result[4] = colDown;
+global.player_grounded = colDown;
 
 return result;

@@ -111,8 +111,8 @@ if (global.settings[1])
 	shader_set(sdr_block_blur);
 	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_Mul"), global.settings[3]);
 	shader_set_uniform_i(shader_get_uniform(sdr_block_blur, "u_Horizontal"), 0);
-	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeX"), global.settings[2] / room_width);
-	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeY"), global.settings[2] / room_height);
+	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeX"), (global.settings[2] * global.zoom_factor) / room_width);
+	shader_set_uniform_f(shader_get_uniform(sdr_block_blur, "u_TextureSizeY"), (global.settings[2] * global.zoom_factor) / room_height);
 	
 	//blur top and move to bottom
 	

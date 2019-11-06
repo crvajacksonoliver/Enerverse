@@ -1,21 +1,23 @@
 global.player_x = 1.0;
 global.player_y = 1.0;
 
-global.cplayer_x = false;
-global.cplayer_y = false;
+global.player_grounded = true;
+global.moving_right = false;
+global.moving_left = false;
+global.cplayer_x = 0;
+global.cplayer_y = 0;
+global.jump_dec = 0.0;
+global.jumping = false;
 
-global.zoom_factor = 2.0;
-global.debug = array_create(20);
-global.px = 0;
-global.py = 0;
+global.zoom_factor = 1.0;
 
-global.debug_menu = array_create(1);
+global.debug_menu = array_create(4);
 
 global.settings = array_create(2);
 global.settings[0] = true;//enable debug menu
 global.settings[1] = true;//enable bloom
-global.settings[2] = 50;  //bloom spread distance
-global.settings[3] = 3.0; //bloom strength
+global.settings[2] = 60;  //bloom spread distance
+global.settings[3] = 6.0; //bloom strength
 
 global.in_world = false;
 global.game_paused = false;
