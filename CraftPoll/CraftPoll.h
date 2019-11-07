@@ -102,7 +102,7 @@ private:
 	std::vector<ModelElement*>* m_Elements;
 };
 
-class Block
+class abstract Block
 {
 public:
 	Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool);

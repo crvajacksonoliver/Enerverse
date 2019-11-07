@@ -137,6 +137,9 @@ GM_EXPORT char* engine_pull_visuals()
 
 GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments)
 {
+	BlockRegistry::Allocate();
+	modHandler->InitializeModels();
+	BlockRegistry::CompileBlocks();
 	return BlockRegistry::BlockCreate(unlocalizedName, arguments);
 }
 

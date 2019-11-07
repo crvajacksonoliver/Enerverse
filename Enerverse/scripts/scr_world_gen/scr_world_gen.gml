@@ -34,16 +34,16 @@ for (var i = 0; i < global.active_world_width; i++)
 	var elevation = elevationMap2[i];
 	
 	for (var a = 0; a < elevation; a++)
-		scr_block_set(i, a, "EnerverseVin/block_dirt", "");
+		scr_block_set(i, a, "EnerverseVin/block_dirt", "0,");
 	
-	scr_block_set(i, elevation, "EnerverseVin/block_grass", "");
+	scr_block_set(i, elevation, "EnerverseVin/block_grass", "0,");
 	
 	if (lanternNodeActive > 0)
 	{
 		lanternNodeActive--;
 		
 		if (floor(random(2)) == 0)
-			scr_block_set(i, elevation + 1, "EnerverseDecor/block_lantern", "");
+			scr_block_set(i, elevation + 1, "EnerverseDecor/block_lantern", "0,");
 		
 		if (lanternNodeActive == 0)
 			lanternCooldown = 6;

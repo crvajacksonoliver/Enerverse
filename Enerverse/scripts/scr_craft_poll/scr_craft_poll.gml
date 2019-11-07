@@ -42,22 +42,22 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	
 	//mod
 	
-	global.external_calls[i, 0] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_assets", dll_cdecl, ty_string, 0);
-	global.external_calls[i, 1] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_models", dll_cdecl, ty_string, 0);
-	global.external_calls[i, 2] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_visuals", dll_cdecl, ty_string, 0);
+	array_set(global.external_calls[i], 0, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_assets", dll_cdecl, ty_string, 0));
+	array_set(global.external_calls[i], 1, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_models", dll_cdecl, ty_string, 0));
+	array_set(global.external_calls[i], 2, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_visuals", dll_cdecl, ty_string, 0));
 	
 	//blocks
 	
-	global.external_calls[i, 3] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_create", dll_cdecl, ty_string, 2, ty_string, ty_string);
-	global.external_calls[i, 4] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_update", dll_cdecl, ty_string, 2, ty_string, ty_string);
-	global.external_calls[i, 5] = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_destroy", dll_cdecl, ty_string, 2, ty_string, ty_string);
+	array_set(global.external_calls[i], 3, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_create", dll_stdcall, ty_string, 2, ty_string, ty_string));
+	array_set(global.external_calls[i], 4, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_update", dll_stdcall, ty_string, 2, ty_string, ty_string));
+	array_set(global.external_calls[i], 5, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_destroy", dll_stdcall, ty_string, 2, ty_string, ty_string));
 	
 	//load information
 	
 	var errorsPresent = false;
 	
 	{
-		var result = external_call(global.external_calls[i, 0]);
+		var result = external_call(array_get(global.external_calls[i], 0));
 		if (result == "0")
 		{
 			ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Compile Mod> An error has occurred in mod \"" + ds_list_find_value(global.modlist, i) + ".dll\" during engine_pull_assets");
@@ -70,7 +70,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	}
 	
 	{
-		var result = external_call(global.external_calls[i, 1]);
+		var result = external_call(array_get(global.external_calls[i], 1));
 		if (result == "0")
 		{
 			ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Compile Mod> An error has occurred in mod \"" + ds_list_find_value(global.modlist, i) + ".dll\" during engine_pull_models");

@@ -48,11 +48,10 @@ Model* Block::GetBloomModel()
 
 char* Block::OnBlockCreate(char* arguments)
 {
-	char* metaData = (char*)malloc(1);
-	if (metaData == nullptr)
-		return nullptr;
+	char* metaData = (char*)malloc(2);
+	metaData[0] = '1';
+	metaData[1] = 0;
 
-	metaData[0] = '\0';
 	return metaData;
 }
 
@@ -243,15 +242,16 @@ char* BlockRegistry::PullData()
 
 char* BlockRegistry::BlockCreate(char* unlocalizedName, char* arguments)
 {
-	for (signed int i = m_blocks->size() - 1; i > 0; i--)
+	for (unsigned int i = 0; i < m_blocks->size(); i++)
 	{
+		//return (char*)((*m_blocks)[i]->GetUnlocalizedName().c_str());
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
 			return (*m_blocks)[i]->OnBlockCreate(arguments);
 		}
 	}
 
-	return nullptr;
+	return (char*)"reee";
 }
 
 char* BlockRegistry::BlockUpdate(char* unlocalizedName, char* metaData)

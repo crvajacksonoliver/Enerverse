@@ -49,11 +49,11 @@ public:
 	}
 };
 
-class BlockSod : public BlockDirt
+class BlockSod : public Block// : public BlockDirt
 {
 public:
 	BlockSod()
-		:BlockDirt("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
+		:Block("block_sod", "Sod", Material::EARTH, 1.0f, Tool::SHOVEL)
 	{
 
 	}
@@ -68,38 +68,9 @@ public:
 
 	char* OnBlockCreate(char* arguments) override
 	{
-		unsigned char argumentCount = 0;
-		unsigned short argumentsLength = strlen(arguments);
-
-		for (unsigned short i = 0; i < argumentsLength; i++)
-		{
-			if (arguments[i] == ',')
-				argumentCount++;
-		}
-
-		if (argumentCount != 1)
-		{
-			char* metaData = (char*)malloc(1);
-			metaData[0] = 0;
-
-			return metaData;
-		}
-
-		unsigned char* argumentNumbers = (unsigned char*)malloc(argumentCount);
-		unsigned short a = 0;
-
-		for (unsigned char i = 0; i < argumentCount; i++)
-		{
-			argumentNumbers[i] = (unsigned char)(arguments[i * 2] - '0');
-		}
-
-		char* metaData = (char*)malloc(argumentCount + 1);
-		metaData[argumentCount] = 0;
-
-		for (unsigned short i = 0; i < argumentCount; i++)
-		{
-			metaData[i] = (char)argumentNumbers[i];
-		}
+		char* metaData = (char*)malloc(2);
+		metaData[0] = '5';
+		metaData[1] = 0;
 
 		return metaData;
 	}

@@ -53,11 +53,11 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
 				if (mouse_check_button_pressed(mb_left) && !global.UI_active)
 				{
-					global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = scr_get_block_id("EnerverseVin/block_sod");
+					scr_block_set(use_x, use_y, "EnerverseVin/block_sod", "0,");
 				}
 				else if (mouse_check_button_pressed(mb_right) && !global.UI_active)
 				{
-					global.active_world_blocks[((use_y * global.active_world_width) + use_x) * 2] = scr_get_block_id("EnerverseVin/block_air");
+					scr_block_set(use_x, use_y, "EnerverseVin/block_air", "0,");
 				}
 			}
 			else
