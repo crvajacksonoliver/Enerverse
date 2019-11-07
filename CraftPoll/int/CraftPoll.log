@@ -1,11 +1,11 @@
 ﻿  CraftPoll.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
-D:\Enerverse\CraftPoll\CraftPoll.cpp(213,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(217,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(213,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   EngineCalls.h
-D:\Enerverse\CraftPoll\CraftPoll.cpp(351,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(351,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(216,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
-D:\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715: 'BlockRegistry::ToolConvert': not all control paths return a value
-D:\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715: 'BlockRegistry::MaterialConvert': not all control paths return a value
-D:\Enerverse\CraftPoll\CraftPoll.cpp(311): warning C4715: 'AssetRegistry::AssetConvert': not all control paths return a value
-  CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(217,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(311): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
+  CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse\CraftPoll\build\CRAFTPOLL.lib

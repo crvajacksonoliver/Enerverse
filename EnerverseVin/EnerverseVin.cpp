@@ -133,11 +133,11 @@ bool ModVin::InitializeModels()
 
 	BlockAir* block_air = new BlockAir();
 
-	BlockRegistry::RegisterBlock((Block*)block_dirt);
-	BlockRegistry::RegisterBlock((Block*)block_grass);
-	BlockRegistry::RegisterBlock((Block*)block_sod);
+	BlockRegistry::RegisterBlock(std::shared_ptr<Block>(block_dirt));
+	BlockRegistry::RegisterBlock(std::shared_ptr<Block>(block_grass));
+	BlockRegistry::RegisterBlock(std::shared_ptr<Block>(block_sod));
 
-	BlockRegistry::RegisterBlock((Block*)block_air);
+	BlockRegistry::RegisterBlock(std::shared_ptr<Block>(block_air));
 
 	return true;
 }

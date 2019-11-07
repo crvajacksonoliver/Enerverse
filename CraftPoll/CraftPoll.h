@@ -1,5 +1,6 @@
 #include <vector>
 #include <string>
+#include <memory>
 
 enum Status
 {
@@ -102,7 +103,7 @@ private:
 	std::vector<ModelElement*>* m_Elements;
 };
 
-class abstract Block
+class Block
 {
 public:
 	Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool);
@@ -139,7 +140,7 @@ public:
 	static unsigned int ToolConvert(Tool tool);
 
 	// registers a block into the registry
-	static Status RegisterBlock(Block* block);
+	static Status RegisterBlock(std::shared_ptr<Block> block);
 
 	// engine internal call;
 	static void Allocate();
@@ -158,7 +159,7 @@ public:
 	static char* BlockUpdate(char* unlocalizedName, char* metaData);
 	static char* BlockDestroy(char* unlocalizedName, char* metaData);
 private:
-	static std::vector<Block*>* m_blocks;
+	static std::vector<std::shared_ptr<Block>>* m_blocks;
 	static std::vector<std::string>* m_blockText;
 	static char* m_data;
 };
