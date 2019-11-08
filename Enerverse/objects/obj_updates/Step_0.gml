@@ -32,3 +32,6 @@ for (var i = 0; i < ds_list_size(completedUpdates); i++)
 }
 
 ds_list_destroy(completedUpdates);
+
+if (global.dx != 0 && global.dy != 0)
+	global.debug_menu[4] = array_get(scr_block_get(global.dx, global.dy), 1);

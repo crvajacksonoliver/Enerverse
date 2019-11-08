@@ -1,8 +1,12 @@
+/// @param {real} x
+/// @param {real} y
+/// @param {real} milliseconds
+
 var block_x = argument[0];
 var block_y = argument[1];
 var milliseconds = argument[2];
 
-var blockMod = scr_block_get_mod(scr_block_get_unlocalized_name_from_id(scr_block_get(block_x, block_y)));
+var blockMod = scr_block_get_mod(scr_block_get_unlocalized_name_from_id(array_get(scr_block_get(block_x, block_y), 0)));
 var modIndex = -1;
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
