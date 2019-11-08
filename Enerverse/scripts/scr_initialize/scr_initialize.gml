@@ -12,6 +12,7 @@ global.jumping = false;
 global.zoom_factor = 1.0;
 
 global.debug_menu = array_create(4);
+global.block_updates = ds_list_create();
 
 global.settings = array_create(2);
 global.settings[0] = true;//enable debug menu

@@ -1,0 +1,1 @@
+return array_get(global.block_registry[argument[0]], 0);

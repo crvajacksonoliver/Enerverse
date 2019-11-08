@@ -45,7 +45,7 @@ bool ModDecor::InitializeModels()
 {
 	BlockLantern* block_lantern = new BlockLantern();
 
-	BlockRegistry::RegisterBlock(std::shared_ptr<Block>(block_lantern));
+	BlockRegistry::RegisterBlock((Block*)block_lantern);
 
 	return true;
 }

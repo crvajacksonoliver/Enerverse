@@ -295,6 +295,14 @@
             }
         },
         {
+            "Key": "6bc04e75-9ef6-43cc-8a2b-056b98a91f37",
+            "Value": {
+                "id": "bcb02168-8a2f-4944-9ab5-cb0d2259a918",
+                "resourcePath": "scripts\\scr_register_block_update\\scr_register_block_update.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6e3b83d8-5151-4764-9866-10d4b72310d6",
             "Value": {
                 "id": "b4846a58-3c88-4bc4-9ed6-61a00f891c02",
@@ -340,6 +348,14 @@
                 "id": "cd5779bd-30d0-4b83-b54e-020f5dbd2fb2",
                 "resourcePath": "views\\70f2a5c0-ec0d-4e4e-bdef-c87663e6b9c6.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "72f262bf-4af4-4490-9632-615e68111c4b",
+            "Value": {
+                "id": "312ee2f0-bd50-422c-b72f-d1eb3aa246e4",
+                "resourcePath": "scripts\\scr_block_get_unlocalized_name_from_id\\scr_block_get_unlocalized_name_from_id.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -514,7 +530,7 @@
             "Key": "a888970b-86c3-459c-966c-2cab55c782c9",
             "Value": {
                 "id": "6bb2301d-e578-43cd-90ab-b07d8756b057",
-                "resourcePath": "scripts\\scr_block_get_unlocalized_name\\scr_block_get_unlocalized_name.yy",
+                "resourcePath": "scripts\\scr_block_get_unlocalized_name_from_full\\scr_block_get_unlocalized_name_from_full.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -783,7 +799,6 @@
         "f0b8f664-e337-4071-8c42-c0d3ab8ae83a",
         "fa34d00d-c4b4-41c7-883f-fd6267e3a766",
         "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6",
-        "030534aa-3509-48fe-bf4d-6876abc0241a",
         "ad8bceb3-7bbf-465b-8c03-a613992790a6",
         "7d80b0dc-8ed0-4953-b0e3-cc7efc99bc9a",
         "22263bcd-5475-4516-a933-6594986abd94",
@@ -792,6 +807,9 @@
         "ec8cf3e6-b766-4d02-9261-6648ad24cdc6",
         "901a9866-5dea-4aa0-9ba1-0702dd8e51c7",
         "a888970b-86c3-459c-966c-2cab55c782c9",
+        "6bc04e75-9ef6-43cc-8a2b-056b98a91f37",
+        "72f262bf-4af4-4490-9632-615e68111c4b",
+        "030534aa-3509-48fe-bf4d-6876abc0241a",
         "172e1f89-aa64-4498-9082-6a47ea0e8d84",
         "6f64f45f-8278-4b4a-854c-ebf8d7d21b16",
         "48e0580d-e19a-4a06-bd9a-3a96a3cc5af2",

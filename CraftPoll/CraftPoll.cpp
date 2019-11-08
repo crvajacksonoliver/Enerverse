@@ -90,11 +90,11 @@ Tool Block::GetTool()
 	return m_tool;
 }
 
-std::vector<std::shared_ptr<Block>>* BlockRegistry::m_blocks;
+std::vector<Block*>* BlockRegistry::m_blocks;
 std::vector<std::string>* BlockRegistry::m_blockText;
 char* BlockRegistry::m_data;
 
-Status BlockRegistry::RegisterBlock(std::shared_ptr<Block> block)
+Status BlockRegistry::RegisterBlock(Block* block)
 {
 	m_blocks->push_back(block);
 
@@ -189,7 +189,7 @@ Status BlockRegistry::RegisterBlock(std::shared_ptr<Block> block)
 void BlockRegistry::Allocate()
 {
 	m_blockText = new std::vector<std::string>();
-	m_blocks = new std::vector<std::shared_ptr<Block>>();
+	m_blocks = new std::vector<Block*>();
 }
 
 void BlockRegistry::Deallocate()
