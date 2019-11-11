@@ -264,7 +264,7 @@ char* BlockRegistry::BlockUpdate(char* unlocalizedName, char* metaData)
 		}
 	}
 
-	return nullptr;
+	return (char*)"REEE";
 }
 
 char* BlockRegistry::BlockDestroy(char* unlocalizedName, char* metaData)

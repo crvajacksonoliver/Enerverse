@@ -1,1 +1,1 @@
-test scr_block_set, working on metadata for setting and updating with the sod block.
+blockupdate is returning "REEE", wich means the block was now found

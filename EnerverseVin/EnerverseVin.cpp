@@ -77,20 +77,7 @@ public:
 
 	char* OnBlockUpdate(char* metaData) override
 	{
-		unsigned short metaLength = strlen(metaData);
-
-		for (unsigned short i = 0; i < metaLength; i++)
-		{
-			if (metaData[i] == '9')
-			{
-				metaData[i] = '0';
-			}
-			else
-			{
-				metaData[i]++;
-				break;
-			}
-		}
+		metaData[0]++;
 
 		return metaData;
 	}

@@ -91,3 +91,5 @@ with (buttonQuit)
 	x = (room_width / 2) - ((room_width * 0.6) / 2);
 	y = (room_height / 2) + (((room_height * 0.6) / 15));
 }
+
+global.debug_menu[4] = "not yet";

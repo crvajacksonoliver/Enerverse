@@ -145,10 +145,16 @@ GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments)
 
 GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData)
 {
+	BlockRegistry::Allocate();
+	modHandler->InitializeModels();
+	BlockRegistry::CompileBlocks();
 	return BlockRegistry::BlockUpdate(unlocalizedName, metaData);
 }
 
 GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData)
 {
+	BlockRegistry::Allocate();
+	modHandler->InitializeModels();
+	BlockRegistry::CompileBlocks();
 	return BlockRegistry::BlockDestroy(unlocalizedName, metaData);
 }
