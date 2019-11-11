@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <functional>
 
 enum Status
 {
@@ -58,6 +59,14 @@ namespace cpm
 	private:
 		unsigned int m_X, m_Y, m_Width, m_Height;
 	};
+};
+
+class SystemCommands
+{
+public:
+	void RunSetBlock(cpm::Vector2<unsigned int> blockPos, const char* blockUnlocalizedName);
+
+	void CallbackGetBlock(std::function<void(const char* unlocalizedName, char* metaData)>* callback, cpm::Vector2<unsigned int> blockPos);
 };
 
 class ModelElement

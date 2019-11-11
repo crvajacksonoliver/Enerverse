@@ -244,19 +244,18 @@ char* BlockRegistry::BlockCreate(char* unlocalizedName, char* arguments)
 {
 	for (unsigned int i = 0; i < m_blocks->size(); i++)
 	{
-		//return (char*)((*m_blocks)[i]->GetUnlocalizedName().c_str());
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
 			return (*m_blocks)[i]->OnBlockCreate(arguments);
 		}
 	}
 
-	return (char*)"reee";
+	return (char*)"0";
 }
 
 char* BlockRegistry::BlockUpdate(char* unlocalizedName, char* metaData)
 {
-	for (signed int i = m_blocks->size() - 1; i > 0; i--)
+	for (unsigned int i = 0; i < m_blocks->size(); i++)
 	{
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
@@ -264,7 +263,8 @@ char* BlockRegistry::BlockUpdate(char* unlocalizedName, char* metaData)
 		}
 	}
 
-	return (char*)"REEE";
+	//return (char*)"0";
+	return (char*)"reee";
 }
 
 char* BlockRegistry::BlockDestroy(char* unlocalizedName, char* metaData)
@@ -277,7 +277,7 @@ char* BlockRegistry::BlockDestroy(char* unlocalizedName, char* metaData)
 		}
 	}
 
-	return nullptr;
+	return (char*)"0";
 }
 
 double ModHandler::GetVersion()

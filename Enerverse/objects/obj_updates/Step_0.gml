@@ -16,18 +16,26 @@ for (var i = 0; i < ds_list_size(updates); i++)
 {
 	var update = ds_list_find_value(updates, i);
 	array_set(update, 2, array_get(update, 2) - (delta_time / 1000));
-	global.debug_menu[4] = array_get(update, 2);
+	
 	ds_list_set(updates, i, update);
 	
 	if (array_get(update, 2) < 0)
 	{
-		//scr_block_get_unlocalized_name_from_id(scr_get_block_id(array_get(ds_list_find_value(updates, i), 0), array_get(ds_list_find_value(updates, i), 1)))
-		//global.active_world_blocks[((array_get(ds_list_find_value(updates, i), 1) * global.active_world_width) + array_get(ds_list_find_value(updates, i), 0)) * 2 + 1]
+		var blockUnlocalizedName = scr_block_get_unlocalized_name_from_id(scr_get_block_id(array_get(ds_list_find_value(updates, i), 0), array_get(ds_list_find_value(updates, i), 1)));
+		
+		var bx = array_get(ds_list_find_value(updates, i), 0);
+		var by = array_get(ds_list_find_value(updates, i), 1);
+		
+		var blockMeta = array_get(scr_block_get(bx, by), 1);
 		
 		//block update
 		var call = array_get(update, 3);
-		var meta = external_call(call, "testing 123", "idk anymore");
-		global.active_world_blocks[((array_get(ds_list_find_value(updates, i), 1) * global.active_world_width) + array_get(ds_list_find_value(updates, i), 0)) * 2 + 1] = meta;
+		var result = external_call(array_get(update, 3), "block_sod", blockMeta);
+		
+		var meta = scr_run_result(result);
+		
+		global.active_world_blocks[(by * global.active_world_width) + bx * 2 + 1] = meta;
+		global.debug_menu[4] = meta;
 		
 		ds_list_add(completedUpdates, i);
 	}
