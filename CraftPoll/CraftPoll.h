@@ -61,12 +61,31 @@ namespace cpm
 	};
 };
 
+/*
+
+
+0 - [direct run] - Set Block
+	x; y; unlocalizedName; parameters;
+1 - [callback]   - Get Block
+	x; y; id;
+2 - [callback]   - Get Block Meta Data
+	x; y; id;
+
+
+*/
+
 class SystemCommands
 {
 public:
-	void RunSetBlock(cpm::Vector2<unsigned int> blockPos, const char* blockUnlocalizedName);
+	const char* PullCommand();
+	void ClearCommand();
 
-	void CallbackGetBlock(std::function<void(const char* unlocalizedName, char* metaData)>* callback, cpm::Vector2<unsigned int> blockPos);
+	void RunSetBlock(const char* callerUnlocalizedName, const char* blockUnlocalizedName, cpm::Vector2<unsigned int> blockPos, const char* parameters = "0,");
+
+	void CallbackGetBlock(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
+	void CallbackGetBlockMetaData(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
+private:
+	std::string m_command;
 };
 
 class ModelElement
@@ -115,6 +134,9 @@ private:
 class Block
 {
 public:
+	// dont use the default constructor
+	Block() {}
+
 	Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool);
 
 	// if true the engine will assume its and item and a block
@@ -125,7 +147,9 @@ public:
 
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);
-	virtual char* OnBlockDestroy(char* metaData);
+	virtual void OnBlockDestroy(char* metaData);
+	virtual void CallbackGetBlock(Block* block, int id);
+	virtual void CallbackGetBlockMeta(char* metaData, int id);
 
 	const std::string& GetUnlocalizedName();
 	const std::string& GetDisplayName();
@@ -133,6 +157,8 @@ public:
 	Material GetMaterial();
 	float GetHardness();
 	Tool GetTool();
+
+	SystemCommands* GetSystemCommands();
 private:
 	std::string m_unlocalizedName;
 	std::string m_displayName;
@@ -140,6 +166,8 @@ private:
 	Material m_mat;
 	float m_hardness;
 	Tool m_tool;
+
+	SystemCommands m_sysCommands;
 };
 
 class BlockRegistry
@@ -163,11 +191,17 @@ public:
 	// engine call; called after model initialization
 	static char* PullData();
 
-	// engine call; on create
+	// engine calls; basic block processing
 	static char* BlockCreate(char* unlocalizedName, char* arguments);
 	static char* BlockUpdate(char* unlocalizedName, char* metaData);
 	static char* BlockDestroy(char* unlocalizedName, char* metaData);
+
+	// engine calls; callbacks
+	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id);
+	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id);
 private:
+	static char* CompileCommands();
+
 	static std::vector<Block*>* m_blocks;
 	static std::vector<std::string>* m_blockText;
 	static char* m_data;

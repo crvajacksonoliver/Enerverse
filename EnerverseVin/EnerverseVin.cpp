@@ -72,6 +72,8 @@ public:
 		metaData[0] = '5';
 		metaData[1] = 0;
 
+		GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseDecor/block_sod", cpm::Vector2<unsigned int>(3, 30));
+
 		return metaData;
 	}
 

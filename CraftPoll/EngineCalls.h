@@ -158,3 +158,21 @@ GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData)
 	BlockRegistry::CompileBlocks();
 	return BlockRegistry::BlockDestroy(unlocalizedName, metaData);
 }
+
+// Enerverse Calls
+
+GM_EXPORT char* engine_block_sys1(char* callerUnlocalizedName, char* unlocalizedName, int id)
+{
+	BlockRegistry::Allocate();
+	modHandler->InitializeModels();
+	BlockRegistry::CompileBlocks();
+	return BlockRegistry::BlockCallbackGetBlock(callerUnlocalizedName, unlocalizedName, id);
+}
+
+GM_EXPORT char* engine_block_sys2(char* callerUnlocalizedName, char* metaData, int id)
+{
+	BlockRegistry::Allocate();
+	modHandler->InitializeModels();
+	BlockRegistry::CompileBlocks();
+	return BlockRegistry::BlockCallbackGetBlockMetaData(callerUnlocalizedName, metaData, id);
+}
