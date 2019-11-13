@@ -1,5 +1,7 @@
-// x y name parameters
-//ex par:    "5,2,19,"
+/// @param {real} x
+/// @param {real} y
+/// @param {string} unlocalizedName
+/// @param {string} parameters
 
 var blockMod = scr_block_get_mod(argument[2]);
 var modIndex = -1;

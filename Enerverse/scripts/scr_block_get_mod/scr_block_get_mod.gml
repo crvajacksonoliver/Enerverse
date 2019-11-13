@@ -1,3 +1,5 @@
+/// @param {string} unlocalizedName
+
 var block = argument[0];
 var blockMod = "";
 

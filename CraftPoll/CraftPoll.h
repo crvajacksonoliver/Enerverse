@@ -79,7 +79,8 @@ class SystemCommands
 public:
 	const char* PullCommand();
 	void ClearCommand();
-
+	static std::string TreatString(std::string untreated);
+	
 	void RunSetBlock(const char* callerUnlocalizedName, const char* blockUnlocalizedName, cpm::Vector2<unsigned int> blockPos, const char* parameters = "0,");
 
 	void CallbackGetBlock(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
@@ -200,7 +201,7 @@ public:
 	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id);
 	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id);
 private:
-	static char* CompileCommands();
+	static std::string CompileCommands();
 
 	static std::vector<Block*>* m_blocks;
 	static std::vector<std::string>* m_blockText;
