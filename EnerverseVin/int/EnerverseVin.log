@@ -3,4 +3,5 @@
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
   Generating Code...
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-LINK : fatal error LNK1104: cannot open file 'CRAFTPOLL.lib'
+     Creating library C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
+  EnerverseVin.vcxproj -> C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll

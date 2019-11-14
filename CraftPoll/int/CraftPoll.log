@@ -1,28 +1,11 @@
 ﻿  CraftPoll.cpp
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(228,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(275,33): error C2665:  'std::to_string': none of the 9 overloads could convert all the argument types
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(555,26): message :  could be 'std::string std::to_string(long double)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(551,26): message :  or       'std::string std::to_string(double)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(547,26): message :  or       'std::string std::to_string(float)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(543,26): message :  or       'std::string std::to_string(unsigned __int64)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(539,26): message :  or       'std::string std::to_string(__int64)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(535,26): message :  or       'std::string std::to_string(unsigned long)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(531,26): message :  or       'std::string std::to_string(long)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(527,26): message :  or       'std::string std::to_string(unsigned int)'
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.22.27905\include\string(523,26): message :  or       'std::string std::to_string(int)'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(275,33): message :  while trying to match the argument list '(char *)'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(294,38): error C2440:  'initializing': cannot convert from 'std::string' to 'char *'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(294,19): message :  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(321,28): error C2440:  'return': cannot convert from 'std::string' to 'char *'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(321,26): message :  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(339,28): error C2440:  'return': cannot convert from 'std::string' to 'char *'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(339,26): message :  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(357,28): error C2440:  'return': cannot convert from 'std::string' to 'char *'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(357,26): message :  No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(383,38): warning C4302:  'type cast': truncation from '_Ty' to 'char'
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(383,38): warning C4302:         with
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(383,38): warning C4302:         [
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(383,38): warning C4302:             _Ty=const char *
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(383,38): warning C4302:         ]
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(459,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+  EngineCalls.h
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(472,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+  Generating Code...
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(432): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
+  CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse\CraftPoll\build\CRAFTPOLL.lib

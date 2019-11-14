@@ -30,9 +30,9 @@ for (var i = 0; i < ds_list_size(updates); i++)
 		
 		//block update
 		var call = array_get(update, 3);
-		var result = external_call(array_get(update, 3), "block_sod", blockMeta);
+		var unparsed = external_call(array_get(update, 3), "block_sod", blockMeta);
 		
-		var meta = scr_run_result(result);
+		var result = scr_run_result(unparsed);
 		
 		global.active_world_blocks[(by * global.active_world_width) + bx * 2 + 1] = meta;
 		global.debug_menu[4] = meta;

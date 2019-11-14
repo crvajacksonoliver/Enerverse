@@ -31,11 +31,11 @@ public:
 	}
 };
 
-class BlockGrass : public BlockDirt
+class BlockGrass : public Block
 {
 public:
 	BlockGrass()
-		:BlockDirt("block_grass", "Grass", Material::EARTH, 1.0f, Tool::SHOVEL)
+		:Block("block_grass", "Grass", Material::EARTH, 1.0f, Tool::SHOVEL)
 	{
 
 	}
@@ -46,6 +46,17 @@ public:
 		model->AddElement(new ModelElement("EnerverseVin/blocks/diffuse_grass", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32)));
 
 		return model;
+	}
+
+	char* OnBlockCreate(char* arguments) override
+	{
+		GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_sod", cpm::Vector2<unsigned int>(3, 3));
+
+		char* metaData = (char*)malloc(2);
+		metaData[0] = '2';
+		metaData[1] = 0;
+
+		return metaData;
 	}
 };
 

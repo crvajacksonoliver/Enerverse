@@ -77,7 +77,7 @@ namespace cpm
 class SystemCommands
 {
 public:
-	const char* PullCommand();
+	std::string PullCommand();
 	void ClearCommand();
 	static std::string TreatString(std::string untreated);
 	

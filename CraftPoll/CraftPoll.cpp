@@ -261,18 +261,14 @@ char* BlockRegistry::BlockCreate(char* unlocalizedName, char* arguments)
 	{
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
-			//char* meta = (char*)(SystemCommands::TreatString(std::string((*m_blocks)[i]->OnBlockCreate(arguments))).c_str());
-			
-			char* meta = (*m_blocks)[i]->OnBlockCreate(arguments);
+			std::string meta = SystemCommands::TreatString(std::string((*m_blocks)[i]->OnBlockCreate(arguments)));
 			std::string commands = CompileCommands();
-
-			//char* meta = (char*)"0";
-			//char* commands = (char*)";";
 
 			std::string result = std::string();
 
+			result += "0;";
 			result += commands;
-			result += std::to_string(meta);
+			result += std::string(meta);
 			result += ";";
 
 			char* shouldntSegfault = (char*)malloc(result.size());
@@ -290,17 +286,19 @@ char* BlockRegistry::BlockUpdate(char* unlocalizedName, char* metaData)
 	{
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
-			char* meta = (*m_blocks)[i]->OnBlockUpdate(metaData);
-			char* commands = CompileCommands();
+			std::string meta = SystemCommands::TreatString(std::string((*m_blocks)[i]->OnBlockUpdate(metaData)));
+			std::string commands = CompileCommands();
 
-			unsigned int resultSize = strlen(meta) + strlen(commands) + 1;
-			char* result = (char*)malloc(resultSize + 1);
+			std::string result = std::string();
 
-			strcpy_s(result, resultSize, commands);
-			strcat_s(result, resultSize, meta);
-			strcat_s(result, resultSize, ";");
+			result += "0;";
+			result += commands;
+			result += std::string(meta);
+			result += ";";
 
-			return result;
+			char* shouldntSegfault = (char*)malloc(result.size());
+			strcpy(shouldntSegfault, result.c_str());
+			return shouldntSegfault;
 		}
 	}
 
@@ -313,12 +311,16 @@ char* BlockRegistry::BlockDestroy(char* unlocalizedName, char* metaData)
 	{
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), unlocalizedName) == 0)
 		{
-			Block* block = new Block();
-			*block = *(*m_blocks)[i];
-
 			(*m_blocks)[i]->OnBlockDestroy(metaData);
+			std::string commands = CompileCommands();
 
-			return CompileCommands();
+			std::string result = std::string();
+			result += "1;";
+			result += commands;
+
+			char* shouldntSegfault = (char*)malloc(result.size());
+			strcpy(shouldntSegfault, result.c_str());
+			return shouldntSegfault;
 		}
 	}
 
@@ -332,11 +334,18 @@ char* BlockRegistry::BlockCallbackGetBlock(char* callerUnlocalizedName, char* un
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), callerUnlocalizedName) == 0)
 		{
 			Block* block = new Block();
-			*block = *(*m_blocks)[i];
+			*block = *((*m_blocks)[i]);
 
 			(*m_blocks)[i]->CallbackGetBlock(block, id);
+			std::string commands = CompileCommands();
 
-			return CompileCommands();
+			std::string result = std::string();
+			result += "1;";
+			result += commands;
+
+			char* shouldntSegfault = (char*)malloc(result.size());
+			strcpy(shouldntSegfault, result.c_str());
+			return shouldntSegfault;
 		}
 	}
 
@@ -349,12 +358,16 @@ char* BlockRegistry::BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, 
 	{
 		if (strcmp((*m_blocks)[i]->GetUnlocalizedName().c_str(), callerUnlocalizedName) == 0)
 		{
-			Block* block = new Block();
-			*block = *(*m_blocks)[i];
+			(*m_blocks)[i]->CallbackGetBlockMeta(metaData, id);
+			std::string commands = CompileCommands();
 
-			(*m_blocks)[i]->CallbackGetBlock(block, id);
+			std::string result = std::string();
+			result += "1;";
+			result += commands;
 
-			return CompileCommands();
+			char* shouldntSegfault = (char*)malloc(result.size());
+			strcpy(shouldntSegfault, result.c_str());
+			return shouldntSegfault;
 		}
 	}
 
@@ -364,13 +377,13 @@ char* BlockRegistry::BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, 
 std::string BlockRegistry::CompileCommands()
 {
 	unsigned int fullLength = 0;
-	std::vector<const char*>* allSysCommands = new std::vector<const char*>();
+	std::vector<std::string>* allSysCommands = new std::vector<std::string>();
 	for (unsigned int i = 0; i < m_blocks->size(); i++)
 	{
-		const char* command = (*m_blocks)[i]->GetSystemCommands()->PullCommand();
+		std::string command = (*m_blocks)[i]->GetSystemCommands()->PullCommand();
 		allSysCommands->push_back(command);
 		(*m_blocks)[i]->GetSystemCommands()->ClearCommand();
-		fullLength += strlen(command);
+		fullLength += command.length();
 	}
 
 	std::string full = std::string();
@@ -378,12 +391,12 @@ std::string BlockRegistry::CompileCommands()
 
 	for (unsigned int i = 0; i < allSysCommands->size(); i++)
 	{
-		for (unsigned int a = 0; a < strlen((*allSysCommands)[i]); a++)
-		{
-			full += (char)(*allSysCommands)[a];
-			count++;
-		}
+		full += (*allSysCommands)[i];
+		count += (*allSysCommands)[i].length();
 	}
+
+	//if (full.length() == 0)
+	//	return std::string(";");
 
 	return full;
 }
@@ -512,9 +525,9 @@ std::vector<ModelElement*>* Model::GetElements()
 	return m_Elements;
 }
 
-const char* SystemCommands::PullCommand()
+std::string SystemCommands::PullCommand()
 {
-	return m_command.c_str();
+	return m_command;
 }
 
 void SystemCommands::ClearCommand()
