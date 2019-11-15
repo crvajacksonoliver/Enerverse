@@ -1,1 +1,0 @@
-blockupdate is returning "REEE", wich means the block was now found
