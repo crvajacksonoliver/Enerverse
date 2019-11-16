@@ -1,7 +1,17 @@
 ﻿  EnerverseVin.cpp
   EngineCalls.cpp
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(260,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(260,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         with
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         [
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:             _Ty=double
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         ]
   Generating Code...
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-     Creating library C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
-  EnerverseVin.vcxproj -> C:\jacksonoliverdev\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         with
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         [
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:             _Ty=double
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         ]
+     Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
+  EnerverseVin.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll

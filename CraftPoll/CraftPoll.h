@@ -35,6 +35,12 @@ namespace cpm
 
 		}
 
+		Vector2<T>()
+			: X(0), Y(0), U(0), V(0)
+		{
+
+		}
+
 		T X, Y, U, V;
 	};
 
@@ -61,19 +67,6 @@ namespace cpm
 	};
 };
 
-/*
-
-
-0 - [direct run] - Set Block
-	x; y; unlocalizedName; parameters;
-1 - [callback]   - Get Block
-	x; y; id;
-2 - [callback]   - Get Block Meta Data
-	x; y; id;
-
-
-*/
-
 class SystemCommands
 {
 public:
@@ -82,6 +75,7 @@ public:
 	static std::string TreatString(std::string untreated);
 	
 	void RunSetBlock(const char* callerUnlocalizedName, const char* blockUnlocalizedName, cpm::Vector2<unsigned int> blockPos, const char* parameters = "0,");
+	void RunBlockUpdate(cpm::Vector2<unsigned int> blockPos, unsigned int milliseconds);
 
 	void CallbackGetBlock(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
 	void CallbackGetBlockMetaData(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
@@ -135,8 +129,8 @@ private:
 class Block
 {
 public:
-	// dont use the default constructor
-	Block() {}
+	// dont use this constructor
+	Block() { }
 
 	Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool);
 
@@ -158,6 +152,10 @@ public:
 	Material GetMaterial();
 	float GetHardness();
 	Tool GetTool();
+	cpm::Vector2<unsigned int> GetBlockPosition();
+
+	//dont use this
+	void SetBlockPosition(cpm::Vector2<unsigned int> position);
 
 	SystemCommands* GetSystemCommands();
 private:
@@ -168,6 +166,7 @@ private:
 	float m_hardness;
 	Tool m_tool;
 
+	cpm::Vector2<unsigned int> m_position;
 	SystemCommands m_sysCommands;
 };
 
@@ -193,13 +192,13 @@ public:
 	static char* PullData();
 
 	// engine calls; basic block processing
-	static char* BlockCreate(char* unlocalizedName, char* arguments);
-	static char* BlockUpdate(char* unlocalizedName, char* metaData);
-	static char* BlockDestroy(char* unlocalizedName, char* metaData);
+	static char* BlockCreate(char* unlocalizedName, char* arguments, double blockX, double blockY);
+	static char* BlockUpdate(char* unlocalizedName, char* metaData, double blockX, double blockY);
+	static char* BlockDestroy(char* unlocalizedName, char* metaData, double blockX, double blockY);
 
 	// engine calls; callbacks
-	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id);
-	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id);
+	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id, double blockX, double blockY);
+	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, double blockX, double blockY);
 private:
 	static std::string CompileCommands();
 

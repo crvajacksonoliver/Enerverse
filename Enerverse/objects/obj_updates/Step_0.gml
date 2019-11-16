@@ -21,21 +21,39 @@ for (var i = 0; i < ds_list_size(updates); i++)
 	
 	if (array_get(update, 2) < 0)
 	{
-		var blockUnlocalizedName = scr_block_get_unlocalized_name_from_id(scr_get_block_id(array_get(ds_list_find_value(updates, i), 0), array_get(ds_list_find_value(updates, i), 1)));
-		
 		var bx = array_get(ds_list_find_value(updates, i), 0);
 		var by = array_get(ds_list_find_value(updates, i), 1);
 		
+		var blockUnlocalizedName = scr_block_get_unlocalized_name_from_full(scr_block_get_unlocalized_name_from_id(array_get(scr_block_get(bx, by), 0)));
 		var blockMeta = array_get(scr_block_get(bx, by), 1);
 		
+		var blockMod = scr_block_get_mod(scr_block_get_unlocalized_name_from_id(array_get(scr_block_get(bx, by), 0)));
+		
+		var modIndex = -1;
+
+		for (var i = 0; i < ds_list_size(global.modlist); i++)
+		{
+			if (ds_list_find_value(global.modlist, i) == blockMod)
+			{
+				modIndex = i;
+				break;
+			}
+		}
+
+		if (modIndex == -1)
+		{
+			return;
+		}
+
+		var call = array_get(global.external_calls[modIndex], 4);
+		
 		//block update
-		var call = array_get(update, 3);
-		var unparsed = external_call(array_get(update, 3), "block_sod", blockMeta);
+		var unparsed = external_call(call, blockUnlocalizedName, blockMeta, bx, by);
 		
 		var result = scr_run_result(unparsed);
 		
-		global.active_world_blocks[(by * global.active_world_width) + bx * 2 + 1] = meta;
-		global.debug_menu[4] = meta;
+		global.active_world_blocks[(by * global.active_world_width) + bx * 2 + 1] = result;
+		global.debug_menu[4] = result;
 		
 		ds_list_add(completedUpdates, i);
 	}

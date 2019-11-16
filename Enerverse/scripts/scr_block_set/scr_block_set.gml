@@ -20,7 +20,7 @@ if (modIndex == -1)
 	return;
 }
 
-var unparsed = external_call(array_get(global.external_calls[modIndex], 3), scr_block_get_unlocalized_name_from_full(argument[2]), argument[3]);
+var unparsed = external_call(array_get(global.external_calls[modIndex], 3), scr_block_get_unlocalized_name_from_full(argument[2]), argument[3], argument[0], argument[1]);
 var metaData = scr_run_result(unparsed);
 
 var location = ((argument[1] * global.active_world_width) + argument[0]) * 2;

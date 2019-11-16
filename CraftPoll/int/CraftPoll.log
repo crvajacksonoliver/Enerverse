@@ -1,11 +1,21 @@
 ﻿  CraftPoll.cpp
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(228,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.h(260,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.cpp(238,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   EngineCalls.h
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(472,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.cpp(489,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.h(260,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         with
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         [
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:             _Ty=double
+D:\Enerverse\CraftPoll\EngineCalls.h(194,94): warning C4244:         ]
   Generating Code...
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(261,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(432): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
-  CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse\CraftPoll\build\CRAFTPOLL.lib
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         with
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         [
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:             _Ty=double
+D:\Enerverse\CraftPoll\EngineCalls.h(209,95): warning C4244:         ]
+D:\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715: 'BlockRegistry::ToolConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715: 'BlockRegistry::MaterialConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(449): warning C4715: 'AssetRegistry::AssetConvert': not all control paths return a value
+  CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib

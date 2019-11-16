@@ -20,7 +20,7 @@ global.visual_registry = array_create(ds_list_size(global.modlist), 0);
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
 {
-	global.external_calls[i] = array_create(6, 0);
+	global.external_calls[i] = array_create(6 + /*how many callbacks*/2, 0);
 	
 	var functionEngineVersion = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_version", dll_cdecl, ty_real, 0);
 	
@@ -48,9 +48,14 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	
 	//blocks
 	
-	array_set(global.external_calls[i], 3, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_create", dll_stdcall, ty_string, 2, ty_string, ty_string));
-	array_set(global.external_calls[i], 4, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_update", dll_stdcall, ty_string, 2, ty_string, ty_string));
-	array_set(global.external_calls[i], 5, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_destroy", dll_stdcall, ty_string, 2, ty_string, ty_string));
+	array_set(global.external_calls[i], 3, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_create", dll_stdcall, ty_string, 4, ty_string, ty_string, ty_real, ty_real));
+	array_set(global.external_calls[i], 4, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_update", dll_stdcall, ty_string, 4, ty_string, ty_string, ty_real, ty_real));
+	array_set(global.external_calls[i], 5, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_destroy", dll_stdcall, ty_string, 4, ty_string, ty_string, ty_real, ty_real));
+	
+	//callbacks
+	
+	array_set(global.external_calls[i], 6, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_sys0", dll_stdcall, ty_string, 3, ty_string, ty_string, ty_string));
+	array_set(global.external_calls[i], 7, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_sys1", dll_stdcall, ty_string, 3, ty_string, ty_string, ty_string));
 	
 	//load information
 	
@@ -530,7 +535,6 @@ ds_list_destroy(blocks);
 					draw_sprite(sprite_index, 0, 0, 0);
 				}
 				
-				ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
 				sprite_add_from_surface(blockDiffuseSprite, assetDiffuseSurface, 0, 0, 32, 32, false, false);
 			
 				surface_reset_target();
@@ -576,12 +580,14 @@ ds_list_destroy(blocks);
 					draw_rectangle(0, 0, 31, 31, false);
 				}
 				
-				ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
+				
 				sprite_add_from_surface(blockBloomSprite, assetBloomSurface, 0, 0, 32, 32, false, false);
 			
 				surface_reset_target();
 				surface_free(assetBloomSurface);
 			}
+			
+			ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
 		}
 		
 		with (blockDiffuseObject)

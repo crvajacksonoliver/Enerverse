@@ -48,11 +48,6 @@ while (i < string_length(unparsed) + 1)
 
 if (type == "0")
 {
-	if (ds_list_find_value(system, ds_list_size(system) - 1) == "2")
-	{
-		var reee = 0;
-	}
-	
 	if (ds_list_size(system) == 1)
 	{
 		var meta = ds_list_find_value(system, 0);
@@ -63,16 +58,12 @@ if (type == "0")
 	var a = 0;
 	while (true)
 	{
-		if (ds_list_find_value(system, a) == "0")
-		{// set block
-			scr_block_set(real(ds_list_find_value(system, a + 1)), real(ds_list_find_value(system, a + 2)), ds_list_find_value(system, a + 3), ds_list_find_value(system, a + 4));
-			a += 4;
-		}
+		if (a >= ds_list_size(system) - 1)
+			break;
+		
+		a = scr_run_command(system, a);
 		
 		a++;
-		
-		if (a == ds_list_size(system) - 1)
-			break;
 	}
 	
 	var meta = ds_list_find_value(system, ds_list_size(system) - 1);
@@ -81,8 +72,16 @@ if (type == "0")
 }
 else if (type == "1")
 {
-	for (var a = 0; a < ds_list_size(system); a++)
+	var a = 0;
+	while (true)
 	{
-		//run commands
+		if (a >= ds_list_size(system) - 1)
+			break;
+		
+		a = scr_run_command(system, a);
+		
+		a++;
 	}
 }
+
+ds_list_destroy(system);

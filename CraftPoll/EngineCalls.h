@@ -1,8 +1,26 @@
 #include "CraftPoll.h"
 
 #include <functional>
+#include <vector>
+#include <string>
 
 #define GM_EXPORT extern "C" __declspec (dllexport)
+
+std::vector<double> SplitStringToDoubles(char* message)
+{
+	std::string inter = std::string();
+	std::vector<double> values = std::vector<double>();
+
+	for (unsigned int i = 0; i < strlen(message); i++)
+	{
+		if (message[i] == ';')
+			values.push_back(std::stod(inter));
+		else
+			inter += message[i];
+	}
+
+	return values;
+}
 
 //	Mod
 
@@ -135,44 +153,58 @@ GM_EXPORT char* engine_pull_visuals()
 
 //	Blocks
 
-GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments)
+GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments, double blockX, double blockY)
 {
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockCreate(unlocalizedName, arguments);
+	return BlockRegistry::BlockCreate(unlocalizedName, arguments, blockX, blockY);
 }
 
-GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData)
+GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData, double blockX, double blockY)
 {
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockUpdate(unlocalizedName, metaData);
+	return BlockRegistry::BlockUpdate(unlocalizedName, metaData, blockX, blockY);
 }
 
-GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData)
+GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData, double blockX, double blockY)
 {
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockDestroy(unlocalizedName, metaData);
+	return BlockRegistry::BlockDestroy(unlocalizedName, metaData, blockX, blockY);
 }
 
 // Enerverse Calls
 
-GM_EXPORT char* engine_block_sys1(char* callerUnlocalizedName, char* unlocalizedName, int id)
+GM_EXPORT char* engine_block_sys0(char* callerUnlocalizedName, char* unlocalizedName, char* other)
 {
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockCallbackGetBlock(callerUnlocalizedName, unlocalizedName, id);
+
+	std::vector<double> values = SplitStringToDoubles(other);
+	/*
+	id
+	blockX
+	blockY
+	*/
+	return BlockRegistry::BlockCallbackGetBlock(callerUnlocalizedName, unlocalizedName, values[0], values[1], values[2]);
 }
 
-GM_EXPORT char* engine_block_sys2(char* callerUnlocalizedName, char* metaData, int id)
+GM_EXPORT char* engine_block_sys1(char* callerUnlocalizedName, char* metaData, char* other)
 {
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockCallbackGetBlockMetaData(callerUnlocalizedName, metaData, id);
+
+	std::vector<double> values = SplitStringToDoubles(other);
+	/*
+	id
+	blockX
+	blockY
+	*/
+	return BlockRegistry::BlockCallbackGetBlockMetaData(callerUnlocalizedName, metaData, values[0], values[1], values[2]);
 }

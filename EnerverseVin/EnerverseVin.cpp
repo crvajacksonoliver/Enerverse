@@ -50,7 +50,7 @@ public:
 
 	char* OnBlockCreate(char* arguments) override
 	{
-		GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_sod", cpm::Vector2<unsigned int>(3, 3));
+		GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_sod", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 2));
 
 		char* metaData = (char*)malloc(2);
 		metaData[0] = '2';
@@ -82,17 +82,22 @@ public:
 		char* metaData = (char*)malloc(2);
 		metaData[0] = '5';
 		metaData[1] = 0;
-
-		//GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseDecor/block_sod", cpm::Vector2<unsigned int>(3, 30));
+		GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseDecor/block_lantern", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 1));
+		//GetSystemCommands()->RunBlockUpdate(GetBlockPosition(), 3000);
 
 		return metaData;
 	}
 
 	char* OnBlockUpdate(char* metaData) override
 	{
-		metaData[0]++;
+		//GetSystemCommands()->CallbackGetBlock(GetUnlocalizedName().c_str(), 3, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y - 1));
 
 		return metaData;
+	}
+
+	void CallbackGetBlock(Block* block, int id) override
+	{
+		//GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), block->GetUnlocalizedName().c_str(), cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 1));
 	}
 };
 
