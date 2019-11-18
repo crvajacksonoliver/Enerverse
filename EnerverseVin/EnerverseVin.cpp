@@ -79,29 +79,49 @@ public:
 
 	char* OnBlockCreate(char* arguments) override
 	{
-		char* metaData = (char*)malloc(2);
-		metaData[0] = '5';
-		metaData[1] = 0;
+		char* metaData = (char*)malloc(3);
+		metaData[0] = '2';
+		metaData[1] = '2';
+		metaData[2] = 0;
 		//GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseDecor/block_lantern", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 1));
-		GetSystemCommands()->RunBlockUpdate(GetBlockPosition(), 3000);
+		GetSystemCommands()->RunBlockUpdate(GetBlockPosition(), 1000);
 
 		return metaData;
 	}
 
 	char* OnBlockUpdate(char* metaData) override
 	{
+		GetSystemCommands()->CallbackGetBlockMetaData(GetUnlocalizedName().c_str(), GetBlockPosition(), 3, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y - 1));
 		GetSystemCommands()->CallbackGetBlock(GetUnlocalizedName().c_str(), GetBlockPosition(), 3, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y - 1));
+		/*
+		if (metaData[0] == '1' && metaData[1] == '1')
+		{
+			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_grass", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 2));
+		}
+		else
+		{
+			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_dirt", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 2));
+		}
+		*/
+		GetSystemCommands()->RunBlockUpdate(GetBlockPosition(), 1000);
 
 		return metaData;
 	}
 
 	void CallbackGetBlock(const char* unlocalizedName, int id) override
 	{
-		if (id == 3)
-		{
-			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), unlocalizedName, GetBlockPosition());
-			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), unlocalizedName, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 1));
-		}
+		if (id == 3 && strcmp(unlocalizedName, "EnerverseDecor/block_lantern") == 0)
+			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '1', 0, GetBlockPosition());
+		else
+			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '0', 0, GetBlockPosition());
+	}
+
+	void CallbackGetBlockMeta(const char* metaData, int id) override
+	{
+		if (id == 3 && strcmp(metaData, "1") == 0)
+			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '1', 1, GetBlockPosition());
+		else
+			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '0', 1, GetBlockPosition());
 	}
 };
 

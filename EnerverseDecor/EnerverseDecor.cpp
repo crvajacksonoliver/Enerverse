@@ -31,6 +31,15 @@ public:
 
 		return model;
 	}
+
+	char* OnBlockCreate(char* arguments) override
+	{
+		char* metaData = (char*)malloc(2);
+		metaData[0] = '1';
+		metaData[1] = 0;
+
+		return metaData;
+	}
 };
 
 const char* ModDecor::GetModUnlocalizedName()

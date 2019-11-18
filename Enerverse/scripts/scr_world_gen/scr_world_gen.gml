@@ -19,7 +19,8 @@ var elevationMap1;
 	elevationMap1 = scr_smooth_blocks(elevationMap1, 4);
 }
 
-//floor
+//floor5
+
 var elevationMap2 = array_create(global.active_world_width);
 for (var i = 0; i < global.active_world_width; i++)
 {

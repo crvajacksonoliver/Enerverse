@@ -65,7 +65,7 @@ void Block::OnBlockDestroy(char* metaData)
 
 }
 
-void Block::CallbackGetBlock(const char* block, int id)
+void Block::CallbackGetBlock(const char* unlocalizedName, int id)
 {
 
 }
@@ -367,7 +367,7 @@ char* BlockRegistry::BlockCallbackGetBlock(char* callerUnlocalizedName, char* un
 	return nullptr;
 }
 
-char* BlockRegistry::BlockCallbackGetBlockMetaData(char* callerUnlocalizedName,  char* metaData, int id, unsigned int blockX, unsigned int blockY)
+char* BlockRegistry::BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, unsigned int blockX, unsigned int blockY)
 {
 	for (unsigned int i = 0; i < m_blocks->size(); i++)
 	{
@@ -579,6 +579,33 @@ void SystemCommands::RunBlockUpdate(cpm::Vector2<unsigned int> blockPos, unsigne
 	m_command += ";";
 }
 
+void SystemCommands::RunSetBlockMetaData(const char* callerUnlocalizedName, const char* blockMetaData, cpm::Vector2<unsigned int> blockPos)
+{
+	m_command += "0.2;";
+	m_command += TreatString(std::to_string(blockPos.X));
+	m_command += ";";
+	m_command += TreatString(std::to_string(blockPos.Y));
+	m_command += ";";
+	m_command += TreatString(blockMetaData);
+	m_command += ";";
+}
+
+void SystemCommands::RunSetBlockMetaDataChar(const char* callerUnlocalizedName, char metaDataChar, unsigned int index, cpm::Vector2<unsigned int> blockPos)
+{
+	std::string md = std::string();
+	md += metaDataChar;
+
+	m_command += "0.3;";
+	m_command += TreatString(std::to_string(blockPos.X));
+	m_command += ";";
+	m_command += TreatString(std::to_string(blockPos.Y));
+	m_command += ";";
+	m_command +=  TreatString(md);
+	m_command += ";";
+	m_command += TreatString(std::to_string(index));
+	m_command += ";";
+}
+
 void SystemCommands::CallbackGetBlock(const char* callerUnlocalizedName, cpm::Vector2<unsigned int> callerBlockPos, int id, cpm::Vector2<unsigned int> blockPos)
 {
 	m_command += "1.0;";
@@ -596,12 +623,18 @@ void SystemCommands::CallbackGetBlock(const char* callerUnlocalizedName, cpm::Ve
 	m_command += ";";
 }
 
-void SystemCommands::CallbackGetBlockMetaData(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos)
+void SystemCommands::CallbackGetBlockMetaData(const char* callerUnlocalizedName, cpm::Vector2<unsigned int> callerBlockPos, int id, cpm::Vector2<unsigned int> blockPos)
 {
 	m_command += "1.1;";
 	m_command += TreatString(std::to_string(blockPos.X));
 	m_command += ";";
 	m_command += TreatString(std::to_string(blockPos.Y));
+	m_command += ";";
+	m_command += TreatString(callerUnlocalizedName);
+	m_command += ";";
+	m_command += TreatString(std::to_string(callerBlockPos.X));
+	m_command += ";";
+	m_command += TreatString(std::to_string(callerBlockPos.Y));
 	m_command += ";";
 	m_command += TreatString(std::to_string(id));
 	m_command += ";";

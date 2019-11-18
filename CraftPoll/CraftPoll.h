@@ -76,9 +76,11 @@ public:
 	
 	void RunSetBlock(const char* callerUnlocalizedName, const char* blockUnlocalizedName, cpm::Vector2<unsigned int> blockPos, const char* parameters = "0,");
 	void RunBlockUpdate(cpm::Vector2<unsigned int> blockPos, unsigned int milliseconds);
+	void RunSetBlockMetaData(const char* callerUnlocalizedName, const char* blockMetaData, cpm::Vector2<unsigned int> blockPos);
+	void RunSetBlockMetaDataChar(const char* callerUnlocalizedName, char metaDataChar, unsigned int index, cpm::Vector2<unsigned int> blockPos);
 
 	void CallbackGetBlock(const char* callerUnlocalizedName, cpm::Vector2<unsigned int> callerBlockPos, int id, cpm::Vector2<unsigned int> blockPos);
-	void CallbackGetBlockMetaData(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
+	void CallbackGetBlockMetaData(const char* callerUnlocalizedName, cpm::Vector2<unsigned int> callerBlockPos, int id, cpm::Vector2<unsigned int> blockPos);
 private:
 	std::string m_command;
 };
@@ -143,7 +145,7 @@ public:
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);
 	virtual void OnBlockDestroy(char* metaData);
-	virtual void CallbackGetBlock(const char*, int id);
+	virtual void CallbackGetBlock(const char* unlocalizedName, int id);
 	virtual void CallbackGetBlockMeta(const char* metaData, int id);
 
 	const std::string& GetUnlocalizedName();

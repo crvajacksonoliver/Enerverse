@@ -15,7 +15,9 @@
         "72f262bf-4af4-4490-9632-615e68111c4b",
         "030534aa-3509-48fe-bf4d-6876abc0241a",
         "cdbd5977-6c26-4884-bfde-43cbed30e8ca",
-        "0c5e1adf-b314-4f91-a006-dda9931447ff"
+        "0c5e1adf-b314-4f91-a006-dda9931447ff",
+        "a1648ebd-81b1-46da-b6d5-6e95589c3029",
+        "f59b35e5-7153-4ca2-ae52-25170a5c14a9"
     ],
     "filterType": "GMScript",
     "folderName": "world",
