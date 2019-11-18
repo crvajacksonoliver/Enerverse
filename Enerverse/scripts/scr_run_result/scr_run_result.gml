@@ -7,10 +7,19 @@ var system = ds_list_create();
 
 var i = 1;
 var type = "";
+var modUnlocalizedName = "";
 
 while (string_char_at(unparsed, i) != ";")
 {
 	type += string_char_at(unparsed, i);
+	i++;
+}
+
+i++;
+
+while (string_char_at(unparsed, i) != ";")
+{
+	modUnlocalizedName += string_char_at(unparsed, i);
 	i++;
 }
 
@@ -61,7 +70,7 @@ if (type == "0")
 		if (a >= ds_list_size(system) - 1)
 			break;
 		
-		a = scr_run_command(system, a);
+		a = scr_run_command(system, a, modUnlocalizedName);
 		
 		a++;
 	}
@@ -78,7 +87,7 @@ else if (type == "1")
 		if (a >= ds_list_size(system) - 1)
 			break;
 		
-		a = scr_run_command(system, a);
+		a = scr_run_command(system, a, modUnlocalizedName);
 		
 		a++;
 	}

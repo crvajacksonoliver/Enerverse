@@ -33,6 +33,11 @@ public:
 	}
 };
 
+const char* ModDecor::GetModUnlocalizedName()
+{
+	return "EnerverseDecor";
+}
+
 bool ModDecor::InitializeAssets()
 {
 	AssetRegistry::RegisterAsset("EnerverseDecor/blocks/diffuse_lantern", AssetType::BLOCK_DIFFUSE);

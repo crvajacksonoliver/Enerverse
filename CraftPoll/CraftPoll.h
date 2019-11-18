@@ -77,7 +77,7 @@ public:
 	void RunSetBlock(const char* callerUnlocalizedName, const char* blockUnlocalizedName, cpm::Vector2<unsigned int> blockPos, const char* parameters = "0,");
 	void RunBlockUpdate(cpm::Vector2<unsigned int> blockPos, unsigned int milliseconds);
 
-	void CallbackGetBlock(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
+	void CallbackGetBlock(const char* callerUnlocalizedName, cpm::Vector2<unsigned int> callerBlockPos, int id, cpm::Vector2<unsigned int> blockPos);
 	void CallbackGetBlockMetaData(const char* callerUnlocalizedName, int id, cpm::Vector2<unsigned int> blockPos);
 private:
 	std::string m_command;
@@ -143,8 +143,8 @@ public:
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);
 	virtual void OnBlockDestroy(char* metaData);
-	virtual void CallbackGetBlock(Block* block, int id);
-	virtual void CallbackGetBlockMeta(char* metaData, int id);
+	virtual void CallbackGetBlock(const char*, int id);
+	virtual void CallbackGetBlockMeta(const char* metaData, int id);
 
 	const std::string& GetUnlocalizedName();
 	const std::string& GetDisplayName();
@@ -192,13 +192,13 @@ public:
 	static char* PullData();
 
 	// engine calls; basic block processing
-	static char* BlockCreate(char* unlocalizedName, char* arguments, double blockX, double blockY);
-	static char* BlockUpdate(char* unlocalizedName, char* metaData, double blockX, double blockY);
-	static char* BlockDestroy(char* unlocalizedName, char* metaData, double blockX, double blockY);
+	static char* BlockCreate(char* unlocalizedName, char* arguments, unsigned int blockX, unsigned int blockY);
+	static char* BlockUpdate(char* unlocalizedName, char* metaData, unsigned int blockX, unsigned int blockY);
+	static char* BlockDestroy(char* unlocalizedName, char* metaData, unsigned int blockX, unsigned int blockY);
 
 	// engine calls; callbacks
-	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id, double blockX, double blockY);
-	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, double blockX, double blockY);
+	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id, unsigned int blockX, unsigned int blockY);
+	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, unsigned int blockX, unsigned int blockY);
 private:
 	static std::string CompileCommands();
 
@@ -248,6 +248,9 @@ extern class ModHandler
 public:
 	// engine call; for version
 	static double GetVersion();
+
+	// engine call; for name
+	virtual const char* GetModUnlocalizedName();
 
 	// register textures/guis
 	virtual bool InitializeAssets();

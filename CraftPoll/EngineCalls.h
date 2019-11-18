@@ -14,7 +14,10 @@ std::vector<double> SplitStringToDoubles(char* message)
 	for (unsigned int i = 0; i < strlen(message); i++)
 	{
 		if (message[i] == ';')
+		{
 			values.push_back(std::stod(inter));
+			inter = "";
+		}
 		else
 			inter += message[i];
 	}
@@ -158,7 +161,7 @@ GM_EXPORT char* engine_block_create(char* unlocalizedName, char* arguments, doub
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockCreate(unlocalizedName, arguments, blockX, blockY);
+	return BlockRegistry::BlockCreate(unlocalizedName, arguments, (unsigned int)blockX, (unsigned int)blockY);
 }
 
 GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData, double blockX, double blockY)
@@ -166,7 +169,7 @@ GM_EXPORT char* engine_block_update(char* unlocalizedName, char* metaData, doubl
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockUpdate(unlocalizedName, metaData, blockX, blockY);
+	return BlockRegistry::BlockUpdate(unlocalizedName, metaData, (unsigned int)blockX, (unsigned int)blockY);
 }
 
 GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData, double blockX, double blockY)
@@ -174,7 +177,7 @@ GM_EXPORT char* engine_block_destroy(char* unlocalizedName, char* metaData, doub
 	BlockRegistry::Allocate();
 	modHandler->InitializeModels();
 	BlockRegistry::CompileBlocks();
-	return BlockRegistry::BlockDestroy(unlocalizedName, metaData, blockX, blockY);
+	return BlockRegistry::BlockDestroy(unlocalizedName, metaData, (unsigned int)blockX, (unsigned int)blockY);
 }
 
 // Enerverse Calls
@@ -191,7 +194,7 @@ GM_EXPORT char* engine_block_sys0(char* callerUnlocalizedName, char* unlocalized
 	blockX
 	blockY
 	*/
-	return BlockRegistry::BlockCallbackGetBlock(callerUnlocalizedName, unlocalizedName, values[0], values[1], values[2]);
+	return BlockRegistry::BlockCallbackGetBlock(callerUnlocalizedName, unlocalizedName, (int)values[0], (unsigned int)values[1], (unsigned int)values[2]);
 }
 
 GM_EXPORT char* engine_block_sys1(char* callerUnlocalizedName, char* metaData, char* other)
@@ -206,5 +209,5 @@ GM_EXPORT char* engine_block_sys1(char* callerUnlocalizedName, char* metaData, c
 	blockX
 	blockY
 	*/
-	return BlockRegistry::BlockCallbackGetBlockMetaData(callerUnlocalizedName, metaData, values[0], values[1], values[2]);
+	return BlockRegistry::BlockCallbackGetBlockMetaData(callerUnlocalizedName, metaData, (int)values[0], (unsigned int)values[1], (unsigned int)values[2]);
 }
