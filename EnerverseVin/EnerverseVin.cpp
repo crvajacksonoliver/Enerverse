@@ -93,7 +93,7 @@ public:
 	{
 		GetSystemCommands()->CallbackGetBlockMetaData(GetUnlocalizedName().c_str(), GetBlockPosition(), 3, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y - 1));
 		GetSystemCommands()->CallbackGetBlock(GetUnlocalizedName().c_str(), GetBlockPosition(), 3, cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y - 1));
-		/*
+		
 		if (metaData[0] == '1' && metaData[1] == '1')
 		{
 			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_grass", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 2));
@@ -102,7 +102,7 @@ public:
 		{
 			GetSystemCommands()->RunSetBlock(GetUnlocalizedName().c_str(), "EnerverseVin/block_dirt", cpm::Vector2<unsigned int>(GetBlockPosition().X, GetBlockPosition().Y + 2));
 		}
-		*/
+		
 		GetSystemCommands()->RunBlockUpdate(GetBlockPosition(), 1000);
 
 		return metaData;

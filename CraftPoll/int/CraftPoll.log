@@ -5,7 +5,7 @@ C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(238,37): warning C4244:  '
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(492,37): warning C4244:  'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   Generating Code...
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.h(265,2): warning C4091:  'extern ': ignored on left of 'ModHandler' when no variable is declared
-C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(26): warning C4715:  'BlockRegistry::ToolConvert': not all control paths return a value
+C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(17): warning C4715:  'BlockRegistry::MaterialConvert': not all control paths return a value
 C:\jacksonoliverdev\Enerverse\CraftPoll\CraftPoll.cpp(452): warning C4715:  'AssetRegistry::AssetConvert': not all control paths return a value
   CraftPoll.vcxproj -> C:\jacksonoliverdev\Enerverse\CraftPoll\build\CRAFTPOLL.lib

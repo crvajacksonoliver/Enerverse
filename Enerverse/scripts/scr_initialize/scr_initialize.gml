@@ -26,6 +26,8 @@ global.settings[3] = 6.0; //bloom strength
 global.in_world = false;
 global.game_paused = false;
 global.bloom_toggle_button = pointer_null;
+global.active_slot = 0;
+global.gui_scale = 1.0;
 
 global.button_down = false;
 global.button_down_anti_mouse_left = false;

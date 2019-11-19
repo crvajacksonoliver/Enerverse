@@ -11,7 +11,9 @@ if (global.button_down_anti_mouse_left && !mouse_check_button(mb_left))
 }
 
 var completedUpdates = ds_list_create();
-var updates = global.block_updates;
+var updates = ds_list_create();
+ds_list_copy(updates, global.block_updates);
+
 for (var i = 0; i < ds_list_size(updates); i++)
 {
 	var update = ds_list_find_value(updates, i);
@@ -53,7 +55,6 @@ for (var i = 0; i < ds_list_size(updates); i++)
 		var result = scr_run_result(unparsed);
 		
 		global.active_world_blocks[(by * global.active_world_width) + bx * 2 + 1] = result;
-		global.debug_menu[4] = result;
 		
 		ds_list_add(completedUpdates, i);
 	}
@@ -61,7 +62,18 @@ for (var i = 0; i < ds_list_size(updates); i++)
 
 for (var i = 0; i < ds_list_size(completedUpdates); i++)
 {
-	ds_list_delete(updates, ds_list_find_value(completedUpdates, i));
+	ds_list_set(global.block_updates, ds_list_find_value(completedUpdates, i), pointer_null);
 }
 
+var i = 0;
+
+while (i < ds_list_size(global.block_updates))
+{
+	if (ds_list_find_value(global.block_updates, i) == pointer_null)
+		ds_list_delete(global.block_updates, i);
+	else
+		i++;
+}
+
+ds_list_destroy(updates);
 ds_list_destroy(completedUpdates);

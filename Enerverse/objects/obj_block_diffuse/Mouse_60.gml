@@ -1,0 +1,1 @@
+global.active_slot = (global.active_slot + 1) % 15;
