@@ -8,6 +8,7 @@ global.cplayer_x = 0;
 global.cplayer_y = 0;
 global.jump_dec = 0.0;
 global.jumping = false;
+global.player_breaking = -1;
 
 global.zoom_factor = 1.0;
 

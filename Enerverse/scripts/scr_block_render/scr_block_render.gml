@@ -53,7 +53,10 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
 				if (mouse_check_button_pressed(mb_left) && !global.UI_active)
 				{
-					scr_block_set(use_x, use_y, "EnerverseVin/block_sod", "0,");
+					if (global.player_breaking == -1)
+					{
+						
+					}
 				}
 				else if (mouse_check_button_pressed(mb_right) && !global.UI_active)
 				{

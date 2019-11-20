@@ -129,7 +129,7 @@ class BlockAir : public Block
 {
 public:
 	BlockAir()
-		:Block("block_air", "Air", Material::EARTH, 0.0f, Tool::HAND)
+		:Block("block_air", "Air", Material::EARTH, -1.0f, Tool::HAND)
 	{
 
 	}

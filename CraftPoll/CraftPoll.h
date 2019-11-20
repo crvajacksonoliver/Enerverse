@@ -23,6 +23,25 @@ enum AssetType
 	BLOCK_DIFFUSE, BLOCK_BLOOM, GUI_DIFFUSE
 };
 
+unsigned int MaterialConvert(Material mat)
+{
+	switch (mat)
+	{
+	case Material::EARTH: return 0;
+	case Material::METAL: return 1;
+	case Material::ROCK: return 2;
+	}
+}
+
+unsigned int ToolConvert(Tool tool)
+{
+	switch (tool)
+	{
+	case Tool::HAND: return 0;
+	case Tool::SHOVEL: return 1;
+	}
+}
+
 namespace cpm
 {
 	template<typename T>
@@ -145,6 +164,7 @@ public:
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);
 	virtual void OnBlockDestroy(char* metaData);
+
 	virtual void CallbackGetBlock(const char* unlocalizedName, int id);
 	virtual void CallbackGetBlockMeta(const char* metaData, int id);
 
@@ -152,7 +172,7 @@ public:
 	const std::string& GetDisplayName();
 
 	Material GetMaterial();
-	float GetHardness();
+	double GetHardness();
 	Tool GetTool();
 	cpm::Vector2<unsigned int> GetBlockPosition();
 
@@ -172,12 +192,42 @@ private:
 	SystemCommands m_sysCommands;
 };
 
+class Item
+{
+public:
+	Item(std::string unlocalizedName, std::string displayName);
+
+	virtual ModelElement* GetDiffuseTexture();
+
+	virtual char* OnLeftClick(unsigned int blockX, unsigned int blockY);
+	virtual char* OnRightClick(unsigned int blockX, unsigned int blockY);
+	virtual char* OnMiddleClick(unsigned int blockX, unsigned int blockY);
+	virtual char* OnHotbarSelect();
+	virtual char* OnHotbarDeselect();
+	virtual char* OnDrop(unsigned int entityX, unsigned int entityY);
+	virtual char* OnDropCollision(unsigned int entityX, unsigned int entityY, unsigned int blockX, unsigned int blockY);
+	virtual char* OnPlayerPickup(unsigned int playerX, unsigned int playerY);
+
+	virtual void CallbackGetBlock(const char* unlocalizedName, int id);
+	virtual void CallbackGetBlockMeta(const char* metaData, int id);
+
+	const std::string& GetUnlocalizedName();
+	const std::string& GetDisplayName();
+
+	virtual bool IsTool();
+	virtual float GetToolReduction();
+
+	SystemCommands* GetSystemCommands();
+private:
+	std::string m_unlocalizedName;
+	std::string m_displayName;
+
+	SystemCommands m_sysCommands;
+};
+
 class BlockRegistry
 {
 public:
-	static unsigned int MaterialConvert(Material mat);
-	static unsigned int ToolConvert(Tool tool);
-
 	// registers a block into the registry
 	static Status RegisterBlock(Block* block);
 
@@ -207,6 +257,29 @@ private:
 	static std::vector<Block*>* m_blocks;
 	static std::vector<std::string>* m_blockText;
 	static char* m_data;
+};
+
+class ItemRegistry
+{
+public:
+	// registers an item into the registry
+	static Status RegisterItem(Item* item);
+
+	// engine internal call;
+	static void Allocate();
+
+	// engine internal call;
+	static void Deallocate();
+
+	// engine call; called after model initialization
+	static bool CompileItems();
+
+	// engine call; called after model initialization
+	static char* PullData();
+
+	// engine calls; callbacks
+	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id, unsigned int blockX, unsigned int blockY);
+	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, unsigned int blockX, unsigned int blockY);
 };
 
 //only internal engine uses this class

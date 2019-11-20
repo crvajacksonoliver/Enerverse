@@ -6,25 +6,6 @@ Block::Block(std::string unlocalizedName, std::string displayName, Material mat,
 
 }
 
-unsigned int BlockRegistry::MaterialConvert(Material mat)
-{
-	switch (mat)
-	{
-	case Material::EARTH: return 0;
-	case Material::METAL: return 1;
-	case Material::ROCK: return 2;
-	}
-}
-
-unsigned int BlockRegistry::ToolConvert(Tool tool)
-{
-	switch (tool)
-	{
-	case Tool::HAND: return 0;
-	case Tool::SHOVEL: return 1;
-	}
-}
-
 bool Block::IsItem()
 {
 	return true;
@@ -90,7 +71,7 @@ Material Block::GetMaterial()
 	return m_mat;
 }
 
-float Block::GetHardness()
+double Block::GetHardness()
 {
 	return m_hardness;
 }
@@ -655,4 +636,90 @@ std::string SystemCommands::TreatString(std::string untreated)
 	}
 
 	return treated;
+}
+
+Item::Item(std::string unlocalizedName, std::string displayName)
+	:m_unlocalizedName(unlocalizedName), m_displayName(displayName)
+{
+
+}
+
+ModelElement* Item::GetDiffuseTexture()
+{
+	return new ModelElement("@NULL", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32));
+}
+
+char* Item::OnLeftClick(unsigned int blockX, unsigned int blockY)
+{
+
+}
+
+char* Item::OnRightClick(unsigned int blockX, unsigned int blockY)
+{
+
+}
+
+char* Item::OnMiddleClick(unsigned int blockX, unsigned int blockY)
+{
+
+}
+
+char* Item::OnHotbarSelect()
+{
+
+}
+
+char* Item::OnHotbarDeselect()
+{
+
+}
+
+char* Item::OnDrop(unsigned int entityX, unsigned int entityY)
+{
+
+}
+
+char* Item::OnDropCollision(unsigned int entityX, unsigned int entityY, unsigned int blockX, unsigned int blockY)
+{
+
+}
+
+char* Item::OnPlayerPickup(unsigned int playerX, unsigned int playerY)
+{
+
+}
+
+void Item::CallbackGetBlock(const char* unlocalizedName, int id)
+{
+
+}
+
+void Item::CallbackGetBlockMeta(const char* metaData, int id)
+{
+
+}
+
+const std::string& Item::GetUnlocalizedName()
+{
+	return m_unlocalizedName;
+}
+
+const std::string& Item::GetDisplayName()
+{
+	return m_displayName;
+}
+
+bool Item::IsTool()
+{
+	return false;
+}
+
+float Item::GetToolReduction()
+{
+	return 0.0;
+}
+
+SystemCommands* Item::GetSystemCommands()
+{
+	return &m_sysCommands;
 }
