@@ -197,19 +197,7 @@ class Item
 public:
 	Item(std::string unlocalizedName, std::string displayName);
 
-	virtual ModelElement* GetDiffuseTexture();
-
-	virtual char* OnLeftClick(unsigned int blockX, unsigned int blockY);
-	virtual char* OnRightClick(unsigned int blockX, unsigned int blockY);
-	virtual char* OnMiddleClick(unsigned int blockX, unsigned int blockY);
-	virtual char* OnHotbarSelect();
-	virtual char* OnHotbarDeselect();
-	virtual char* OnDrop(unsigned int entityX, unsigned int entityY);
-	virtual char* OnDropCollision(unsigned int entityX, unsigned int entityY, unsigned int blockX, unsigned int blockY);
-	virtual char* OnPlayerPickup(unsigned int playerX, unsigned int playerY);
-
-	virtual void CallbackGetBlock(const char* unlocalizedName, int id);
-	virtual void CallbackGetBlockMeta(const char* metaData, int id);
+	virtual const char* GetDiffuseTexture();
 
 	const std::string& GetUnlocalizedName();
 	const std::string& GetDisplayName();
@@ -217,12 +205,9 @@ public:
 	virtual bool IsTool();
 	virtual float GetToolReduction();
 
-	SystemCommands* GetSystemCommands();
 private:
 	std::string m_unlocalizedName;
 	std::string m_displayName;
-
-	SystemCommands m_sysCommands;
 };
 
 class BlockRegistry
@@ -276,10 +261,10 @@ public:
 
 	// engine call; called after model initialization
 	static char* PullData();
-
-	// engine calls; callbacks
-	static char* BlockCallbackGetBlock(char* callerUnlocalizedName, char* unlocalizedName, int id, unsigned int blockX, unsigned int blockY);
-	static char* BlockCallbackGetBlockMetaData(char* callerUnlocalizedName, char* metaData, int id, unsigned int blockX, unsigned int blockY);
+private:
+	static std::vector<Item*>* m_items;
+	static std::vector<std::string>* m_itemText;
+	static char* m_data;
 };
 
 //only internal engine uses this class

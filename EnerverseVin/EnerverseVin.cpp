@@ -143,6 +143,21 @@ public:
 	}
 };
 
+class ItemTest : public Item
+{
+public:
+	ItemTest()
+		:Item("item_test", "Test Item")
+	{
+
+	}
+
+	const char* GetDiffuseTexture()
+	{
+		return "EnerverseVin/items/diffuse_test";
+	}
+};
+
 const char* ModVin::GetModUnlocalizedName()
 {
 	return "EnerverseVin";
@@ -172,6 +187,8 @@ bool ModVin::InitializeModels()
 	BlockRegistry::RegisterBlock((Block*)block_sod);
 
 	BlockRegistry::RegisterBlock((Block*)block_air);
+
+
 
 	return true;
 }

@@ -10,6 +10,16 @@ global.jump_dec = 0.0;
 global.jumping = false;
 global.player_breaking = -1;
 
+// chat
+global.chat = ds_list_create();
+global.chat_open = false;
+global.chat_text = "";
+global.chat_marker = 0;
+
+ds_list_add(global.chat, "testing line 1");
+ds_list_add(global.chat, "testing line 2");
+ds_list_add(global.chat, "testing line 3");
+
 global.zoom_factor = 1.0;
 
 global.dx = 0;

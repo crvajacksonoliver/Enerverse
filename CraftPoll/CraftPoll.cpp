@@ -644,59 +644,9 @@ Item::Item(std::string unlocalizedName, std::string displayName)
 
 }
 
-ModelElement* Item::GetDiffuseTexture()
+const char* Item::GetDiffuseTexture()
 {
-	return new ModelElement("@NULL", cpm::RectangleBox(0, 0, 32, 32), cpm::RectangleBox(0, 0, 32, 32));
-}
-
-char* Item::OnLeftClick(unsigned int blockX, unsigned int blockY)
-{
-
-}
-
-char* Item::OnRightClick(unsigned int blockX, unsigned int blockY)
-{
-
-}
-
-char* Item::OnMiddleClick(unsigned int blockX, unsigned int blockY)
-{
-
-}
-
-char* Item::OnHotbarSelect()
-{
-
-}
-
-char* Item::OnHotbarDeselect()
-{
-
-}
-
-char* Item::OnDrop(unsigned int entityX, unsigned int entityY)
-{
-
-}
-
-char* Item::OnDropCollision(unsigned int entityX, unsigned int entityY, unsigned int blockX, unsigned int blockY)
-{
-
-}
-
-char* Item::OnPlayerPickup(unsigned int playerX, unsigned int playerY)
-{
-
-}
-
-void Item::CallbackGetBlock(const char* unlocalizedName, int id)
-{
-
-}
-
-void Item::CallbackGetBlockMeta(const char* metaData, int id)
-{
-
+	return "@NULL";
 }
 
 const std::string& Item::GetUnlocalizedName()
@@ -719,7 +669,78 @@ float Item::GetToolReduction()
 	return 0.0;
 }
 
-SystemCommands* Item::GetSystemCommands()
+Status ItemRegistry::RegisterItem(Item* item)
 {
-	return &m_sysCommands;
+	m_items->push_back(item);
+
+	std::string* itemText = new std::string("");
+	*itemText += item->GetUnlocalizedName();
+	*itemText += ",";
+	*itemText += item->GetDisplayName();
+	*itemText += ",";
+	*itemText += std::to_string(item->IsTool() ? 1 : 0);
+	*itemText += ",";
+	*itemText += std::to_string(item->GetToolReduction());
+	*itemText += ",";
+	*itemText += item->GetDiffuseTexture();
+	*itemText += ",";
+
+	m_itemText->push_back(*itemText);
+	delete itemText;
+
+	return Status::OK;
+}
+
+void ItemRegistry::Allocate()
+{
+	m_itemText = new std::vector<std::string>();
+	m_items = new std::vector<Item*>();
+}
+
+void ItemRegistry::Deallocate()
+{
+	delete m_itemText;
+	delete m_items;
+
+	m_itemText = nullptr;
+	m_items = nullptr;
+}
+
+bool ItemRegistry::CompileItems()
+{
+	unsigned long long totalLength = 0;
+
+	for (unsigned int i = 0; i < m_itemText->size(); i++)
+	{
+		totalLength += (*m_itemText)[i].length();
+	}
+
+	m_data = (char*)malloc(totalLength + 1);
+	if (m_data == nullptr)
+		return false;
+
+	m_data[totalLength] = '\0';
+
+	unsigned int currentLine = 0;
+	unsigned short currentChar = 0;
+
+	for (unsigned long long i = 0; i < totalLength; i++)
+	{
+		if (currentChar == (*m_itemText)[currentLine].length())
+		{
+			currentChar = 0;
+			currentLine++;
+		}
+
+		m_data[i] = (*m_itemText)[currentLine][currentChar];
+
+		currentChar++;
+	}
+
+	return true;
+}
+
+char* ItemRegistry::PullData()
+{
+	return m_data;
 }

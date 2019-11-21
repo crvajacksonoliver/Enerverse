@@ -11,4 +11,6 @@ for (var i = 0; i < /*how many slots*/15; i++)
 		draw_sprite_stretched(spr_hotbar, 0, offset + (i * scaledSize), (room_height - scaledSize - offset), scaledSize, scaledSize);
 }
 
+
+scr_chat_render();
 scr_debug_render();
