@@ -27,7 +27,7 @@ if (baseCommand == "setblock")
 	
 	while (string_char_at(command, i + 1) != " ")
 	{
-		if (i >= string_char_at(command, i + 1))
+		if (i >= string_length(command))
 			return false;
 		
 		unlocalizedName += string_char_at(command, i + 1);

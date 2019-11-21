@@ -3,7 +3,7 @@ scr_debug_update();
 
 if (global.chat_open)
 {
-	if (keyboard_check(vk_enter))
+	if (keyboard_check_pressed(vk_enter))
 	{
 		if (!scr_run_internal_command(global.chat_text))
 			ds_list_add(global.chat, "command failed to run");
@@ -11,6 +11,14 @@ if (global.chat_open)
 		global.chat_open = false;
 		global.chat_text = "";
 		global.char_marker = 0;
+	}
+	else if (keyboard_check_pressed(vk_backspace) && string_length(global.chat_text) > 0)
+	{
+		global.chat_text = string_delete(global.chat_text, string_length(global.chat_text), 1);
+	}
+	else if (keyboard_check_pressed(vk_anykey) && !keyboard_check_pressed(vk_shift))
+	{
+		global.chat_text += keyboard_lastchar;
 	}
 }
 
@@ -34,7 +42,7 @@ if (keyboard_check(ord("9")))
 	global.active_slot = 8;
 if (keyboard_check(ord("0")))
 	global.active_slot = 9;
-if (keyboard_check(ord(".")))
+if (keyboard_check(190))
 {
 	if (keyboard_check(vk_shift))
 	{
