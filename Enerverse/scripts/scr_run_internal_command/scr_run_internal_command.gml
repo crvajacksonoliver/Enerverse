@@ -2,7 +2,7 @@
 
 var command = argument[0];
 var baseCommand = "";
-var i = 0;
+var i = 1;// for the '>' infront
 
 while (true)
 {
@@ -34,5 +34,37 @@ if (baseCommand == "setblock")
 		i++;
 	}
 	
-	bx += "";
+	i++;
+	
+	while (string_char_at(command, i + 1) != " ")
+	{
+		if (i >= string_length(command))
+			return false;
+		
+		bx += string_char_at(command, i + 1);
+		i++;
+	}
+	
+	i++;
+	
+	while (string_char_at(command, i + 1) != " ")
+	{
+		if (i >= string_length(command))
+			return false;
+		
+		by += string_char_at(command, i + 1);
+		i++;
+	}
+	
+	i++;
+	
+	while (i < string_length(command))
+	{
+		parameters += string_char_at(command, i + 1);
+		i++;
+	}
+	
+	scr_block_set(real(bx), real(by), unlocalizedName, parameters);
 }
+
+return true;

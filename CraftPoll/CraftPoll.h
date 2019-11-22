@@ -23,24 +23,9 @@ enum AssetType
 	BLOCK_DIFFUSE, BLOCK_BLOOM, GUI_DIFFUSE
 };
 
-unsigned int MaterialConvert(Material mat)
-{
-	switch (mat)
-	{
-	case Material::EARTH: return 0;
-	case Material::METAL: return 1;
-	case Material::ROCK: return 2;
-	}
-}
+unsigned int MaterialConvert(Material mat);
 
-unsigned int ToolConvert(Tool tool)
-{
-	switch (tool)
-	{
-	case Tool::HAND: return 0;
-	case Tool::SHOVEL: return 1;
-	}
-}
+unsigned int ToolConvert(Tool tool);
 
 namespace cpm
 {
@@ -315,8 +300,11 @@ public:
 	// register textures/guis
 	virtual bool InitializeAssets();
 
-	// register blocks/items
+	// register blocks
 	virtual bool InitializeModels();
+
+	// register items
+	virtual bool InitializeItems();
 
 	// register mips/filters
 	virtual bool InitializeVisuals();

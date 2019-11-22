@@ -9,5 +9,6 @@ public:
 
 	bool InitializeAssets() override;
 	bool InitializeModels() override;
+	bool InitializeItems() override;
 	bool InitializeVisuals() override;
 };

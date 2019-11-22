@@ -64,6 +64,11 @@ bool ModDecor::InitializeModels()
 	return true;
 }
 
+bool ModDecor::InitializeItems()
+{
+	return true;
+}
+
 bool ModDecor::InitializeVisuals()
 {
 	return true;

@@ -188,7 +188,14 @@ bool ModVin::InitializeModels()
 
 	BlockRegistry::RegisterBlock((Block*)block_air);
 
+	return true;
+}
 
+bool ModVin::InitializeItems()
+{
+	ItemTest* item_test = new ItemTest();
+
+	ItemRegistry::RegisterItem((Item*)item_test);
 
 	return true;
 }

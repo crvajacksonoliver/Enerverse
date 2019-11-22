@@ -1,5 +1,24 @@
 #include "CraftPoll.h"
 
+unsigned int MaterialConvert(Material mat)
+{
+	switch (mat)
+	{
+	case Material::EARTH: return 0;
+	case Material::METAL: return 1;
+	case Material::ROCK: return 2;
+	}
+}
+
+unsigned int ToolConvert(Tool tool)
+{
+	switch (tool)
+	{
+	case Tool::HAND: return 0;
+	case Tool::SHOVEL: return 1;
+	}
+}
+
 Block::Block(std::string unlocalizedName, std::string displayName, Material mat, float hardness, Tool tool)
 	:m_unlocalizedName(unlocalizedName), m_displayName(displayName), m_mat(mat), m_hardness(hardness), m_tool(tool)
 {
@@ -417,6 +436,11 @@ bool ModHandler::InitializeModels()
 	return true;
 }
 
+bool ModHandler::InitializeItems()
+{
+	return true;
+}
+
 bool ModHandler::InitializeVisuals()
 {
 	return true;
@@ -744,3 +768,9 @@ char* ItemRegistry::PullData()
 {
 	return m_data;
 }
+
+std::vector<Item*>* ItemRegistry::m_items;
+
+std::vector<std::string>* ItemRegistry::m_itemText;
+
+char* ItemRegistry::m_data;

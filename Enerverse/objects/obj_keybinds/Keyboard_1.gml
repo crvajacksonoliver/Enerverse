@@ -1,3 +1,17 @@
+
+if (keyboard_check_pressed(vk_tab) && global.in_world && !global.game_paused)
+{
+	global.inventory_open = !global.inventory_open;
+}
+
+//
+//	NO CHAT AFTER THIS
+//
+
+//kill chat
+if (global.chat_open)
+	return;
+
 if (keyboard_check_pressed(vk_escape) && global.in_world && !global.game_paused)
 {
 	global.game_paused = true;

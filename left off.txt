@@ -1,1 +1,1 @@
-finish and test the setblock command
+setup item texture loading, then work on inventory rendering, then the dedication scripts for loading items in and out of the inventory. then work on block breaking + droped items :).

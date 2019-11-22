@@ -103,6 +103,14 @@
             }
         },
         {
+            "Key": "129ae6f7-21b2-4175-81db-8567cf656d7c",
+            "Value": {
+                "id": "a519bfe6-3106-407b-acf2-f5a6ecf1928c",
+                "resourcePath": "sprites\\spr_item_diffuse\\spr_item_diffuse.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "172e1f89-aa64-4498-9082-6a47ea0e8d84",
             "Value": {
                 "id": "36348405-c33c-4bf7-abf0-a517b6ffd481",
@@ -124,6 +132,14 @@
                 "id": "5eb817db-4a21-4d27-aca3-4fb32a675caa",
                 "resourcePath": "views\\1c4dd2dc-7aad-4624-b7e8-9a7171c738ad.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "1f4bc97f-0f79-4a32-8a74-e2984a6b0ff4",
+            "Value": {
+                "id": "2b1120c3-51d8-4d40-91d6-7cb3ac66b140",
+                "resourcePath": "objects\\obj_item_diffuse\\obj_item_diffuse.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -196,6 +212,14 @@
                 "id": "fde2a730-8583-4d2b-8e97-3b7ae19cbbca",
                 "resourcePath": "rooms\\main_room\\main_room.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "3649cb99-f2ee-4b7d-a442-8ad3abf7276d",
+            "Value": {
+                "id": "37939aa6-24a2-4350-a367-debb54aad61f",
+                "resourcePath": "scripts\\scr_inventory_render\\scr_inventory_render.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -543,6 +567,14 @@
             }
         },
         {
+            "Key": "a3fd58c4-ca67-4d99-b4d8-d7ef16f628c2",
+            "Value": {
+                "id": "d22a4ca4-0365-47e2-a7ec-a97b9d4ac983",
+                "resourcePath": "views\\a3fd58c4-ca67-4d99-b4d8-d7ef16f628c2.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "a479b3f8-3fa8-4bfb-a01b-12fd0a7c0802",
             "Value": {
                 "id": "b4418760-cded-4469-b262-5f93857e474c",
@@ -759,6 +791,14 @@
             }
         },
         {
+            "Key": "e783d069-ee5c-4422-9f9b-548969745daf",
+            "Value": {
+                "id": "03f1fabd-c5e5-464a-b223-81539fc369fe",
+                "resourcePath": "datafiles_yy\\workingset\\EnerverseVin\\items\\diffuse_test.png.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "ebce66cc-370b-49e7-b6da-15e40f161129",
             "Value": {
                 "id": "80038233-c022-48da-bd1b-d999f170b266",
@@ -871,6 +911,7 @@
         "f0b8f664-e337-4071-8c42-c0d3ab8ae83a",
         "fa34d00d-c4b4-41c7-883f-fd6267e3a766",
         "f142a1ce-a53b-42aa-b39d-68847438bf83",
+        "3649cb99-f2ee-4b7d-a442-8ad3abf7276d",
         "c5e7c582-bb4f-4c98-bacd-2bd64a730ab6",
         "ad8bceb3-7bbf-465b-8c03-a613992790a6",
         "7d80b0dc-8ed0-4953-b0e3-cc7efc99bc9a",

@@ -9,12 +9,18 @@ global.cplayer_y = 0;
 global.jump_dec = 0.0;
 global.jumping = false;
 global.player_breaking = -1;
+global.player_inventory = ds_map_create();
+ds_map_add(global.player_inventory, "EnerverseVin/item_test", 69);
 
 // chat
 global.chat = ds_list_create();
 global.chat_open = false;
 global.chat_text = "";
 global.chat_marker = 0;
+
+//inventory
+global.inventory_open = false;
+global.inventory_marker = 0;
 
 ds_list_add(global.chat, "testing line 1");
 ds_list_add(global.chat, "testing line 2");
@@ -29,7 +35,7 @@ global.debug_menu = array_create(5, 0);
 global.block_updates = ds_list_create();
 
 global.settings = array_create(2);
-global.settings[0] = true;//enable debug menu
+global.settings[0] = false;//enable debug menu
 global.settings[1] = true;//enable bloom
 global.settings[2] = 60;  //bloom spread distance
 global.settings[3] = 6.0; //bloom strength
@@ -52,9 +58,11 @@ global.modlist = ds_list_create();
 //default state as text inline with the modlist
 global.asset_registry = [];
 global.block_registry = [];
+global.item_registry = [];
 global.visual_registry = [];
 
 global.block_ids = ds_list_create();
+global.item_ids = ds_list_create();
 
 //2d array inline with the modlist
 global.external_calls = [];

@@ -13,4 +13,8 @@ for (var i = 0; i < /*how many slots*/15; i++)
 
 
 scr_chat_render();
+
+if (global.inventory_open)
+	scr_inventory_render();
+
 scr_debug_render();

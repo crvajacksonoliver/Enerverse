@@ -102,12 +102,6 @@ GM_EXPORT char* engine_pull_models()
 		if (!BlockRegistry::CompileBlocks())
 		{
 			char* result = (char*)malloc(2);
-			if (result == nullptr)
-			{
-				(*F_CLOSE)();
-				delete F_CLOSE;
-				return nullptr;
-			}
 
 			result[0] = '0';
 			result[1] = '\0';
@@ -126,12 +120,49 @@ GM_EXPORT char* engine_pull_models()
 	else
 	{
 		char* result = (char*)malloc(2);
-		if (result == nullptr)
+
+		result[0] = '0';
+		result[1] = '\0';
+
+		(*F_CLOSE)();
+		delete F_CLOSE;
+		return result;
+	}
+}
+
+GM_EXPORT char* engine_pull_items()
+{
+	std::function<void()>* F_CLOSE = new std::function<void()>();
+	*F_CLOSE = []()
+	{
+		ItemRegistry::Deallocate();
+	};
+
+	ItemRegistry::Allocate();
+
+	if (modHandler->InitializeItems())
+	{
+		if (!ItemRegistry::CompileItems())
 		{
+			char* result = (char*)malloc(2);
+
+			result[0] = '0';
+			result[1] = '\0';
+
 			(*F_CLOSE)();
 			delete F_CLOSE;
-			return nullptr;
+			return result;
 		}
+
+		char* result = ItemRegistry::PullData();
+
+		(*F_CLOSE)();
+		delete F_CLOSE;
+		return result;
+	}
+	else
+	{
+		char* result = (char*)malloc(2);
 
 		result[0] = '0';
 		result[1] = '\0';

@@ -20,7 +20,7 @@ global.visual_registry = array_create(ds_list_size(global.modlist), 0);
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
 {
-	global.external_calls[i] = array_create(6 + /*how many callbacks*/2, 0);
+	global.external_calls[i] = array_create(7 + /*how many callbacks*/2, 0);
 	
 	var functionEngineVersion = external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_version", dll_cdecl, ty_real, 0);
 	
@@ -56,6 +56,9 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	
 	array_set(global.external_calls[i], 6, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_sys0", dll_stdcall, ty_string, 3, ty_string, ty_string, ty_string));
 	array_set(global.external_calls[i], 7, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_block_sys1", dll_stdcall, ty_string, 3, ty_string, ty_string, ty_string));
+	
+	//item; dont want to change all indices
+	array_set(global.external_calls[i], 8, external_define("mods/" + ds_list_find_value(global.modlist, i) + ".dll", "engine_pull_items", dll_cdecl, ty_string, 0));
 	
 	//load information
 	
@@ -104,6 +107,19 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 		
 	}
 	
+	{
+		var result = external_call(array_get(global.external_calls[i], 8));
+		if (result == "0")
+		{
+			ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Compile Mod> An error has occurred in mod \"" + ds_list_find_value(global.modlist, i) + ".dll\" during engine_pull_items");
+			errorsPresent = true;
+		}
+		else if (result == "")
+			global.item_registry[i] = "@NONE";
+		else
+			global.item_registry[i] = result;
+	}
+	
 	if (errorsPresent)
 	{
 		ds_list_add(compileMessages, " [Error] [ModHandler] <Failed to Compile Mod> An error has been detected in mod \"" + ds_list_find_value(global.modlist, i) + ".dll\", and will not be loaded into the game");
@@ -113,12 +129,15 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	}
 }
 
-//split attributes
+//blocks
 
 var blocks = ds_list_create();
 
 for (var i = 0; i < ds_list_size(global.modlist); i++)
 {
+	if (global.block_registry[i] == "@NONE")
+		continue;
+	
 	var inc = 0;
 	while (inc < string_length(global.block_registry[i]))
 	{
@@ -438,6 +457,102 @@ for (var i = 0; i < ds_list_size(blocks); i++)
 
 ds_list_destroy(blocks);
 
+//items
+
+/*
+	*itemText += item->GetUnlocalizedName();
+	*itemText += ",";
+	*itemText += item->GetDisplayName();
+	*itemText += ",";
+	*itemText += std::to_string(item->IsTool() ? 1 : 0);
+	*itemText += ",";
+	*itemText += std::to_string(item->GetToolReduction());
+	*itemText += ",";
+	*itemText += item->GetDiffuseTexture();
+	*itemText += ",";
+*/
+
+var items = ds_list_create();
+
+for (var i = 0; i < ds_list_size(global.modlist); i++)
+{
+	if (global.item_registry[i] == "@NONE")
+		continue;
+	
+	var inc = 0;
+	while (inc < string_length(global.item_registry[i]))
+	{
+		var item = array_create(5);
+		
+		{//unlocalizedName
+			var attrib = "";
+			while (string_char_at(global.item_registry[i], inc + 1) != ",")
+			{
+				attrib += string_char_at(global.item_registry[i], inc + 1);
+				inc++;
+			}
+		
+			item[0] = ds_list_find_value(global.modlist, i) + "/" + attrib;
+			inc++;
+		}
+		{//displayName
+			var attrib = "";
+			while (string_char_at(global.item_registry[i], inc + 1) != ",")
+			{
+				attrib += string_char_at(global.item_registry[i], inc + 1);
+				inc++;
+			}
+		
+			item[1] = attrib;
+			inc++;
+		}
+		{//isTool
+			var attrib = "";
+			while (string_char_at(global.item_registry[i], inc + 1) != ",")
+			{
+				attrib += string_char_at(global.item_registry[i], inc + 1);
+				inc++;
+			}
+		
+			item[2] = attrib;
+			inc++;
+		}
+		{//toolReduction
+			var attrib = "";
+			while (string_char_at(global.item_registry[i], inc + 1) != ",")
+			{
+				attrib += string_char_at(global.item_registry[i], inc + 1);
+				inc++;
+			}
+		
+			item[3] = attrib;
+			inc++;
+		}
+		{//texture
+			var attrib = "";
+			while (string_char_at(global.item_registry[i], inc + 1) != ",")
+			{
+				attrib += string_char_at(global.item_registry[i], inc + 1);
+				inc++;
+			}
+		
+			item[4] = attrib;
+			inc++;
+		}
+		
+		ds_list_add(items, item);
+	}
+}
+
+global.item_registry = array_create(ds_list_size(items));
+
+for (var i = 0; i < ds_list_size(items); i++)
+{
+	global.item_registry[i] = ds_list_find_value(items, i);
+}
+
+ds_list_destroy(items);
+
 //setup sprites and objects
 
 {
@@ -493,7 +608,11 @@ ds_list_destroy(blocks);
 		var blockBloomObject = instance_create_depth(0, 0, 0, obj_block_bloom);
 		var blockBloomSprite = sprite_add("workingset/bloom_null.png", 1, false, false, 0, 0);
 		
+		var itemDiffuseObject = instance_create_depth(0, 0, -10, obj_item_diffuse);
+		var itemDiffuseSprite = sprite_add("workingset/diffuse_null.png", 1, false, false, 0, 0);
+		
 		ds_list_add(global.block_ids, "block_null");
+		ds_list_add(global.item_ids, "item_null");
 		
 		for (var i = 0; i < array_length_1d(global.block_registry); i++)
 		{
@@ -590,6 +709,13 @@ ds_list_destroy(blocks);
 			ds_list_add(global.block_ids, array_get(global.block_registry[i], 0));
 		}
 		
+		for (var i = 0; i < array_length_1d(global.item_registry); i++)
+		{
+			scr_merge_sprite(blockDiffuseSprite, "workingset/" + array_get(global.item_registry[i], 4) + ".png");
+			//sprite_add(array_get(global.item_registry[i], 4), 1, false, false, 0, 0);
+			ds_list_add(global.item_ids, array_get(global.item_registry[i], 0));
+		}
+		
 		with (blockDiffuseObject)
 		{
 			sprite_assign(sprite_index, blockDiffuseSprite);
@@ -600,6 +726,11 @@ ds_list_destroy(blocks);
 		with (blockBloomObject)
 		{
 			sprite_assign(sprite_index, blockBloomSprite);
+		}
+		
+		with (itemDiffuseObject)
+		{
+			sprite_assign(sprite_index, itemDiffuseSprite);
 		}
 	}
 	

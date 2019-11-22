@@ -1,4 +1,4 @@
-if (!global.in_world || global.game_paused)
+if (!global.in_world || global.game_paused || global.chat_open)
 	return;
 
 var zm_speed = 1500000;//more is slower
