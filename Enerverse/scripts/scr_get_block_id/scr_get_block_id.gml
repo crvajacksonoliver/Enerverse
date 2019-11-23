@@ -1,10 +1,10 @@
 /// @param {string} unlocalizedName
 
-for (var i = 0; i < array_length_1d(global.block_registry); i++)
+for (var i = 0; i < ds_list_size(global.block_ids); i++)
 {
-	if (array_get(global.block_registry[i], 0) == argument[0])
+	if (ds_list_find_value(global.block_ids, i) == argument[0])
 	{
-		return i + 1;
+		return i;
 	}
 }
 

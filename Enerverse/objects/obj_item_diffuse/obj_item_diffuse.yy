@@ -5,7 +5,7 @@
     "name": "obj_item_diffuse",
     "eventList": [
         {
-            "id": "85b8abf4-5ed0-4918-91c6-fb4f58855b92",
+            "id": "1145ad87-363f-43fc-bdfe-cebf12cb1264",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,

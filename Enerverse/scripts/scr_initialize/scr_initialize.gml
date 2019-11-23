@@ -8,9 +8,10 @@ global.cplayer_x = 0;
 global.cplayer_y = 0;
 global.jump_dec = 0.0;
 global.jumping = false;
-global.player_breaking = -1;
-global.player_inventory = ds_map_create();
-ds_map_add(global.player_inventory, "EnerverseVin/item_test", 69);
+global.player_inventory = ds_list_create();
+
+scr_inventory_add("EnerverseVin/block_dirt", 5);
+scr_inventory_add("EnerverseVin/block_dirt", 3);
 
 // chat
 global.chat = ds_list_create();
@@ -21,6 +22,13 @@ global.chat_marker = 0;
 //inventory
 global.inventory_open = false;
 global.inventory_marker = 0;
+
+//breaking
+global.breaking = false;
+global.breaking_progress = 0.0;
+global.breaking_hardness = 0.0;
+global.breaking_x = 0;
+global.breaking_y = 0;
 
 ds_list_add(global.chat, "testing line 1");
 ds_list_add(global.chat, "testing line 2");

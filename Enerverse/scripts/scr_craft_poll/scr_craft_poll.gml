@@ -655,7 +655,13 @@ ds_list_destroy(items);
 				}
 				
 				sprite_add_from_surface(blockDiffuseSprite, assetDiffuseSurface, 0, 0, 32, 32, false, false);
-			
+				
+				if (array_get(global.block_registry[i], 5) == "1")
+				{
+					sprite_add_from_surface(itemDiffuseSprite, assetDiffuseSurface, 0, 0, 32, 32, false, false);
+					ds_list_add(global.item_ids, array_get(global.block_registry[i], 0));
+				}
+				
 				surface_reset_target();
 				surface_free(assetDiffuseSurface);
 			}
@@ -711,8 +717,7 @@ ds_list_destroy(items);
 		
 		for (var i = 0; i < array_length_1d(global.item_registry); i++)
 		{
-			scr_merge_sprite(blockDiffuseSprite, "workingset/" + array_get(global.item_registry[i], 4) + ".png");
-			//sprite_add(array_get(global.item_registry[i], 4), 1, false, false, 0, 0);
+			itemDiffuseSprite = scr_merge_sprite(itemDiffuseSprite, "workingset/" + array_get(global.item_registry[i], 4) + ".png");
 			ds_list_add(global.item_ids, array_get(global.item_registry[i], 0));
 		}
 		

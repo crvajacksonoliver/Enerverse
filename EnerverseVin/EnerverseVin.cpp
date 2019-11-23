@@ -6,7 +6,7 @@ class BlockDirt : public Block
 {
 public:
 	BlockDirt()
-		:Block("block_dirt", "Dirt", Material::EARTH, 1.0f, Tool::SHOVEL)
+		:Block("block_dirt", "Dirt", Material::EARTH, 0.5f, Tool::SHOVEL)
 	{
 
 	}

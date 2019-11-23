@@ -6,7 +6,7 @@ class BlockLantern : public Block
 {
 public:
 	BlockLantern()
-		:Block("block_lantern", "Lantern", Material::METAL, 1.0f, Tool::HAND)
+		:Block("block_lantern", "Lantern", Material::METAL, 1.5f, Tool::HAND)
 	{
 
 	}

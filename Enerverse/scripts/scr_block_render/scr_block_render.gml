@@ -50,17 +50,25 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 			
 			if (over)
 			{
+				var unlocalizedName = scr_block_get_unlocalized_name_from_id(array_get(scr_block_get(use_x, use_y), 0));
+				
 				shader_set_uniform_i(shader_get_uniform(sdr_block_final, "u_Box"), 1);
-				if (mouse_check_button_pressed(mb_left) && !global.UI_active)
+				if (mouse_check_button(mb_left) && !global.UI_active && !global.breaking && unlocalizedName != "EnerverseVin/block_air")
 				{
-					if (global.player_breaking == -1)
-					{
-						
-					}
+					global.breaking = true;
+					global.breaking_x = use_x;
+					global.breaking_y = use_y;
+					global.breaking_hardness = scr_block_get_hardness(scr_block_get_unlocalized_name_from_id(array_get(scr_block_get(use_x, use_y), 0)));
+					global.breaking_progress = 0.0;
+				}
+				else if (!mouse_check_button(mb_left) && !global.UI_active && global.breaking)
+				{
+					global.breaking = false;
 				}
 				else if (mouse_check_button_pressed(mb_right) && !global.UI_active)
 				{
-					scr_block_set(use_x, use_y, "EnerverseVin/block_air", "0,");
+					//scr_block_set(use_x, use_y, "EnerverseVin/block_air", "0,");
+					//setblock
 				}
 			}
 			else

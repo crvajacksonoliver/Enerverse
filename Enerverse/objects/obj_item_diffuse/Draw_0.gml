@@ -1,3 +1,2 @@
-show_message(string(image_number));
-image_index = 1;
-draw_self();
+if (global.inventory_open)
+	scr_inventory_render();
