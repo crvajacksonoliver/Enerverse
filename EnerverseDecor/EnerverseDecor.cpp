@@ -40,6 +40,15 @@ public:
 
 		return metaData;
 	}
+
+	ItemStackList GetDrops()
+	{
+		ItemStackList list;
+
+		list.AddItemStack(ItemStack("EnerverseDecor/block_lantern", 1));
+
+		return list;
+	}
 };
 
 const char* ModDecor::GetModUnlocalizedName()

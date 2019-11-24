@@ -11,7 +11,8 @@
         "2ea6d416-1602-455e-9b2f-a7b69af99fb6",
         "455b6b34-5249-451d-9595-c9bed1e16773",
         "d3bb9ede-71bb-4b3e-8e07-98d02ce676e2",
-        "f9be26ab-cd72-4147-aaff-62e30781ebae"
+        "f9be26ab-cd72-4147-aaff-62e30781ebae",
+        "e2b2c11a-89dc-4017-ba38-1d8f75921d58"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "workingset",

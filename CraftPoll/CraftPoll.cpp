@@ -46,6 +46,11 @@ Model* Block::GetBloomModel()
 	return model;
 }
 
+ItemStackList Block::GetDrops()
+{
+	return ItemStackList();
+}
+
 char* Block::OnBlockCreate(char* arguments)
 {
 	char* metaData = (char*)malloc(2);
@@ -136,6 +141,8 @@ Status BlockRegistry::RegisterBlock(Block* block)
 	*blockText += ",";
 	*blockText += std::to_string(block->IsItem() ? 1 : 0);
 	*blockText += ",";
+	*blockText += block->GetDrops().GetCompiledStacks();
+	*blockText += ";";
 
 	// add model
 
@@ -774,3 +781,40 @@ std::vector<Item*>* ItemRegistry::m_items;
 std::vector<std::string>* ItemRegistry::m_itemText;
 
 char* ItemRegistry::m_data;
+
+ItemStackList::ItemStackList()
+{
+	m_stacks = std::vector<ItemStack>();
+}
+
+void ItemStackList::AddItemStack(ItemStack stack)
+{
+	m_stacks.push_back(stack);
+}
+
+std::string ItemStackList::GetCompiledStacks()
+{
+	std::string comp = std::string();
+
+	for (unsigned int i = 0; i < m_stacks.size(); i++)
+	{
+		comp += m_stacks[i].UnlocalizedName;
+		comp += ",";
+		comp += std::to_string(m_stacks[i].Count);
+		comp += ",";
+	}
+
+	return comp;
+}
+
+ItemStack::ItemStack()
+{
+	UnlocalizedName = "";
+	Count = 0;
+}
+
+ItemStack::ItemStack(const char* unlocalizedName, unsigned int count)
+{
+	UnlocalizedName = unlocalizedName;
+	Count = count;
+}

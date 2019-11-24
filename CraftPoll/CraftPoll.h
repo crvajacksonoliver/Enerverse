@@ -71,6 +71,28 @@ namespace cpm
 	};
 };
 
+class ItemStack
+{
+public:
+	ItemStack();
+	ItemStack(const char* unlocalizedName, unsigned int count);
+
+	const char* UnlocalizedName;
+	unsigned int Count;
+};
+
+class ItemStackList
+{
+public:
+	ItemStackList();
+	
+	void AddItemStack(ItemStack stack);
+
+	std::string GetCompiledStacks();
+private:
+	std::vector<ItemStack> m_stacks;
+};
+
 class SystemCommands
 {
 public:
@@ -142,9 +164,9 @@ public:
 
 	// if true the engine will assume its and item and a block
 	virtual bool IsItem();
-
 	virtual Model* GetDiffuseModel();
 	virtual Model* GetBloomModel();
+	virtual ItemStackList GetDrops();
 
 	virtual char* OnBlockCreate(char* arguments);
 	virtual char* OnBlockUpdate(char* metaData);

@@ -114,6 +114,25 @@ for (var c_x = 0; c_x < (room_width / blockSize) + 2; c_x++)
 				
 			draw_sprite_stretched(sprite_index, sprite_idx, sx, sy, blockSize, blockSize);
 		}
+		
+		if (global.breaking && use_x == global.breaking_x && use_y == global.breaking_y)
+		{
+			with (global.breaking_object)
+			{
+				x = sx;
+				y = sy;
+				
+				visible = true;
+				image_index = round(global.breaking_progress * image_number);
+			}
+		}
+		else if (!global.breaking && use_x == global.breaking_x && use_y == global.breaking_y)
+		{
+			with (global.breaking_object)
+			{
+				visible = false;
+			}
+		}
 	}
 }
 

@@ -1,12 +1,12 @@
 ﻿  CraftPoll.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(311,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
-D:\Enerverse\CraftPoll\CraftPoll.cpp(238,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
-D:\Enerverse\CraftPoll\CraftPoll.cpp(497,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.h(333,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.cpp(245,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.cpp(504,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   EngineCalls.h
-D:\Enerverse\CraftPoll\CraftPoll.cpp(742,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
+D:\Enerverse\CraftPoll\CraftPoll.cpp(749,37): warning C4244: 'argument': conversion from 'unsigned __int64' to 'size_t', possible loss of data
   Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(311,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(333,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
 D:\Enerverse\CraftPoll\CraftPoll.cpp(20): warning C4715: 'ToolConvert': not all control paths return a value
 D:\Enerverse\CraftPoll\CraftPoll.cpp(11): warning C4715: 'MaterialConvert': not all control paths return a value
-D:\Enerverse\CraftPoll\CraftPoll.cpp(457): warning C4715: 'AssetRegistry::AssetConvert': not all control paths return a value
+D:\Enerverse\CraftPoll\CraftPoll.cpp(464): warning C4715: 'AssetRegistry::AssetConvert': not all control paths return a value
   CraftPoll.vcxproj -> D:\Enerverse\CraftPoll\build\CRAFTPOLL.lib

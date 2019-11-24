@@ -29,6 +29,15 @@ public:
 
 		return model;
 	}
+
+	ItemStackList GetDrops()
+	{
+		ItemStackList list;
+
+		list.AddItemStack(ItemStack("EnerverseVin/block_dirt", 1));
+
+		return list;
+	}
 };
 
 class BlockGrass : public Block
@@ -57,6 +66,15 @@ public:
 		metaData[1] = 0;
 
 		return metaData;
+	}
+
+	ItemStackList GetDrops()
+	{
+		ItemStackList list;
+
+		list.AddItemStack(ItemStack("EnerverseVin/block_grass", 1));
+
+		return list;
 	}
 };
 
@@ -122,6 +140,15 @@ public:
 			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '1', 1, GetBlockPosition());
 		else
 			GetSystemCommands()->RunSetBlockMetaDataChar(GetUnlocalizedName().c_str(), '0', 1, GetBlockPosition());
+	}
+
+	ItemStackList GetDrops()
+	{
+		ItemStackList list;
+
+		list.AddItemStack(ItemStack("EnerverseVin/block_sod", 1));
+
+		return list;
 	}
 };
 

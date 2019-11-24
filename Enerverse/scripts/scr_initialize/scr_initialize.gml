@@ -43,7 +43,7 @@ global.debug_menu = array_create(5, 0);
 global.block_updates = ds_list_create();
 
 global.settings = array_create(2);
-global.settings[0] = false;//enable debug menu
+global.settings[0] = true;//enable debug menu
 global.settings[1] = true;//enable bloom
 global.settings[2] = 60;  //bloom spread distance
 global.settings[3] = 6.0; //bloom strength
@@ -121,4 +121,9 @@ with (buttonQuit)
 	y = (room_height / 2) + (((room_height * 0.6) / 15));
 }
 
-global.debug_menu[4] = "not yet";
+global.breaking_object = instance_create_depth(0, 0, -100, obj_breaking);
+with (global.breaking_object)
+{
+	sprite_assign(sprite_index, sprite_add("workingset/breaking.png", 4, false, false, 0, 0));
+}
+

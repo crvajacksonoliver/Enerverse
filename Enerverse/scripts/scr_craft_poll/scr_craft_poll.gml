@@ -141,7 +141,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 	var inc = 0;
 	while (inc < string_length(global.block_registry[i]))
 	{
-		var block = array_create(8);
+		var block = array_create(9);
 		
 		{//unlocalizedName
 			var attrib = "";
@@ -207,6 +207,46 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 			}
 		
 			block[5] = attrib;
+			inc++;
+		}
+		{//drops
+			var drops = ds_list_create();
+			
+			while (string_char_at(global.block_registry[i], inc + 1) != ";")
+			{
+				var attrib = array_create(2);
+				var dropUnlocalizedName = "";
+				var dropAmount = "";
+				
+				while (string_char_at(global.block_registry[i], inc + 1) != ",")
+				{
+					dropUnlocalizedName += string_char_at(global.block_registry[i], inc + 1);
+					inc++;
+				}
+				
+				inc++;
+				
+				while (string_char_at(global.block_registry[i], inc + 1) != ",")
+				{
+					dropAmount += string_char_at(global.block_registry[i], inc + 1);
+					inc++;
+				}
+				
+				inc++;
+				
+				attrib[0] = dropUnlocalizedName;
+				attrib[1] = dropAmount;
+				
+				ds_list_add(drops, attrib);
+			}
+			
+			var drop_array = array_create(ds_list_size(drops));
+			for (var a = 0; a < ds_list_size(drops); a++)
+			{
+				drop_array[a] = ds_list_find_value(drops, a);
+			}
+			
+			block[6] = drop_array;
 			inc++;
 		}
 		{//DIFFUSE model
@@ -324,7 +364,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 				}
 			}
 			
-			block[6] = model;
+			block[7] = model;
 		}
 		{//BLOOM model
 			var model = ds_list_create();
@@ -441,7 +481,7 @@ for (var i = 0; i < ds_list_size(global.modlist); i++)
 				}
 			}
 			
-			block[7] = model;
+			block[8] = model;
 		}
 		
 		ds_list_add(blocks, block);
@@ -622,9 +662,9 @@ ds_list_destroy(items);
 			
 				var revertToNull = false;
 				
-				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 6)); a++)
+				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 7)); a++)
 				{
-					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 6), a);
+					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 7), a);
 				
 					var found = -1;
 					var foundType = -1;
@@ -671,9 +711,9 @@ ds_list_destroy(items);
 				
 				var revertToNull = false;
 				
-				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 7)); a++)
+				for (var a = 0; a < ds_list_size(array_get(global.block_registry[i], 8)); a++)
 				{
-					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 7), a);
+					var frameDetails = ds_list_find_value(array_get(global.block_registry[i], 8), a);
 				
 					var found = -1;
 					var foundType = -1;

@@ -1,7 +1,7 @@
 ﻿  EnerverseVin.cpp
   EngineCalls.cpp
-D:\Enerverse\CraftPoll\CraftPoll.h(311,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(333,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
   Generating Code...
-D:\Enerverse\CraftPoll\CraftPoll.h(311,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
+D:\Enerverse\CraftPoll\CraftPoll.h(333,2): warning C4091: 'extern ': ignored on left of 'ModHandler' when no variable is declared
      Creating library D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.lib and object D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.exp
   EnerverseVin.vcxproj -> D:\Enerverse\Enerverse\datafiles\mods\EnerverseVin.dll
